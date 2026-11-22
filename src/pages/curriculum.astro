@@ -14,7 +14,7 @@ const subjects = [
 ---
 <Base title="Curriculum" current="curriculum" description="What students learn at each grade: Quran, memorization and Islamic studies from KG to Youth Group.">
   <Hero eyebrow="KG to Youth Group" title="Curriculum" lead={cur.lead}>
-    {site.pdfCurriculum && <a class="btn btn-ghost" href={u(site.pdfCurriculum)}><Icon name="download" />Full Curriculum (PDF)</a>}
+    {site.pdfCurriculum && <a class="btn btn-ghost" href={u(site.pdfCurriculum)} target="_blank" rel="noopener"><Icon name="download" />Full Curriculum (PDF)<span class="sr-only"> (opens in a new tab)</span></a>}
   </Hero>
 
   <section class="wrap pt-major">

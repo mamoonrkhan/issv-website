@@ -3,6 +3,7 @@ import '@fontsource/amiri/arabic-400.css';
 import Base from '../layouts/Base.astro';
 import Pattern from '../components/Pattern.astro';
 import Photo from '../components/Photo.astro';
+import Icon from '../components/Icon.astro';
 import AddToCalendar from '../components/AddToCalendar.astro';
 import site from '../data/site.json';
 import calendar from '../data/calendar.json';
@@ -65,7 +66,7 @@ const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
       </div>
       {news.length > 0 && (
         <div class="sunday-news">
-          <h3 class="label">Announcements</h3>
+          <h3 class="news-heading"><Icon name="megaphone" size={18} />Announcements</h3>
           <ul class="news">
             {news.map((n) => (
               <li
@@ -73,8 +74,11 @@ const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
                 data-hide-after={iso(n.data.hideAfter)}
                 hidden={!isLive(iso(n.data.showFrom), iso(n.data.hideAfter), today)}
               >
-                <span class="news-title">{n.data.title}</span>
-                <span class="news-text">{n.body?.trim()}</span>
+                <span class="news-icon"><Icon name="megaphone" size={20} /></span>
+                <div>
+                  <span class="news-title">{n.data.title}</span>
+                  <span class="news-text">{n.body?.trim()}</span>
+                </div>
               </li>
             ))}
           </ul>

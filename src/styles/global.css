@@ -143,10 +143,10 @@ a:hover .arrow { transform: translateX(4px); }
   background: var(--stone-200); color: var(--ink-2); font-size: 13px; text-align: center;
   padding: 6px var(--gutter); border-bottom: 1px solid var(--line);
 }
-.announce-bar { background: var(--green-700); color: var(--white); font-size: 15px; }
-.announce-bar .wrap { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; justify-content: center; padding-top: 10px; padding-bottom: 10px; text-align: center; }
+.announce-bar { background: var(--gold-300); color: var(--green-900); font-size: 15px; border-bottom: 1px solid var(--gold-400); }
+.announce-bar .wrap { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; justify-content: center; padding-top: 11px; padding-bottom: 11px; text-align: center; }
 .announce-bar strong { font-weight: 700; }
-.announce-bar span { color: var(--on-dark); }
+.announce-icon { display: inline-flex; width: 28px; height: 28px; border-radius: 50%; background: var(--green-900); color: var(--gold-300); align-items: center; justify-content: center; flex: none; }
 
 /* ---------- Header ---------- */
 .site-header { background: var(--white); border-bottom: 1px solid var(--line); position: relative; z-index: 20; }
@@ -235,7 +235,7 @@ a:hover .arrow { transform: translateX(4px); }
 .bismillah { font-family: var(--font-arabic); font-size: 30px; color: var(--gold-300); align-self: flex-start; line-height: 1.5; }
 .home-hero h1 { font-size: 60px; line-height: 1.06; }
 .home-hero .lead { font-size: 20px; max-width: 520px; }
-.hero-photo { flex: 1 1 380px; min-width: 0; aspect-ratio: 5 / 4; border-radius: 16px; overflow: hidden; }
+.hero-photo { flex: 1 1 440px; min-width: 0; aspect-ratio: 5 / 4; border-radius: 16px; overflow: hidden; }
 .hero-photo .photo, .hero-photo .frame { height: 100%; }
 .hero-photo .frame { aspect-ratio: auto; border-radius: 0; }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
@@ -375,12 +375,15 @@ a:hover .arrow { transform: translateX(4px); }
 .mission-item p { font-size: 16px; color: var(--muted); }
 
 /* ---------- Home announcements (inside the This Sunday card) ---------- */
-.sunday-news { flex: 1 1 100%; border-top: 1px solid var(--line-soft); padding-top: 20px; display: flex; flex-direction: column; gap: 10px; }
-.sunday-news .label { font-size: 13px; font-weight: 600; }
-.news { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px 32px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
-.news li { display: flex; flex-direction: column; }
-.news-title { font-weight: 600; font-size: 16px; }
-.news-text { font-size: 15px; color: var(--muted); }
+.sunday-news { flex: 1 1 100%; border-top: 1px solid var(--line-soft); padding-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+.news-heading { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--gold-text); text-transform: uppercase; letter-spacing: .06em; }
+.news { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.news li { display: flex; gap: 14px; align-items: flex-start; background: var(--gold-50); border: 1px solid #E7D3AC; border-radius: 12px; padding: 16px 18px; }
+.news li[hidden] { display: none; }
+.news li > div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.news-icon { display: inline-flex; width: 40px; height: 40px; border-radius: 50%; background: var(--gold-300); color: var(--green-900); align-items: center; justify-content: center; flex: none; }
+.news-title { font-weight: 700; font-size: 17px; color: var(--green-900); }
+.news-text { font-size: 15px; color: var(--ink-2); }
 .sunday-news:not(:has(li:not([hidden]))) { display: none; }
 
 /* ---------- Calendar ---------- */

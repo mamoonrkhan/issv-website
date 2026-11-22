@@ -33,7 +33,7 @@ const events = [...calendar.events].sort((a, b) => a.date.localeCompare(b.date))
 <Base title={`Calendar ${calendar.schoolYear}`} current="calendar" description={`School calendar ${calendar.schoolYear}: class days, holidays, events and deadlines.`}>
   <Hero eyebrow={`${calendar.schoolYear} · ${calendar.hijriYear}`} title="Calendar" lead={`${classDays.length} Sundays · ${shortDate(first)} to ${shortDate(last)}`}>
     <AddToCalendar variant="dark" />
-    {site.pdfCalendar && <a class="btn btn-ghost" href={u(site.pdfCalendar)}><Icon name="download" />PDF</a>}
+    {site.pdfCalendar && <a class="btn btn-ghost" href={u(site.pdfCalendar)} target="_blank" rel="noopener"><Icon name="download" />PDF<span class="sr-only"> (opens in a new tab)</span></a>}
   </Hero>
 
   <section class="wrap pt-major" aria-labelledby="months-title">
