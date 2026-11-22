@@ -1,0 +1,83 @@
+---
+// Landing page for volunteer editors. Not linked from the main menu and not indexed.
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import site from '../data/site.json';
+
+const editor = 'https://app.pagescms.org/';
+const tasks = [
+  {
+    title: 'Post an Announcement',
+    steps: [
+      'Open the editor, choose Announcements, and add a new one.',
+      'Write a short title and a one- or two-sentence message.',
+      'Pick the first and last day it should show.',
+      'For urgent news (a closure, a virtual day), turn on the green banner.',
+      'Click Save.',
+    ],
+  },
+  {
+    title: 'Change a Sunday (No School, Virtual)',
+    steps: [
+      'Choose Calendar, then open Sundays.',
+      'Find the Sunday and change its Status.',
+      'For “No school”, add the reason in the note (e.g. Thanksgiving).',
+      'Click Save. The home page, Calendar page and families’ phone calendars all update.',
+    ],
+  },
+  {
+    title: 'Emergency Closure This Sunday',
+    steps: [
+      'Choose This Sunday (Emergency).',
+      'Turn on the override, pick “No school”, and write a headline and details.',
+      'Click Save. Remember to turn it off afterwards.',
+      'Also post an announcement with the green banner so every page shows it.',
+    ],
+  },
+  {
+    title: 'Update Tuition, Zelle or Contact Details',
+    steps: [
+      'Choose Tuition & Payment, or Contact, Links & PDFs.',
+      'Change the text, or upload a new PDF or QR code image.',
+      'Click Save.',
+    ],
+  },
+];
+---
+<Base title="Edit the Website" index={false} description="How volunteers update the school website.">
+  <Hero eyebrow="For Volunteers" title="Edit the Website" lead="Update announcements, the calendar and school information. No coding needed.">
+    <a class="btn btn-gold btn-lg" href={editor} target="_blank" rel="noopener">Open the Editor</a>
+  </Hero>
+
+  <section class="wrap pt-major grid grid-2">
+    <div class="card stack">
+      <h2 class="h-section">First Time?</h2>
+      <ol class="guide-steps">
+        <li>Look for an email invitation from <strong>Pages CMS</strong>. Ask the website admin if you didn’t get one.</li>
+        <li>Click <strong>Open the Editor</strong> above, choose <strong>Continue with email</strong>, and enter the address you were invited with. Pages CMS emails you a way to sign in, so there’s no password to remember.</li>
+        <li>Choose the school website from the list. You’ll see sections like Announcements and Calendar on the left.</li>
+      </ol>
+    </div>
+    <div class="card stack">
+      <h2 class="h-section">Good to Know</h2>
+      <ul class="bullets">
+        <li>After you click Save, the website updates in about two minutes.</li>
+        <li>You can’t break anything. Every change is saved in a history, so any mistake can be undone.</li>
+        <li>Please don’t upload photos that show children.</li>
+        <li>Questions? Email <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap pt-major section-last">
+    <h2 class="h-section mb-16">Common Tasks</h2>
+    <div class="grid grid-2">
+      {tasks.map((t) => (
+        <div class="card card-sm stack">
+          <h3 class="h-card">{t.title}</h3>
+          <ol class="guide-steps">{t.steps.map((s) => <li>{s}</li>)}</ol>
+        </div>
+      ))}
+    </div>
+  </section>
+</Base>

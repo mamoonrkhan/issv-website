@@ -1,0 +1,320 @@
+# Website editor for volunteers (Pages CMS: https://pagescms.org).
+# Volunteers sign in at https://app.pagescms.org with the email they were invited with.
+# Every save is a commit to this repo; the site republishes about two minutes later.
+
+settings:
+  # Keep any keys in a file that aren't listed below, so nothing is ever lost on save.
+  content:
+    merge: true
+  commit:
+    templates:
+      create: "Add {path} (website editor)"
+      update: "Update {path} (website editor)"
+      delete: "Delete {path} (website editor)"
+      rename: "Rename {oldPath} to {newPath} (website editor)"
+
+media:
+  - name: images
+    label: Images
+    input: src/assets/photos
+    output: /src/assets/photos
+    extensions: [jpg, jpeg, png, webp]
+  - name: pdfs
+    label: PDFs
+    input: public/docs
+    output: /docs
+    extensions: [pdf]
+
+content:
+  # ------------------------------------------------------------------
+  - name: announcements
+    label: Announcements
+    type: collection
+    path: src/content/announcements
+    format: yaml-frontmatter
+    filename: "{year}-{month}-{primary}.md"
+    view:
+      fields: [title, showFrom, hideAfter, banner]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: Short, e.g. “No School This Sunday”.
+      - name: body
+        label: Message
+        type: text
+        required: true
+        description: One or two sentences.
+      - name: banner
+        label: Show as the green banner at the top of every page
+        type: boolean
+        default: false
+        description: Use only for urgent news, like a closure or a virtual day.
+      - name: showFrom
+        label: Show from
+        type: date
+        options:
+          format: yyyy-MM-dd
+      - name: hideAfter
+        label: Hide after
+        type: date
+        default: ""
+        description: The last day it shows. Leave empty to keep it up until you delete it.
+        options:
+          format: yyyy-MM-dd
+      - name: date
+        label: Posted on
+        type: date
+        description: Newest posts show first.
+        options:
+          format: yyyy-MM-dd
+
+  # ------------------------------------------------------------------
+  - name: sunday
+    label: This Sunday (Emergency)
+    type: file
+    path: src/data/sunday.json
+    format: json
+    operations: { create: false, delete: false }
+    fields:
+      - name: enabled
+        label: Override the “This Sunday” card on the home page
+        type: boolean
+        description: For weather, closures or last-minute changes. Turn it off again afterwards.
+      - name: date
+        label: For which Sunday
+        type: date
+        default: ""
+        description: Leave empty to apply to whichever Sunday is next.
+        options:
+          format: yyyy-MM-dd
+      - name: status
+        label: Status
+        type: select
+        options:
+          values:
+            - { name: no-school, label: No school }
+            - { name: virtual, label: Virtual (Zoom) }
+            - { name: in-session, label: In session }
+      - name: title
+        label: Headline
+        type: string
+        description: "e.g. “School Closed: Power Outage”."
+      - name: message
+        label: Details
+        type: text
+
+  # ------------------------------------------------------------------
+  - name: calendar
+    label: Calendar
+    type: file
+    path: src/data/calendar.json
+    format: json
+    operations: { create: false, delete: false }
+    fields:
+      - name: sundays
+        label: Sundays
+        type: object
+        description: Changing a Sunday updates the Calendar page, the home page card and families’ subscribed calendars.
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{date}: {status} {note}"
+        fields:
+          - name: date
+            label: Sunday
+            type: date
+            options:
+              format: yyyy-MM-dd
+          - name: status
+            label: Status
+            type: select
+            options:
+              values:
+                - { name: in-session, label: In session }
+                - { name: virtual, label: Virtual (Zoom) }
+                - { name: possible-virtual, label: Possible virtual }
+                - { name: no-school, label: No school }
+          - name: note
+            label: Note for parents
+            type: string
+            description: For “No school”, the reason (e.g. Thanksgiving). Otherwise usually empty.
+      - name: events
+        label: Events & deadlines
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{date}: {title}"
+        fields:
+          - name: date
+            label: Date
+            type: date
+            options:
+              format: yyyy-MM-dd
+          - name: end
+            label: End date (only for events that last several days)
+            type: date
+            default: ""
+            options:
+              format: yyyy-MM-dd
+          - name: title
+            label: Event
+            type: string
+      - name: schoolYear
+        label: School year
+        type: string
+        description: e.g. 2026–27
+      - name: hijriYear
+        label: Hijri year
+        type: string
+      - name: startTime
+        label: Class starts (24-hour time)
+        type: string
+        pattern: { regex: "^\\d{2}:\\d{2}$", message: "Use HH:MM, e.g. 10:00" }
+      - name: endTime
+        label: Class ends (24-hour time)
+        type: string
+        pattern: { regex: "^\\d{2}:\\d{2}$", message: "Use HH:MM, e.g. 13:30" }
+
+  # ------------------------------------------------------------------
+  - name: payment
+    label: Tuition & Payment
+    type: file
+    path: src/data/payment.json
+    format: json
+    operations: { create: false, delete: false }
+    fields:
+      - { name: tuitionPerChild, label: Tuition per child ($), type: number }
+      - { name: secondInstallmentDue, label: 2nd installment due, type: string, description: "e.g. Jan 10" }
+      - { name: currentFamilies, label: Pre-registration dates (current families), type: string }
+      - { name: newFamilies, label: Registration dates (new families), type: string }
+      - { name: registrationCloses, label: Registration closes, type: string }
+      - { name: zelleEmail, label: Zelle email or phone, type: string }
+      - { name: zelleName, label: Name exactly as it appears in Zelle, type: string }
+      - { name: zelleQr, label: Zelle QR code, type: image, options: { media: images } }
+      - { name: memoFormat, label: What families write in the Zelle memo, type: string }
+      - { name: checkPayee, label: Checks payable to, type: string }
+      - { name: checkMemo, label: What families write in the check memo, type: string }
+      - { name: checkWhere, label: Where to hand in checks, type: string }
+      - { name: mailingAddress, label: Mailing address for checks (optional), type: string }
+      - { name: maxChildren, label: Most children in the estimator, type: number, hidden: true }
+
+  # ------------------------------------------------------------------
+  - name: handbook
+    label: Parent Handbook
+    type: file
+    path: src/data/handbook.json
+    format: json
+    operations: { create: false, delete: false }
+    fields:
+      - { name: lead, label: Intro line, type: string }
+      - name: sections
+        label: Sections
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: id
+            label: Link name
+            type: string
+            hidden: true
+          - { name: title, label: Section title, type: string }
+          - { name: items, label: Rules, type: text, list: true }
+
+  # ------------------------------------------------------------------
+  - name: curriculum
+    label: Curriculum
+    type: file
+    path: src/data/curriculum.json
+    format: json
+    operations: { create: false, delete: false }
+    fields:
+      - { name: lead, label: Intro line, type: string }
+      - name: grades
+        label: Grades
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - { name: id, label: Link name, type: string, hidden: true }
+          - { name: label, label: Tab label, type: string, description: "Short, e.g. Gr 4" }
+          - { name: title, label: Title, type: string }
+          - { name: note, label: Note under the title (optional), type: string }
+          - { name: quran, label: Quran, type: string, list: true }
+          - { name: memorize, label: Memorize, type: string, list: true }
+          - { name: studies, label: Islamic studies, type: string, list: true }
+      - name: schedule
+        label: A Sunday at School
+        type: object
+        list: true
+        fields:
+          - { name: time, label: Time, type: string }
+          - { name: what, label: What happens, type: string }
+      - name: milestones
+        label: Milestones
+        type: object
+        list: true
+        fields:
+          - { name: when, label: When, type: string }
+          - { name: what, label: Goal, type: string }
+
+  # ------------------------------------------------------------------
+  - name: faq
+    label: New Family Questions
+    type: file
+    path: src/data/faq.json
+    format: json
+    operations: { create: false, delete: false }
+    fields:
+      - name: items
+        label: Questions
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{q}"
+        fields:
+          - { name: q, label: Question, type: string }
+          - { name: a, label: Answer, type: text }
+
+  # ------------------------------------------------------------------
+  - name: site
+    label: Contact, Links & PDFs
+    type: file
+    path: src/data/site.json
+    format: json
+    operations: { create: false, delete: false }
+    fields:
+      - { name: emailGeneral, label: General email, type: string }
+      - { name: emailRegistration, label: Registration email, type: string }
+      - { name: location, label: Location, type: string }
+      - { name: address, label: Street address (optional), type: string }
+      - { name: parkingNotes, label: Parking notes (optional), type: text }
+      - { name: hours, label: Hours, type: string }
+      - { name: absenceFormUrl, label: Absence form link (Google Form), type: string }
+      - { name: donationUrl, label: Donation link (optional), type: string, description: "If empty, the Donate button opens an email instead." }
+      - { name: volunteerSignupUrl, label: Volunteer sign-up link (optional), type: string }
+      - { name: pdfCalendar, label: Calendar PDF, type: file, options: { media: pdfs } }
+      - { name: pdfCurriculum, label: Curriculum PDF, type: file, options: { media: pdfs } }
+      - { name: pdfGuidelines, label: Parent guidelines PDF, type: file, options: { media: pdfs } }
+      - { name: heroImage, label: Home page photo, type: image, options: { media: images }, description: "Please use photos without children in them (e.g. the building)." }
+      - { name: heroImageAlt, label: Home photo description (for blind visitors), type: string }
+      - { name: heroImageCredit, label: Photo credit, type: string, description: "Required for photos found online with a Creative Commons license." }
+      - { name: heroImageCreditUrl, label: Photo credit link, type: string }
+      - { name: name, label: School name, type: string, hidden: true }
+      - { name: shortName, label: Short name, type: string, hidden: true }
+      - { name: tagline, label: Home page headline, type: string, hidden: true }
+      - { name: lead, label: Home page intro, type: text, hidden: true }
+      - { name: taxId, label: Tax ID, type: string, hidden: true }
+      - { name: previewNotice, label: Proposal preview notice, type: boolean, hidden: true }
