@@ -1,5 +1,5 @@
 {
-  "tuitionPerChild": 800,
+  "tuitionPerChild": 8000,
   "maxChildren": 8,
   "secondInstallmentDue": "Jan 10",
   "currentFamilies": "May 2–9",
@@ -7,10 +7,8 @@
   "registrationCloses": "Sep 27",
   "zelleEmail": "[SCHOOL ZELLE EMAIL]",
   "zelleName": "[REGISTERED NAME]",
-  "zelleQr": "",
   "memoFormat": "Child name - Grade - Fall",
   "checkPayee": "[PAYEE NAME]",
   "checkMemo": "Child – Grade",
-  "checkWhere": "At the registration desk, with your forms",
-  "mailingAddress": ""
+  "checkWhere": "At the registration desk, with your forms"
 }
