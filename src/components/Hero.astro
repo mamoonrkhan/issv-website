@@ -1,16 +1,15 @@
 ---
+// Page header used on every page except Home: label, title, one-line lead, then optional buttons.
 import Pattern from './Pattern.astro';
-interface Props { title: string; lead?: string; eyebrow?: string; }
-const { title, lead, eyebrow } = Astro.props;
+interface Props { eyebrow: string; title: string; lead: string; }
+const { eyebrow, title, lead } = Astro.props;
 ---
 <section class="hero">
   <Pattern id="geo-hero" opacity={0.12} />
   <div class="wrap">
-    <div class="hero-text">
-      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-      <h1>{title}</h1>
-      {lead && <p class="lead">{lead}</p>}
-    </div>
+    <p class="eyebrow">{eyebrow}</p>
+    <h1>{title}</h1>
+    <p class="lead">{lead}</p>
     {Astro.slots.has('default') && <div class="hero-actions"><slot /></div>}
   </div>
 </section>

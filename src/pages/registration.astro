@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
 import site from '../data/site.json';
 import pay from '../data/payment.json';
+import calendar from '../data/calendar.json';
 import { resolveImage } from '../lib/images';
 import { u } from '../lib/url';
 
@@ -12,7 +13,7 @@ const fmt = (n: number) => '$' + n.toLocaleString('en-US');
 const qr = resolveImage(pay.zelleQr);
 ---
 <Base title="Registration & Tuition" current="registration" description={`Register in person at school. Tuition is ${fmt(pay.tuitionPerChild)} per child; pay by Zelle or check.`}>
-  <Hero title="Registration & Tuition" lead={`In person at school · ${fmt(pay.tuitionPerChild)} per child · pay by Zelle or check`}>
+  <Hero eyebrow={`${calendar.schoolYear} School Year`} title="Registration & Tuition" lead={`In person at school · ${fmt(pay.tuitionPerChild)} per child · pay by Zelle or check`}>
     <a class="btn btn-gold" href="#pay">Pay tuition</a>
     <a class="btn btn-ghost" href={u('/new-families/')}>New to the school?</a>
   </Hero>

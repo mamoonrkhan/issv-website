@@ -20,12 +20,12 @@ A proposed new website for the Islamic School of Silicon Valley. It's fast, work
 
 | Page | Path | What it does |
 |---|---|---|
-| Home | `/` | "This Sunday" card (in session, virtual or no school), upcoming dates, announcements, at-a-glance facts |
+| Home | `/` | "This Sunday" card (status, absence form, calendar buttons, announcements), upcoming dates, parent links, at-a-glance facts |
 | About | `/about/` | Story, mission, donations, contact |
 | New families | `/new-families/` | How joining works, common questions |
 | Calendar | `/calendar/` | Class days by month, events, holidays, one-tap subscribe for Google, Apple and Outlook |
 | Curriculum | `/curriculum/` | Tabs for each grade (KG to Youth Group), daily schedule, milestones |
-| Parent handbook | `/families/` | Policies in collapsible sections. Links like `/families/#dress` open the right one |
+| Parent handbook | `/families/` | Jump links, then policies in collapsible sections. Links like `/families/#dress` open the right one |
 | Registration & tuition | `/registration/` | Key dates, tuition estimator, Zelle and check instructions |
 | Search | `/search/` | Results as you type. Press <kbd>/</kbd> on any page to jump here |
 | Calendar feed | `/calendar.ics` | Subscribed calendars update automatically |
@@ -116,6 +116,7 @@ ci/deploy.yml               GitHub Actions workflow (see Publishing)
 - **Styles live in `src/styles/global.css`.** Use the design tokens and existing classes rather than one-off values:
   - **Headings:** three sizes. Page title (the hero), `.h-section` (serif, for section and large-card titles) and `.h-card` (sans, for small cards).
   - **Spacing:** two values. `.pt-block` (`--gap`, 24px) between related blocks and inside grids, and `.pt-major` (`--space-major`, 48px) after the page header or before a section with its own heading.
+  - **Page headers:** every page except Home uses `components/Hero.astro`: a short label, the title, one line of description, then any buttons.
   - **Cards:** `.card`, `.card-sm` for compact cards, and `.card-highlight` (green border) for the single most important item on a page.
   - Layout helpers (`stack`, `mb-12`…) are at the end of the file so they override component styles.
 - **Internal links go through `u()`** from `src/lib/url.ts`, so they work when the site is served from a sub-path like `/issv-website/`.

@@ -7,7 +7,7 @@ import cur from '../data/curriculum.json';
 import { u } from '../lib/url';
 ---
 <Base title="Curriculum" current="curriculum" description="What students learn at each grade: Quran, memorization and Islamic studies from KG to Youth Group.">
-  <Hero title="Curriculum" lead={cur.lead}>
+  <Hero eyebrow="KG to Youth Group" title="Curriculum" lead={cur.lead}>
     {site.pdfCurriculum && <a class="btn btn-ghost" href={u(site.pdfCurriculum)}><Icon name="download" />Full curriculum (PDF)</a>}
   </Hero>
 

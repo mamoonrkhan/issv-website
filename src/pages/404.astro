@@ -1,14 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
 import { u } from '../lib/url';
 ---
 <Base title="Page Not Found" index={false}>
-  <section class="narrow-page">
-    <h1>We Can’t Find That Page</h1>
-    <p class="text-muted">It may have moved when the site was updated. Try searching, or start from the home page.</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary" href={u('/search/')}>Search the site</a>
-      <a class="btn btn-outline" href={u('/')}>Home page</a>
-    </div>
-  </section>
+  <Hero eyebrow="Error 404" title="We Can’t Find That Page" lead="It may have moved when the site was updated. Try searching, or start from the home page.">
+    <a class="btn btn-gold" href={u('/search/')}>Search the site</a>
+    <a class="btn btn-ghost" href={u('/')}>Home page</a>
+  </Hero>
+  <div class="page-end"></div>
 </Base>

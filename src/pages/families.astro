@@ -7,7 +7,7 @@ import hb from '../data/handbook.json';
 import { u } from '../lib/url';
 ---
 <Base title="Parent Handbook" current="families" description="Arrival, pick-up, attendance, dress code, conduct and other school policies at a glance.">
-  <Hero title="Parent Handbook" lead={hb.lead}>
+  <Hero eyebrow="School Policies" title="Parent Handbook" lead={hb.lead}>
     {site.pdfGuidelines && <a class="btn btn-ghost" href={u(site.pdfGuidelines)}><Icon name="download" />Full guidelines (PDF)</a>}
   </Hero>
 
@@ -32,7 +32,13 @@ import { u } from '../lib/url';
   </section>
 
   <section class="wrap pt-block section-last">
-    <div class="card card-list handbook">
+    <nav class="jump card card-sm" aria-label="Handbook sections">
+      <span class="label">Jump to</span>
+      <ul>
+        {hb.sections.map((s) => <li><a class="chip" href={`#${s.id}`}>{s.title}</a></li>)}
+      </ul>
+    </nav>
+    <div class="card card-list handbook mt-gap">
       {hb.sections.map((s, i) => (
         <details class="disclosure" open={i === 0}>
           <summary><h2 id={s.id}>{s.title}</h2><Icon name="chevron" size={20} class="chev" /></summary>
@@ -55,4 +61,8 @@ import { u } from '../lib/url';
   };
   openFromHash();
   window.addEventListener('hashchange', openFromHash);
+  // Re-clicking the current section link doesn't change the hash, so handle clicks too.
+  document.querySelectorAll<HTMLAnchorElement>('.jump a').forEach((a) =>
+    a.addEventListener('click', () => setTimeout(openFromHash, 0))
+  );
 </script>

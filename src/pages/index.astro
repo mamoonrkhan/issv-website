@@ -18,10 +18,12 @@ const upcoming = comingUp(calendar, sun.date, 4);
 const iso = (d?: Date) => (d ? d.toISOString().slice(0, 10) : '');
 const today = todayISO();
 // Keep anything that isn't expired yet; the browser hides ones whose start date hasn't come.
-const news = (await getCollection('announcements'))
+// The newest banner announcement already shows in the top bar, so leave it out here.
+const all = (await getCollection('announcements'))
   .filter((a) => !a.data.hideAfter || iso(a.data.hideAfter) >= today)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 4);
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const bannerId = all.find((a) => a.data.banner)?.id;
+const news = all.filter((a) => a.id !== bannerId).slice(0, 3);
 
 const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(site.address || site.location);
 ---
@@ -61,10 +63,27 @@ const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
         <a class="btn btn-primary" href={site.absenceFormUrl}>Report an absence</a>
         <AddToCalendar />
       </div>
+      {news.length > 0 && (
+        <div class="sunday-news">
+          <h3 class="label">Announcements</h3>
+          <ul class="news">
+            {news.map((n) => (
+              <li
+                data-show-from={iso(n.data.showFrom)}
+                data-hide-after={iso(n.data.hideAfter)}
+                hidden={!isLive(iso(n.data.showFrom), iso(n.data.hideAfter), today)}
+              >
+                <span class="news-title">{n.data.title}</span>
+                <span class="news-text">{n.body?.trim()}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   </section>
 
-  <section class="wrap pt-block grid grid-3">
+  <section class="wrap pt-block grid grid-2">
     <div class="card card-sm">
       <div class="section-head mb-8">
         <h2 class="h-card">Coming Up</h2>
@@ -82,22 +101,6 @@ const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
       <a class="link-row" href={u('/families/')}>Parent Handbook<span class="arrow" aria-hidden="true">→</span></a>
       <a class="link-row" href={u('/curriculum/')}>Curriculum by Grade<span class="arrow" aria-hidden="true">→</span></a>
       <a class="link-row" href={u('/families/#volunteer')}>Volunteer Hours<span class="arrow" aria-hidden="true">→</span></a>
-    </div>
-    <div class="card card-sm">
-      <h2 class="h-card mb-8">Announcements</h2>
-      <ul class="rows news">
-        {news.map((n) => (
-          <li
-            data-show-from={iso(n.data.showFrom)}
-            data-hide-after={iso(n.data.hideAfter)}
-            hidden={!isLive(iso(n.data.showFrom), iso(n.data.hideAfter), today)}
-          >
-            <span class="news-title">{n.data.title}</span>
-            <span class="news-text">{n.body?.trim()}</span>
-          </li>
-        ))}
-        <li class="news-empty">No announcements right now.</li>
-      </ul>
     </div>
   </section>
 

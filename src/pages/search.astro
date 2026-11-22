@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
 import site from '../data/site.json';
 import pay from '../data/payment.json';
 import { u } from '../lib/url';
@@ -38,8 +39,8 @@ const quick = [
 const chips = ['Tuition', 'Zelle', 'Absence', 'Dress Code', 'Eid', 'Pick-Up'];
 ---
 <Base title="Search" index={false} description="Search the school website.">
+  <Hero eyebrow="Search" title="Search the Site" lead="Find policies, dates and forms. Press / on any page to jump here." />
   <section class="narrow-page">
-    <h1>Search the Site</h1>
     <form role="search" action={u('/search/')} method="get" data-search-form>
       <label for="search-input" class="sr-only">Search</label>
       <div class="search-box">
@@ -51,7 +52,7 @@ const chips = ['Tuition', 'Zelle', 'Absence', 'Dress Code', 'Eid', 'Pick-Up'];
       <span>Popular:</span>
       {chips.map((c) => <button type="button" class="chip" data-chip={c.toLowerCase()}>{c}</button>)}
     </div>
-    <p class="note search-count" aria-live="polite" data-count>Quick links · press <kbd>/</kbd> to search from any page</p>
+    <p class="note search-count" aria-live="polite" data-count>Quick links</p>
     <ul class="results" data-results>
       {quick.slice(0, 6).map((r) => (
         <li><a class="result" href={r.href}><span class="where">{r.page}</span><span class="title">{r.title}</span><span class="text">{r.text}</span></a></li>
