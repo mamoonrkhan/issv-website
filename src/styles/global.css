@@ -252,7 +252,6 @@ a:hover .arrow { transform: translateX(4px); }
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); }
 .grid-2w { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
-.grid-3-sm { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
 .grid-4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
 .grid-tiles { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
 .steps { margin: 0; padding: 0; list-style: none; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
@@ -408,14 +407,15 @@ a:hover .arrow { transform: translateX(4px); }
 }
 .tab:hover { border-color: var(--green-700); }
 .tab[aria-selected="true"] { background: var(--green-700); border-color: var(--green-700); color: var(--white); font-weight: 600; }
-.tabpanel h2 { margin: 28px 0 20px; }
+.grade-head { margin: 28px 0 20px; display: flex; flex-direction: column; gap: 4px; }
 .tabpanel[hidden] { display: none; }
 .subject-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
 .subject { background: var(--ground); border-radius: 12px; padding: 22px 24px; animation: rise .45s var(--ease) both; }
 .subject:nth-child(2) { animation-delay: .05s; }
 .subject:nth-child(3) { animation-delay: .1s; }
 .subject h3 { margin: 0 0 6px; font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
-.subject p { font-size: 16px; }
+.subject ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 16px; }
+.subject li::marker { color: var(--gold-500); }
 
 /* ---------- Registration ---------- */
 .key-date b { display: block; font-weight: 600; font-size: 18px; }

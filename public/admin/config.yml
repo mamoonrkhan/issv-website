@@ -197,9 +197,10 @@ collections:
               - { name: id, label: Link name, widget: string, pattern: ['^[a-z0-9-]+$', 'Lowercase letters, numbers and dashes'] }
               - { name: label, label: Tab label, widget: string }
               - { name: title, label: Title, widget: string }
-              - { name: quran, label: Quran, widget: text }
-              - { name: memorize, label: Memorize, widget: text }
-              - { name: studies, label: Islamic studies, widget: text }
+              - { name: note, label: Note under the title, widget: string, required: false, hint: 'Optional, e.g. “Boys and girls meet in separate groups.”' }
+              - { name: quran, label: Quran, widget: list, field: { name: item, label: Item, widget: string } }
+              - { name: memorize, label: Memorize, widget: list, field: { name: item, label: Item, widget: string } }
+              - { name: studies, label: Islamic studies, widget: list, field: { name: item, label: Item, widget: string } }
           - name: schedule
             label: A Sunday at school
             widget: list

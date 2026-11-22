@@ -5,6 +5,12 @@ import Icon from '../components/Icon.astro';
 import site from '../data/site.json';
 import cur from '../data/curriculum.json';
 import { u } from '../lib/url';
+
+const subjects = [
+  { key: 'quran', label: 'Quran' },
+  { key: 'memorize', label: 'Memorize' },
+  { key: 'studies', label: 'Islamic Studies' },
+] as const;
 ---
 <Base title="Curriculum" current="curriculum" description="What students learn at each grade: Quran, memorization and Islamic studies from KG to Youth Group.">
   <Hero eyebrow="KG to Youth Group" title="Curriculum" lead={cur.lead}>
@@ -20,11 +26,17 @@ import { u } from '../lib/url';
       </div>
       {cur.grades.map((g, i) => (
         <div class="tabpanel" role="tabpanel" id={`panel-${g.id}`} aria-labelledby={`tab-${g.id}`} tabindex="0" hidden={i !== 0}>
-          <h2 class="h-section" id={g.id}>{g.title}</h2>
+          <div class="grade-head">
+            <h2 class="h-section" id={g.id}>{g.title}</h2>
+            {g.note && <p class="small-muted">{g.note}</p>}
+          </div>
           <div class="subject-grid">
-            <div class="subject"><h3>Quran</h3><p>{g.quran}</p></div>
-            <div class="subject"><h3>Memorize</h3><p>{g.memorize}</p></div>
-            <div class="subject"><h3>Islamic Studies</h3><p>{g.studies}</p></div>
+            {subjects.map((s) => (
+              <div class="subject">
+                <h3>{s.label}</h3>
+                <ul>{g[s.key].map((item) => <li>{item}</li>)}</ul>
+              </div>
+            ))}
           </div>
         </div>
       ))}

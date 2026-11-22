@@ -69,7 +69,7 @@ const qr = resolveImage(pay.zelleQr);
         <span data-due-label>Due at registration</span>
         <output aria-live="polite" data-total>{fmt(pay.tuitionPerChild)}</output>
       </div>
-      <p class="fineprint">Just an estimate, worked out on this page. Nothing you enter here is sent anywhere.</p>
+      <p class="fineprint">Estimate only. Your final amount is confirmed at registration.</p>
     </div>
   </section>
 
@@ -126,18 +126,14 @@ const qr = resolveImage(pay.zelleQr);
     </div>
   </section>
 
-  <section class="wrap pt-block section-last grid grid-3-sm">
+  <section class="wrap pt-block section-last grid grid-2">
     <div id="aid" class="card card-sm stack stack-sm">
       <h2 class="h-card">Need Help with Tuition?</h2>
       <p class="text-16">Fill out the financial aid section of the registration form. It stays confidential.</p>
     </div>
-    <div id="withdraw" class="card card-sm stack stack-sm">
-      <h2 class="h-card">Withdrawing</h2>
-      <p class="text-muted text-16">Email <a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a>.</p>
-    </div>
-    <div class="card card-sm stack stack-sm">
-      <h2 class="h-card">Questions</h2>
-      <p class="text-muted text-16">Email <a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a>.</p>
+    <div id="questions" class="card card-sm stack stack-sm">
+      <h2 class="h-card">Questions or Withdrawing?</h2>
+      <p class="text-muted text-16">Email <a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a> and we’ll help.</p>
     </div>
   </section>
 </Base>
