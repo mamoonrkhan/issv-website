@@ -14,7 +14,9 @@ A proposed new website for the Islamic School of Silicon Valley. It's fast, work
 - [Developing locally](#developing-locally)
 - [How it's built](#how-its-built)
 - [Before launch](#before-launch)
-- [Handing it over to the school](#handing-it-over-to-the-school)
+- [How it's run](#how-its-run)
+- [Going live on learnislam.org](#going-live-on-learnislamorg)
+- [If the maintainer steps away](#if-the-maintainer-steps-away)
 
 ## What's on the site
 
@@ -137,12 +139,32 @@ Information needed from the school:
 - [ ] OK to publish the school calendar as a subscribable feed
 - [ ] Who owns `learnislam.org`, and DNS access
 
-## Handing it over to the school
+## How it's run
 
-1. Transfer the repo to a school-owned GitHub account (**Settings → Transfer ownership**).
-2. Install the Pages CMS app on the new account and re-invite volunteers.
-3. Add the school's domain under **Settings → Pages → Custom domain** and point its DNS at GitHub Pages.
-4. Turn off the preview notice.
-5. Give at least one school-appointed backup person GitHub access to the repo, so more than one person can manage editors.
+- **One maintainer owns the GitHub repo** ([@mamoonrkhan](https://github.com/mamoonrkhan)). They handle the design and code, and invite editors.
+- **School staff and volunteers are editors.** They're invited by email in Pages CMS and update content through `/admin/` (see [Editing content](#editing-content)). They never need a GitHub account.
+- **The school owns the domain.** learnislam.org stays registered to the school and simply points at this site.
 
-Netlify and Cloudflare Pages work too: build command `npm run build`, output folder `dist`, environment variable `SITE_URL` set to the site’s address (for example `https://learnislam.org`).
+## Going live on learnislam.org
+
+1. The school's domain admin adds the DNS records for GitHub Pages: four `A` records for `learnislam.org` and a `CNAME` for `www` pointing to `mamoonrkhan.github.io`. See [GitHub's guide](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+2. In this repo, go to **Settings → Pages → Custom domain**, enter `learnislam.org`, save, and tick **Enforce HTTPS** once it's available.
+3. Set `previewNotice` to `false` in `src/data/site.json` to remove the preview notice and let search engines index the site.
+4. Invite the school's editors in Pages CMS and send them the `/admin/` link.
+
+Keep the old site available for a few weeks in case anything was missed. Old links like `/aboutus/` already redirect.
+
+## If the maintainer steps away
+
+The site keeps running without anyone: hosting is free, there's nothing to update or renew on GitHub's side, and editors keep editing as usual. Only these need someone with GitHub access to this repo:
+
+- inviting or removing editors,
+- changing the design or adding pages.
+
+Options, from simplest:
+
+1. **Add a backup admin:** in **Settings → Collaborators**, give a trusted person's GitHub account access. They can then manage editors in Pages CMS too.
+2. **Transfer the repo** to the school or a new maintainer (**Settings → Transfer ownership**). They then install the Pages CMS app on their account and re-invite editors.
+3. **Move away entirely:** the school points learnislam.org somewhere else. The site is plain files, so any web host can serve the `dist/` folder from `npm run build`.
+
+Netlify and Cloudflare Pages also work as hosts: build command `npm run build`, output folder `dist`, and the environment variable `SITE_URL` set to the site's address (for example `https://learnislam.org`).
