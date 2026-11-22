@@ -113,7 +113,11 @@ ci/deploy.yml               GitHub Actions workflow (see Publishing)
 ### Conventions
 
 - **Content lives in `src/data` and `src/content`, never in page markup.** If something should be editable, add it to a data file and to `public/admin/config.yml`.
-- **Styles live in `src/styles/global.css`.** Use the design tokens (`--green-700`, `--muted`…) and existing classes. Layout helpers (`stack`, `pt-48`, `mb-12`…) are at the end of the file.
+- **Styles live in `src/styles/global.css`.** Use the design tokens and existing classes rather than one-off values:
+  - **Headings:** three sizes. Page title (the hero), `.h-section` (serif, for section and large-card titles) and `.h-card` (sans, for small cards).
+  - **Spacing:** two values. `.pt-block` (`--gap`, 24px) between related blocks and inside grids, and `.pt-major` (`--space-major`, 48px) after the page header or before a section with its own heading.
+  - **Cards:** `.card`, `.card-sm` for compact cards, and `.card-highlight` (green border) for the single most important item on a page.
+  - Layout helpers (`stack`, `mb-12`…) are at the end of the file so they override component styles.
 - **Internal links go through `u()`** from `src/lib/url.ts`, so they work when the site is served from a sub-path like `/issv-website/`.
 - **Dates are `YYYY-MM-DD` strings in Pacific time.** Use the helpers in `src/lib/schedule.ts`.
 

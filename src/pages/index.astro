@@ -64,10 +64,10 @@ const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
     </div>
   </section>
 
-  <section class="wrap pt-32 grid grid-3">
-    <div class="card card-compact">
+  <section class="wrap pt-block grid grid-3">
+    <div class="card card-sm">
       <div class="section-head mb-8">
-        <h2 class="h-plain">Coming Up</h2>
+        <h2 class="h-card">Coming Up</h2>
         <a class="text-link" href={u('/calendar/')}>Calendar <span class="arrow" aria-hidden="true">→</span></a>
       </div>
       <ul class="rows" data-upcoming>
@@ -76,15 +76,15 @@ const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
         ))}
       </ul>
     </div>
-    <div class="card card-compact">
-      <h2 class="h-plain mb-8">For Parents</h2>
+    <div class="card card-sm">
+      <h2 class="h-card mb-8">For Parents</h2>
       <a class="link-row" href={u('/registration/#pay')}>Pay Tuition<span class="arrow" aria-hidden="true">→</span></a>
       <a class="link-row" href={u('/families/')}>Parent Handbook<span class="arrow" aria-hidden="true">→</span></a>
       <a class="link-row" href={u('/curriculum/')}>Curriculum by Grade<span class="arrow" aria-hidden="true">→</span></a>
       <a class="link-row" href={u('/families/#volunteer')}>Volunteer Hours<span class="arrow" aria-hidden="true">→</span></a>
     </div>
-    <div class="card-soft">
-      <h2 class="h-plain h-on-soft mb-8">Announcements</h2>
+    <div class="card card-sm">
+      <h2 class="h-card mb-8">Announcements</h2>
       <ul class="rows news">
         {news.map((n) => (
           <li
@@ -101,8 +101,8 @@ const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
     </div>
   </section>
 
-  <section class="wrap pt-56 section-last" aria-labelledby="glance-title">
-    <h2 class="h-display mb-16" id="glance-title">At a Glance</h2>
+  <section class="wrap pt-major section-last" aria-labelledby="glance-title">
+    <h2 class="h-section mb-16" id="glance-title">At a Glance</h2>
     <div class="glance card">
       <div class="glance-item">
         <span class="label">Where</span>

@@ -11,27 +11,27 @@ import { u } from '../lib/url';
     {site.pdfGuidelines && <a class="btn btn-ghost" href={u(site.pdfGuidelines)}><Icon name="download" />Full guidelines (PDF)</a>}
   </Hero>
 
-  <section class="wrap pt-48" aria-label="Essentials">
+  <section class="wrap pt-major" aria-label="Essentials">
     <div class="grid grid-tiles">
-      <div class="card stat-card">
+      <div class="card card-sm stack stack-xs">
         <span class="label">Arrive by</span>
         <span class="big-stat">10:00 AM</span>
         <span class="small-muted">Late? Park and sign in at the desk.</span>
       </div>
-      <div class="card stat-card">
+      <div class="card card-sm stack stack-xs">
         <span class="label">Pick up at</span>
         <span class="big-stat">1:30 PM</span>
         <span class="small-muted">$1 per minute late, per child.</span>
       </div>
-      <div class="absence-card">
+      <div class="card card-sm card-highlight stack">
         <span class="label">Missing a Sunday?</span>
         <span class="text-16">Use the form. Please don’t call.</span>
-        <a class="btn btn-white self-start" href={site.absenceFormUrl}>Report an absence</a>
+        <a class="btn btn-primary self-start" href={site.absenceFormUrl}>Report an absence</a>
       </div>
     </div>
   </section>
 
-  <section class="wrap pt-24 section-last">
+  <section class="wrap pt-block section-last">
     <div class="card card-list handbook">
       {hb.sections.map((s, i) => (
         <details class="disclosure" open={i === 0}>

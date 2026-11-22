@@ -11,9 +11,9 @@ const donateHref = site.donationUrl || `mailto:${site.emailGeneral}?subject=${en
 <Base title="About" current="about" description="A weekly school for Muslim children ages 5–16, built and run by our community’s volunteers.">
   <Hero title="About Us" lead="A weekly school for Muslim children ages 5–16, built and run by our community’s volunteers." />
 
-  <section class="wrap pt-40 grid grid-2w">
+  <section class="wrap pt-major grid grid-2w">
     <div class="card stack">
-      <h2 class="h-card">Our Story</h2>
+      <h2 class="h-section">Our Story</h2>
       <p class="text-ink-2">Founded as the Islamic School of Stanford, we became the Islamic School of Silicon Valley in May 2015. Today we’re an independent 501(c)(3) with a volunteer board, meeting at Greene Middle School in Palo Alto.</p>
       <div class="stats">
         <div class="stat"><b>5–16</b><span>Ages served</span></div>
@@ -22,14 +22,14 @@ const donateHref = site.donationUrl || `mailto:${site.emailGeneral}?subject=${en
       </div>
     </div>
     <div class="card stack stack-md">
-      <h2 class="h-card">Our Mission</h2>
+      <h2 class="h-section">Our Mission</h2>
       <div class="mission-item"><span class="step-num">01</span><div><div class="step-title">Confident Identity</div><p>A strong, positive Islamic identity.</p></div></div>
       <div class="mission-item"><span class="step-num">02</span><div><div class="step-title">Sound Foundation</div><p>Quran, Seerah, history and current events.</p></div></div>
       <div class="mission-item"><span class="step-num">03</span><div><div class="step-title">Lasting Friendships</div><p>A place to grow up together.</p></div></div>
     </div>
   </section>
 
-  <section id="support" class="wrap pt-48">
+  <section id="support" class="wrap pt-block">
     <div class="band">
       <Pattern id="geo-band" opacity={0.10} />
       <div class="band-text">
@@ -43,9 +43,9 @@ const donateHref = site.donationUrl || `mailto:${site.emailGeneral}?subject=${en
     </div>
   </section>
 
-  <section id="contact" class="wrap pt-20 section-last">
+  <section id="contact" class="wrap pt-block section-last">
     <div class="card">
-      <h2 class="h-card mb-20">Contact</h2>
+      <h2 class="h-section mb-20">Contact</h2>
       <dl class="contact-list">
         <div><dt class="label">General</dt><dd><Email address={site.emailGeneral} /></dd></div>
         <div><dt class="label">Registration</dt><dd><Email address={site.emailRegistration} /></dd></div>

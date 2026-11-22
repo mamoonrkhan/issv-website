@@ -11,8 +11,8 @@ import { u } from '../lib/url';
     {site.pdfCurriculum && <a class="btn btn-ghost" href={u(site.pdfCurriculum)}><Icon name="download" />Full curriculum (PDF)</a>}
   </Hero>
 
-  <section class="wrap pt-48">
-    <div class="card card-tabs" data-tabs>
+  <section class="wrap pt-major">
+    <div class="card" data-tabs>
       <div class="tablist" role="tablist" aria-label="Grade">
         {cur.grades.map((g, i) => (
           <button type="button" class="tab" role="tab" id={`tab-${g.id}`} aria-controls={`panel-${g.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{g.label}</button>
@@ -20,7 +20,7 @@ import { u } from '../lib/url';
       </div>
       {cur.grades.map((g, i) => (
         <div class="tabpanel" role="tabpanel" id={`panel-${g.id}`} aria-labelledby={`tab-${g.id}`} tabindex="0" hidden={i !== 0}>
-          <h2 class="h-display" id={g.id}>{g.title}</h2>
+          <h2 class="h-section" id={g.id}>{g.title}</h2>
           <div class="subject-grid">
             <div class="subject"><h3>Quran</h3><p>{g.quran}</p></div>
             <div class="subject"><h3>Memorize</h3><p>{g.memorize}</p></div>
@@ -31,13 +31,13 @@ import { u } from '../lib/url';
     </div>
   </section>
 
-  <section class="wrap pt-24 section-last grid grid-2 grid-gap-lg">
+  <section class="wrap pt-block section-last grid grid-2">
     <div class="card">
-      <h2 class="h-card-sm mb-12" id="schedule">A Sunday at School</h2>
+      <h2 class="h-section mb-12" id="schedule">A Sunday at School</h2>
       <ul class="rows">{cur.schedule.map((s) => <li class="row"><span class="row-key w120">{s.time}</span><span>{s.what}</span></li>)}</ul>
     </div>
     <div class="card">
-      <h2 class="h-card-sm mb-12">Milestones</h2>
+      <h2 class="h-section mb-12">Milestones</h2>
       <ul class="rows">{cur.milestones.map((m) => <li class="row"><span class="row-key w120">{m.when}</span><span>{m.what}</span></li>)}</ul>
     </div>
   </section>

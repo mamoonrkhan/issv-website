@@ -17,19 +17,19 @@ const qr = resolveImage(pay.zelleQr);
     <a class="btn btn-ghost" href={u('/new-families/')}>New to the school?</a>
   </Hero>
 
-  <section class="wrap pt-40" aria-label="Key dates">
+  <section class="wrap pt-major" aria-label="Key dates">
     <div class="grid grid-4">
-      <div class="card key-date"><span class="label">Current families</span><b>{pay.currentFamilies}</b></div>
-      <div class="card key-date"><span class="label">New families</span><b>{pay.newFamilies}</b></div>
-      <div class="card key-date"><span class="label">Registration closes</span><b>{pay.registrationCloses}</b></div>
-      <div class="card key-date"><span class="label">2nd installment</span><b>{pay.secondInstallmentDue}</b></div>
+      <div class="card key-date card-sm"><span class="label">Current families</span><b>{pay.currentFamilies}</b></div>
+      <div class="card key-date card-sm"><span class="label">New families</span><b>{pay.newFamilies}</b></div>
+      <div class="card key-date card-sm"><span class="label">Registration closes</span><b>{pay.registrationCloses}</b></div>
+      <div class="card key-date card-sm"><span class="label">2nd installment</span><b>{pay.secondInstallmentDue}</b></div>
     </div>
   </section>
 
-  <section class="wrap pt-20">
+  <section class="wrap pt-block">
     <div class="card">
-      <h2 class="h-card mb-20" id="register">How to Register</h2>
-      <ol class="steps steps-numbered">
+      <h2 class="h-section mb-20" id="register">How to Register</h2>
+      <ol class="steps">
         <li class="tile"><span class="step-num">01</span><span class="step-title">Get a Packet</span><span class="small-muted">At the registration desk</span></li>
         <li class="tile"><span class="step-num">02</span><span class="step-title">Complete 3 Forms</span><span class="small-muted">Registration, feedback, release. Note allergies.</span></li>
         <li class="tile"><span class="step-num">03</span><span class="step-title">Pay Fall Tuition</span><span class="small-muted">For each child: <a href="#pay">Option A or B</a></span></li>
@@ -39,9 +39,9 @@ const qr = resolveImage(pay.zelleQr);
     </div>
   </section>
 
-  <section id="tuition" class="wrap pt-20 grid grid-2">
+  <section id="tuition" class="wrap pt-block grid grid-2">
     <div class="card stack">
-      <h2 class="h-card">Tuition</h2>
+      <h2 class="h-section">Tuition</h2>
       <div class="price"><b>{fmt(pay.tuitionPerChild)}</b><span class="text-muted">per child, per year</span></div>
       <ul class="bullets stack-xs">
         <li>Same rate for siblings</li>
@@ -51,7 +51,7 @@ const qr = resolveImage(pay.zelleQr);
       </ul>
     </div>
     <div class="card estimator" data-estimator data-per-child={pay.tuitionPerChild} data-max={pay.maxChildren} data-due={pay.secondInstallmentDue}>
-      <h3>Estimate What You Owe</h3>
+      <h3 class="h-card">Estimate What You Owe</h3>
       <div class="stepper-row">
         <span id="kids-label">Children</span>
         <div class="stepper" role="group" aria-labelledby="kids-label">
@@ -72,8 +72,8 @@ const qr = resolveImage(pay.zelleQr);
     </div>
   </section>
 
-  <section id="pay" class="wrap pt-48">
-    <h2 class="h-display h-section">Pay Tuition: Choose One Option</h2>
+  <section id="pay" class="wrap pt-major">
+    <h2 class="h-section">Pay Tuition: Choose One Option</h2>
     <p class="lead-muted">Either way, include your child’s name and grade.</p>
     <div class="pay-grid">
       <div class="pay-option featured">
@@ -125,17 +125,17 @@ const qr = resolveImage(pay.zelleQr);
     </div>
   </section>
 
-  <section class="wrap pt-20 section-last grid grid-3-sm">
-    <div id="aid" class="card-soft card-tight stack stack-sm">
-      <h2 class="h-plain sm h-on-soft">Need Help with Tuition?</h2>
+  <section class="wrap pt-block section-last grid grid-3-sm">
+    <div id="aid" class="card card-sm stack stack-sm">
+      <h2 class="h-card">Need Help with Tuition?</h2>
       <p class="text-16">Fill out the financial aid section of the registration form. It stays confidential.</p>
     </div>
-    <div id="withdraw" class="card card-tight stack stack-sm">
-      <h2 class="h-plain sm">Withdrawing</h2>
+    <div id="withdraw" class="card card-sm stack stack-sm">
+      <h2 class="h-card">Withdrawing</h2>
       <p class="text-muted text-16">Email <a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a>.</p>
     </div>
-    <div class="card card-tight stack stack-sm">
-      <h2 class="h-plain sm">Questions</h2>
+    <div class="card card-sm stack stack-sm">
+      <h2 class="h-card">Questions</h2>
       <p class="text-muted text-16">Email <a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a>.</p>
     </div>
   </section>
