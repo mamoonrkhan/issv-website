@@ -48,30 +48,25 @@ Each save becomes a commit in this repo, so every change is recorded and can be 
 | Parent Handbook, Curriculum, New Family Questions | The text on those pages |
 | Contact, Links & PDFs | Emails, links, PDF uploads, the home page photo and its credit |
 
-### One-time setup (repo owner, about 5 minutes, all in the browser)
+### Inviting volunteers
 
-1. **Turn on automatic publishing**, so saves go live by themselves:
-   1. On GitHub, open [`ci/deploy.yml`](ci/deploy.yml) and click the copy icon to copy its contents.
-   2. Go back to the repo's main page and choose **Add file → Create new file**.
-   3. Name it `.github/workflows/deploy.yml` (typing each `/` creates a folder), paste, and click **Commit changes**.
-   4. Go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
-2. **Connect the editor:** go to [app.pagescms.org](https://app.pagescms.org), choose **Sign in with GitHub**, and when asked, install the Pages CMS app on this repository only.
-3. **Invite volunteers:** open the repository in Pages CMS, find its collaborator settings, and add each volunteer's email address. Then send them the `/admin/` link.
+1. Go to [app.pagescms.org](https://app.pagescms.org), sign in with GitHub, and open **issv-website**.
+2. Open its collaborator settings and add the volunteer's email address.
+3. Send them the `/admin/` link. They choose **Continue with email** and sign in with what Pages CMS emails them.
 
-Volunteers then just open `/admin/`, click **Open the Editor**, choose **Continue with email**, and sign in with what Pages CMS emails them.
+(Already done for this repo: the Pages CMS GitHub app is installed on `issv-website` only. On a new account, install it from [github.com/apps/pages-cms](https://github.com/apps/pages-cms/installations/new).)
 
 ## Publishing
 
-Once automatic publishing is on (setup step 1 above), the site rebuilds on every save and every night. The nightly rebuild keeps the This Sunday card and announcement dates current.
+Publishing is automatic. [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) rebuilds and publishes the site to GitHub Pages:
 
-Until then, the live site is a built copy on the `gh-pages` branch, and someone with the code has to republish it after edits:
+- **on every change** to `main`, including every save in the editor (live in about 1–2 minutes; progress shows in the **Actions** tab),
+- **every night**, so the This Sunday card, upcoming dates and expired announcements stay current,
+- **on demand**, from **Actions → Deploy site → Run workflow**.
 
-```sh
-npm install      # first time only
-npm run deploy
-```
+Browsers may show the previous version for up to 10 minutes after an update because of GitHub Pages caching. A hard refresh (Cmd+Shift+R) shows the latest.
 
-After automatic publishing is on, `npm run deploy` and the `gh-pages` branch are no longer needed.
+If a run fails (a red ✕ in **Actions**), the live site keeps showing the last good version. Open the failed run to see the error.
 
 ## Developing locally
 
@@ -101,8 +96,7 @@ src/
 public/
   docs/                     PDFs uploaded in the editor
 .pages.yml                  editor forms (Pages CMS)
-scripts/publish-gh-pages.mjs  `npm run deploy`
-ci/deploy.yml               GitHub Actions workflow (see Publishing)
+.github/workflows/deploy.yml  build and publish on every change and nightly
 ```
 
 ### Conventions

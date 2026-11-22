@@ -2,9 +2,9 @@
 // Landing page for volunteer editors. Not linked from the main menu and not indexed.
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import site from '../data/site.json';
 
 const editor = 'https://app.pagescms.org/';
+const helpEmail = 'rk.mamoon25@learnislam.org';
 const tasks = [
   {
     title: 'Post an Announcement',
@@ -61,10 +61,10 @@ const tasks = [
     <div class="card stack">
       <h2 class="h-section">Good to Know</h2>
       <ul class="bullets">
-        <li>After you click Save, the website updates in about two minutes.</li>
+        <li>After you click Save, the website updates by itself in about two minutes. If you don’t see your change, wait a few minutes and refresh the page.</li>
         <li>You can’t break anything. Every change is saved in a history, so any mistake can be undone.</li>
         <li>Please don’t upload photos that show children.</li>
-        <li>Questions? Email <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a>.</li>
+        <li>Questions? Email <a href={`mailto:${helpEmail}`}>{helpEmail}</a>.</li>
       </ul>
     </div>
   </section>
