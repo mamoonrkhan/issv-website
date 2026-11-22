@@ -6,8 +6,8 @@ import site from '../data/site.json';
 import hb from '../data/handbook.json';
 import { u } from '../lib/url';
 ---
-<Base title="Parent handbook" current="families" description="Arrival, pick-up, attendance, dress code, conduct and other school policies at a glance.">
-  <Hero title="Parent handbook" lead={hb.lead}>
+<Base title="Parent Handbook" current="families" description="Arrival, pick-up, attendance, dress code, conduct and other school policies at a glance.">
+  <Hero title="Parent Handbook" lead={hb.lead}>
     {site.pdfGuidelines && <a class="btn btn-ghost" href={u(site.pdfGuidelines)}><Icon name="download" />Full guidelines (PDF)</a>}
   </Hero>
 

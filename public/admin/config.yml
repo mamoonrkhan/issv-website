@@ -19,7 +19,7 @@ backend:
 media_folder: src/assets/uploads
 public_folder: /src/assets/uploads
 
-# Photos are converted to WebP on upload; the site build also makes AVIF/WebP and strips location data.
+# Images are converted to WebP on upload; the build also makes AVIF/WebP sizes and strips location data.
 media_libraries:
   default:
     config:
@@ -49,27 +49,6 @@ collections:
       - { name: showFrom, label: Show from, widget: datetime, format: YYYY-MM-DD, time_format: false, default: '{{now}}' }
       - { name: hideAfter, label: Hide after, widget: datetime, format: YYYY-MM-DD, time_format: false, required: false, hint: Last day it shows. Leave empty to keep it up. }
       - { name: banner, label: Show as top banner, widget: boolean, default: false, hint: The green bar above every page. Use for urgent news. }
-
-  # ------------------------------------------------------------------
-  - name: photos
-    label: Photos
-    files:
-      - name: gallery
-        label: Photo gallery
-        file: src/data/gallery.json
-        format: json
-        fields:
-          - name: photos
-            label: Photos
-            label_singular: Photo
-            widget: list
-            summary: '{{caption}}'
-            fields:
-              - { name: image, label: Photo, widget: image, required: false, media_folder: /src/assets/photos, public_folder: /src/assets/photos }
-              - { name: caption, label: Caption, widget: string }
-              - { name: alt, label: Description for screen readers, widget: string, required: false, hint: 'What’s in the photo, e.g. “Students reciting in the Grade 3 class.”' }
-              - { name: home, label: Also show on Home page, widget: boolean, default: false, hint: The Home page shows the first three. }
-              - { name: permission, label: I have permission from the parents of every child shown, widget: boolean, default: false, hint: Photos without this box ticked are never shown. }
 
   # ------------------------------------------------------------------
   - name: calendar
@@ -176,8 +155,10 @@ collections:
           - { name: donationUrl, label: Donation link, widget: string, required: false, hint: Leave empty to send people an email instead. }
           - { name: volunteerSignupUrl, label: Volunteer sign-up link, widget: string, required: false }
           - { name: taxId, label: Tax ID (EIN), widget: string }
-          - { name: heroImage, label: Home page photo, widget: image, required: false, media_folder: /src/assets/photos, public_folder: /src/assets/photos }
+          - { name: heroImage, label: Home page photo, widget: image, required: false, media_folder: /src/assets/photos, public_folder: /src/assets/photos, hint: 'Use photos without children in them (the building, the sign).' }
           - { name: heroImageAlt, label: Home photo description, widget: string, required: false }
+          - { name: heroImageCredit, label: Photo credit, widget: string, required: false, hint: Required for photos with a Creative Commons license. }
+          - { name: heroImageCreditUrl, label: Photo credit link, widget: string, required: false }
           - { name: pdfCalendar, label: Calendar PDF, widget: file, required: false, media_folder: /public/docs, public_folder: /docs }
           - { name: pdfCurriculum, label: Curriculum PDF, widget: file, required: false, media_folder: /public/docs, public_folder: /docs }
           - { name: pdfGuidelines, label: Parent guidelines PDF, widget: file, required: false, media_folder: /public/docs, public_folder: /docs }

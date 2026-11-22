@@ -20,10 +20,10 @@ A proposed new website for the Islamic School of Silicon Valley. It's fast, work
 
 | Page | Path | What it does |
 |---|---|---|
-| Home | `/` | "This Sunday" card (in session, virtual or no school), upcoming dates, announcements, photos |
-| About | `/about/` | Story, mission, gallery, donations, contact |
+| Home | `/` | "This Sunday" card (in session, virtual or no school), upcoming dates, announcements, at-a-glance facts |
+| About | `/about/` | Story, mission, donations, contact |
 | New families | `/new-families/` | How joining works, common questions |
-| Calendar | `/calendar/` | Class days by month, events, holidays, one-tap subscribe for Apple, Outlook and Google |
+| Calendar | `/calendar/` | Class days by month, events, holidays, one-tap subscribe for Google, Apple and Outlook |
 | Curriculum | `/curriculum/` | Tabs for each grade (KG to Youth Group), daily schedule, milestones |
 | Parent handbook | `/families/` | Policies in collapsible sections. Links like `/families/#dress` open the right one |
 | Registration & tuition | `/registration/` | Key dates, tuition estimator, Zelle and check instructions |
@@ -42,10 +42,9 @@ Open **`/admin/`** on the live site. You'll edit content through forms, and each
 | Section | What you can change |
 |---|---|
 | Announcements | Title, message, show-from and hide-after dates, top banner on or off. Expired posts hide by themselves. |
-| Photos | Upload, caption, description, show on Home. A photo only appears once the parent-permission box is ticked. |
 | Calendar | Each Sunday's status (in session, virtual, possible virtual, no school) and note, plus events. Updates the Calendar page, the This Sunday card and the calendar feed. |
 | This Sunday | Emergency override for weather or closures |
-| Settings | Zelle details and QR code, check payee, tuition and dates, emails, donation link, PDFs |
+| Settings | Zelle details and QR code, check payee, tuition and dates, emails, donation link, PDFs, the Home page photo and its credit |
 | Page text | Handbook sections, curriculum by grade, new-family questions |
 
 > **Right now, saved edits don't appear on the live site until it's republished** (see below). Turning on automatic publishing fixes this.
@@ -98,7 +97,7 @@ src/
   data/                     content the editor changes (JSON)
   content/announcements/    one Markdown file per announcement
   pages/                    one file per page, plus calendar.ics.ts
-  components/               header, footer, hero, photo, add-to-calendar…
+  components/               header, footer, hero, photo, email, add-to-calendar…
   layouts/Base.astro        page shell: banners, header, footer, site-wide scripts
   lib/schedule.ts           This Sunday and upcoming-dates logic (build and browser)
   lib/url.ts, images.ts     base-path links, image lookup
@@ -124,6 +123,7 @@ ci/deploy.yml               GitHub Actions workflow (see Publishing)
 - **[Pagefind](https://pagefind.app)** builds the search index during the build. Hand-picked answers in `src/pages/search.astro` add synonyms (for example, "hijab" finds the dress code).
 - **[Sveltia CMS](https://github.com/sveltia/sveltia-cms)** powers `/admin/`. It edits the files in `src/data` and `src/content` and commits them to GitHub.
 - **Images** uploaded in the editor are resized and converted to AVIF and WebP at build time, and location data is stripped.
+- **No photos of students.** The only photo is of the school building: [Greene Middle School sign](https://commons.wikimedia.org/wiki/File:Greene_middle_school_sign.jpg) by Ovinus Real, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), credited on the photo. Any replacement should also avoid children unless parents have agreed.
 - **Self-hosted fonts:** Inter, Source Serif 4, and Amiri for the Arabic.
 - **No tracking and no cookies.** The tuition estimator runs only in the browser and sends nothing.
 
@@ -137,7 +137,7 @@ Information needed from the school:
 - [ ] Greene Middle School street address and parking notes
 - [ ] Confirmed installment due dates
 - [ ] Logo, or approval of the new emblem
-- [ ] Classroom photos, with parent permission
+- [ ] Decision on photos (the preview shows only the school building)
 - [ ] Current PDFs and the volunteer sign-up link
 - [ ] Donation link, and who manages it
 - [ ] OK to publish the school calendar as a subscribable feed

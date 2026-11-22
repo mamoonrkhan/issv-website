@@ -1,31 +1,31 @@
 ---
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
-import Photo from '../components/Photo.astro';
 import Icon from '../components/Icon.astro';
 import faq from '../data/faq.json';
 import payment from '../data/payment.json';
+import cur from '../data/curriculum.json';
 import { u } from '../lib/url';
 ---
-<Base title="New families" description="Everything you need to know before your first Sunday at the Islamic School of Silicon Valley.">
-  <Hero title="Welcome, new families" lead="Everything you need to know before your first Sunday.">
+<Base title="New Families" description="Everything you need to know before your first Sunday at the Islamic School of Silicon Valley.">
+  <Hero title="Welcome, New Families" lead="Everything you need to know before your first Sunday.">
     <a class="btn btn-gold" href={u('/registration/')}>Registration details</a>
   </Hero>
 
   <section class="wrap pt-40">
     <div class="card">
-      <h2 class="h-card mb-20">How joining works</h2>
+      <h2 class="h-card mb-20">How Joining Works</h2>
       <ol class="steps steps-wide">
-        <li class="tile"><span class="step-when">MAY</span><span class="step-title">Check for openings</span><span class="small-muted">We post open grades after current families pre-register.</span></li>
-        <li class="tile"><span class="step-when">{payment.newFamilies.toUpperCase()}</span><span class="step-title">Register in person</span><span class="small-muted">At school, with forms and fall tuition. Seats left? Again in early fall, until {payment.registrationCloses}.</span></li>
-        <li class="tile"><span class="step-when">SEP 13</span><span class="step-title">First day of school</span><span class="small-muted">Arrive by 10:00 AM for assembly. Pick up at 1:30 PM.</span></li>
+        <li class="tile"><span class="step-when">MAY</span><span class="step-title">Check for Openings</span><span class="small-muted">We post open grades after current families pre-register.</span></li>
+        <li class="tile"><span class="step-when">{payment.newFamilies.toUpperCase()}</span><span class="step-title">Register in Person</span><span class="small-muted">At school, with forms and fall tuition. Seats left? Again in early fall, until {payment.registrationCloses}.</span></li>
+        <li class="tile"><span class="step-when">SEP 13</span><span class="step-title">First Day of School</span><span class="small-muted">Arrive by 10:00 AM for assembly. Pick up at 1:30 PM.</span></li>
       </ol>
     </div>
   </section>
 
   <section class="wrap pt-20 grid grid-2">
     <div class="card">
-      <h2 class="h-plain lg mb-12">Good to know</h2>
+      <h2 class="h-plain lg mb-12">Good to Know</h2>
       <ul class="bullets">
         <li>Modest, loose clothing; girls wear a headscarf</li>
         <li>Phones off, toys and games stay home</li>
@@ -35,12 +35,15 @@ import { u } from '../lib/url';
       </ul>
       <a class="text-link read-more" href={u('/families/')}>Read the handbook <span class="arrow" aria-hidden="true">→</span></a>
     </div>
-    <div class="photo-fill"><Photo placeholder="[PHOTO: classroom or first-day welcome]" caption="" /></div>
+    <div class="card">
+      <h2 class="h-plain lg mb-12">A Sunday at School</h2>
+      <ul class="rows">{cur.schedule.map((s) => <li class="row"><span class="row-key w120">{s.time}</span><span>{s.what}</span></li>)}</ul>
+    </div>
   </section>
 
   <section class="wrap pt-20 section-last">
     <div class="card card-list">
-      <h2 class="h-card card-list-title">Questions parents ask</h2>
+      <h2 class="h-card card-list-title">Questions Parents Ask</h2>
       {faq.items.map((f) => (
         <details class="disclosure">
           <summary><span class="q">{f.q}</span><Icon name="chevron" size={20} class="chev" /></summary>

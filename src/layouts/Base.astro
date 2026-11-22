@@ -92,19 +92,6 @@ const banner = (await getCollection('announcements'))
     });
     window.matchMedia('(min-width: 900px)').addEventListener('change', (e) => e.matches && setOpen(false));
 
-    // Close popover menus (<details data-close-outside>) on outside click or Escape.
-    document.addEventListener('click', (e) => {
-      document.querySelectorAll<HTMLDetailsElement>('details[data-close-outside][open]').forEach((d) => {
-        if (!d.contains(e.target as Node)) d.open = false;
-      });
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key !== 'Escape') return;
-      document.querySelectorAll<HTMLDetailsElement>('details[data-close-outside][open]').forEach((d) => {
-        d.open = false; d.querySelector('summary')?.focus();
-      });
-    });
-
     // "/" opens search from anywhere (unless you're typing).
     document.addEventListener('keydown', (e) => {
       if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;

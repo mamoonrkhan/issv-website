@@ -1,53 +1,93 @@
 {
   "lead": "The rules at a glance. School announcements take priority.",
   "sections": [
-    { "id": "arrival", "title": "Arrival & pick-up", "items": [
-      "After 10:00 AM is late: park, sign the tardy form at the desk, or take your child home.",
-      "More than 3 late arrivals in a quarter: no class on further late days.",
-      "Pick up at 1:30 PM. $1/minute per child after that.",
-      "Leaving early: only at break, with the early-departure form."
-    ] },
-    { "id": "attendance", "title": "Attendance", "items": [
-      "Report every absence on the online form.",
-      "Long absence? Tell both teachers and make up the work.",
-      "3 unexcused absences in a row may mean suspension. List sports conflicts at the start of the year."
-    ] },
-    { "id": "dress", "title": "Dress code", "items": [
-      "Modest, loose clothing at school and all events. No offensive prints.",
-      "Girls: headscarf covering hair and neck, long sleeves, ankle-length skirts or full pants.",
-      "Boys: full-length loose pants, no shorts.",
-      "Grade 5+: a warning first, then parents are contacted."
-    ] },
-    { "id": "conduct", "title": "Conduct & safety", "items": [
-      "Respect everyone; no bad language.",
-      "Phones off. No toys, games or headphones.",
-      "Closed campus. No skateboards or roller shoes. No recording.",
-      "No guests in classrooms without permission."
-    ] },
-    { "id": "prayer", "title": "Prayer", "items": [
-      "Assembly at 10:00 AM. Dhuhr at 1:15 PM is required; please don’t leave before it. Parents welcome."
-    ] },
-    { "id": "food", "title": "Food & snacks", "items": [
-      "Snacks are included, served by a volunteer family each month.",
-      "Eat in the courtyard only, never in classrooms.",
-      "Ramadan: no school snacks. KG–Gr 2 may bring their own, eaten away from others."
-    ] },
-    { "id": "homework", "title": "Homework & report cards", "items": [
-      "Homework comes by email; younger grades bring a sheet for parents to sign.",
-      "Reports are emailed in December and June.",
-      "Pass both subjects to move up. Honor roll (Gr 3+): A’s in both."
-    ] },
-    { "id": "volunteer", "title": "Volunteering", "items": [
-      "10 hours per family per year: 5 in Aug–Dec, 5 in Jan–May.",
-      "Teacher’s aide, room parent, snacks, events and more. Sign up at registration."
-    ] },
-    { "id": "books", "title": "Books to keep", "items": [
-      "Our Book of Dua (Gr 2–4) · Let’s Read & Write Arabic II (Gr 2–3) · Juz Amma Vol. 1 (Gr 4–5) · A Study of Hadith (Gr 6–7) · Selected Prayers (Gr 7–8)",
-      "Lost books must be paid for."
-    ] },
-    { "id": "campus", "title": "Campus & online days", "items": [
-      "We’re guests at Greene Middle School: damage can mean fines. Label belongings; there’s no lost and found.",
-      "Virtual days run on Zoom, same schedule. Cameras on, don’t share links; KG parents stay with their child."
-    ] }
+    {
+      "id": "arrival",
+      "title": "Arrival & Pick-Up",
+      "items": [
+        "After 10:00 AM is late: park, sign the tardy form at the desk, or take your child home.",
+        "More than 3 late arrivals in a quarter: no class on further late days.",
+        "Pick up at 1:30 PM. $1/minute per child after that.",
+        "Leaving early: only at break, with the early-departure form."
+      ]
+    },
+    {
+      "id": "attendance",
+      "title": "Attendance",
+      "items": [
+        "Report every absence on the online form.",
+        "Long absence? Tell both teachers and make up the work.",
+        "3 unexcused absences in a row may mean suspension. List sports conflicts at the start of the year."
+      ]
+    },
+    {
+      "id": "dress",
+      "title": "Dress Code",
+      "items": [
+        "Modest, loose clothing at school and all events. No offensive prints.",
+        "Girls: headscarf covering hair and neck, long sleeves, ankle-length skirts or full pants.",
+        "Boys: full-length loose pants, no shorts.",
+        "Grade 5+: a warning first, then parents are contacted."
+      ]
+    },
+    {
+      "id": "conduct",
+      "title": "Conduct & Safety",
+      "items": [
+        "Respect everyone; no bad language.",
+        "Phones off. No toys, games or headphones.",
+        "Closed campus. No skateboards or roller shoes. No recording.",
+        "No guests in classrooms without permission."
+      ]
+    },
+    {
+      "id": "prayer",
+      "title": "Prayer",
+      "items": [
+        "Assembly at 10:00 AM. Dhuhr at 1:15 PM is required; please don’t leave before it. Parents welcome."
+      ]
+    },
+    {
+      "id": "food",
+      "title": "Food & Snacks",
+      "items": [
+        "Snacks are included, served by a volunteer family each month.",
+        "Eat in the courtyard only, never in classrooms.",
+        "Ramadan: no school snacks. KG–Gr 2 may bring their own, eaten away from others."
+      ]
+    },
+    {
+      "id": "homework",
+      "title": "Homework & Report Cards",
+      "items": [
+        "Homework comes by email; younger grades bring a sheet for parents to sign.",
+        "Reports are emailed in December and June.",
+        "Pass both subjects to move up. Honor roll (Gr 3+): A’s in both."
+      ]
+    },
+    {
+      "id": "volunteer",
+      "title": "Volunteering",
+      "items": [
+        "10 hours per family per year: 5 in Aug–Dec, 5 in Jan–May.",
+        "Teacher’s aide, room parent, snacks, events and more. Sign up at registration."
+      ]
+    },
+    {
+      "id": "books",
+      "title": "Books to Keep",
+      "items": [
+        "Our Book of Dua (Gr 2–4) · Let’s Read & Write Arabic II (Gr 2–3) · Juz Amma Vol. 1 (Gr 4–5) · A Study of Hadith (Gr 6–7) · Selected Prayers (Gr 7–8)",
+        "Lost books must be paid for."
+      ]
+    },
+    {
+      "id": "campus",
+      "title": "Campus & Online Days",
+      "items": [
+        "We’re guests at Greene Middle School: damage can mean fines. Label belongings; there’s no lost and found.",
+        "Virtual days run on Zoom, same schedule. Cameras on, don’t share links; KG parents stay with their child."
+      ]
+    }
   ]
 }

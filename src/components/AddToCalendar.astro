@@ -1,18 +1,25 @@
 ---
-// "Add to my calendar": subscribe links for Apple/Outlook (webcal), Google, or a plain download.
+// Subscribe buttons for the school calendar feed: Google, and Apple/Outlook (webcal).
+// No dropdown, so nothing can overlap or shift the page in any browser.
 import Icon from './Icon.astro';
 import { u } from '../lib/url';
-interface Props { variant?: 'outline' | 'gold'; label?: string; }
-const { variant = 'outline', label = 'Add dates to my calendar' } = Astro.props;
+
+interface Props { variant?: 'light' | 'dark'; }
+const { variant = 'light' } = Astro.props;
 const ics = new URL(u('/calendar.ics'), Astro.site).href;
 const webcal = ics.replace(/^https?:/, 'webcal:');
 const google = 'https://calendar.google.com/calendar/render?cid=' + encodeURIComponent(webcal);
+const primary = variant === 'dark' ? 'btn-gold' : 'btn-outline';
+const secondary = variant === 'dark' ? 'btn-ghost' : 'btn-outline';
 ---
-<details class={`cal-menu ${variant === 'gold' ? 'on-dark' : ''}`} data-close-outside>
-  <summary class={`btn ${variant === 'gold' ? 'btn-gold' : 'btn-outline'}`}><Icon name="calendar" />{label}</summary>
-  <div class="menu">
-    <a href={webcal}>Apple or Outlook calendar</a>
-    <a href={google} target="_blank" rel="noopener">Google Calendar</a>
-    <a href={u('/calendar.ics')} download="issv-calendar.ics">Download .ics file</a>
+<div class={`add-cal add-cal-${variant}`}>
+  {variant === 'light' && <span class="add-cal-label" id="add-cal-label">Add to your calendar</span>}
+  <div class="add-cal-buttons" role="group" aria-label="Add school dates to your calendar">
+    <a class={`btn ${primary}`} href={google} target="_blank" rel="noopener">
+      <Icon name="calendar" />{variant === 'dark' ? 'Add to Google Calendar' : 'Google'}
+    </a>
+    <a class={`btn ${secondary}`} href={webcal}>
+      <Icon name="calendar" />{variant === 'dark' ? 'Add to Apple / Outlook' : 'Apple / Outlook'}
+    </a>
   </div>
-</details>
+</div>

@@ -1,0 +1,7 @@
+---
+// An email link that, if it must wrap on a narrow screen, breaks before the "@".
+interface Props { address: string; }
+const { address } = Astro.props;
+const [user, domain] = address.split('@');
+---
+<a class="email" href={`mailto:${address}`}>{user}<wbr />@{domain}</a>

@@ -1,5 +1,6 @@
 ---
 import Pattern from './Pattern.astro';
+import Email from './Email.astro';
 import site from '../data/site.json';
 import { u } from '../lib/url';
 const donate = site.donationUrl || u('/about/#support');
@@ -11,12 +12,12 @@ const year = new Date().getFullYear();
     <div class="who">
       <span class="name">{site.name}</span>
       <span>{site.location} · {site.hours}</span>
-      <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a>
+      <Email address={site.emailGeneral} />
     </div>
     <nav aria-label="Footer">
       <ul>
         <li><a href={u('/about/')}>About</a></li>
-        <li><a href={u('/new-families/')}>New families</a></li>
+        <li><a href={u('/new-families/')}>New Families</a></li>
         <li><a href={u('/calendar/')}>Calendar</a></li>
         <li><a href={u('/families/')}>Handbook</a></li>
         <li><a href={u('/registration/')}>Registration</a></li>
@@ -26,6 +27,6 @@ const year = new Date().getFullYear();
   </div>
   <div class="wrap bottom">
     <span>© {year} {site.name} · 501(c)(3) nonprofit · Run by volunteers</span>
-    <span><a href={u('/search/')}>Search</a> · <a href={u('/calendar.ics')}>Calendar feed</a></span>
+    <span><a href={u('/search/')}>Search</a> · <a href={u('/calendar.ics')}>Calendar Feed</a></span>
   </div>
 </footer>

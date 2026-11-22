@@ -55,10 +55,10 @@ export function upcomingSunday(now: Date = new Date()): string {
 }
 
 export const STATUS: Record<Status, { badge: string; tone: string; title: string; detail: string }> = {
-  'in-session': { badge: 'In session', tone: 'green', title: 'School is in session', detail: 'Arrive by 10:00 AM for assembly. Pick-up at 1:30 PM after Dhuhr.' },
-  'virtual': { badge: 'Virtual', tone: 'gold', title: 'Virtual class day', detail: 'Classes on Zoom. Join 10:00–10:15 AM to test your connection; first period at 10:15.' },
-  'possible-virtual': { badge: 'Possible virtual', tone: 'gold', title: 'Class may be on Zoom', detail: 'We’ll confirm by email the week before. Plan for school as usual until then.' },
-  'no-school': { badge: 'No school', tone: 'red', title: 'No school', detail: 'Classes resume the following Sunday. Enjoy the break.' },
+  'in-session': { badge: 'In session', tone: 'green', title: 'School Is in Session', detail: 'Arrive by 10:00 AM for assembly. Pick-up at 1:30 PM after Dhuhr.' },
+  'virtual': { badge: 'Virtual', tone: 'gold', title: 'Virtual Class Day', detail: 'Classes on Zoom. Join 10:00–10:15 AM to test your connection; first period at 10:15.' },
+  'possible-virtual': { badge: 'Possible virtual', tone: 'gold', title: 'Class May Be on Zoom', detail: 'We’ll confirm by email the week before. Plan for school as usual until then.' },
+  'no-school': { badge: 'No school', tone: 'red', title: 'No School', detail: 'Classes resume the following Sunday. Enjoy the break.' },
 };
 
 const statusOf = (s: string) => STATUS[s as Status];
@@ -75,14 +75,14 @@ export function thisSunday(calendar: Calendar, override: Override | undefined, n
   if (!entry) {
     const next = calendar.sundays.find((s) => s.date > date && s.status !== 'no-school');
     return {
-      date, label, status: 'no-school', badge: 'No school', tone: 'red', title: 'No class this Sunday',
+      date, label, status: 'no-school', badge: 'No school', tone: 'red', title: 'No Class This Sunday',
       detail: next ? `Next school day: ${shortDate(next.date)}.` : 'See you next school year. Check the calendar for dates.',
     };
   }
   const s = statusOf(entry.status) || STATUS['in-session'];
   let title = s.title;
   let detail = s.detail;
-  if (entry.status === 'no-school' && entry.note) title = `No school · ${entry.note}`;
+  if (entry.status === 'no-school' && entry.note) title = `No School · ${entry.note}`;
   else if (entry.note && entry.status !== 'in-session') detail = entry.note;
   else if (entry.note) detail = `${entry.note}. ${s.detail}`;
   return { date, label, status: entry.status, badge: s.badge, tone: s.tone, title, detail };
@@ -94,7 +94,7 @@ export function comingUp(calendar: Calendar, after: string, limit = 4) {
   for (const s of calendar.sundays) {
     if (s.status === 'no-school') items.push({ date: s.date, title: `No school · ${s.note || 'Holiday'}` });
     else if (s.status === 'possible-virtual') items.push({ date: s.date, title: 'Possible virtual day' });
-    else if (s.status === 'virtual') items.push({ date: s.date, title: 'Virtual class day' });
+    else if (s.status === 'virtual') items.push({ date: s.date, title: 'Virtual Class Day' });
   }
   for (const e of calendar.events) items.push({ date: e.date, title: e.title });
   const seen = new Set<string>();

@@ -11,8 +11,8 @@ import { u } from '../lib/url';
 const fmt = (n: number) => '$' + n.toLocaleString('en-US');
 const qr = resolveImage(pay.zelleQr);
 ---
-<Base title="Registration & tuition" current="registration" description={`Register in person at school. Tuition is ${fmt(pay.tuitionPerChild)} per child; pay by Zelle or check.`}>
-  <Hero title="Registration & tuition" lead={`In person at school · ${fmt(pay.tuitionPerChild)} per child · pay by Zelle or check`}>
+<Base title="Registration & Tuition" current="registration" description={`Register in person at school. Tuition is ${fmt(pay.tuitionPerChild)} per child; pay by Zelle or check.`}>
+  <Hero title="Registration & Tuition" lead={`In person at school · ${fmt(pay.tuitionPerChild)} per child · pay by Zelle or check`}>
     <a class="btn btn-gold" href="#pay">Pay tuition</a>
     <a class="btn btn-ghost" href={u('/new-families/')}>New to the school?</a>
   </Hero>
@@ -28,12 +28,12 @@ const qr = resolveImage(pay.zelleQr);
 
   <section class="wrap pt-20">
     <div class="card">
-      <h2 class="h-card mb-20" id="register">How to register</h2>
+      <h2 class="h-card mb-20" id="register">How to Register</h2>
       <ol class="steps steps-numbered">
-        <li class="tile"><span class="step-num">01</span><span class="step-title">Get a packet</span><span class="small-muted">At the registration desk</span></li>
-        <li class="tile"><span class="step-num">02</span><span class="step-title">Complete 3 forms</span><span class="small-muted">Registration, feedback, release. Note allergies.</span></li>
-        <li class="tile"><span class="step-num">03</span><span class="step-title">Pay fall tuition</span><span class="small-muted">For each child: <a href="#pay">Option A or B</a></span></li>
-        <li class="tile"><span class="step-num">04</span><span class="step-title">Pick a volunteer task</span><span class="small-muted">10 hours per family per year{site.volunteerSignupUrl && <> · <a href={site.volunteerSignupUrl}>sign up</a></>}</span></li>
+        <li class="tile"><span class="step-num">01</span><span class="step-title">Get a Packet</span><span class="small-muted">At the registration desk</span></li>
+        <li class="tile"><span class="step-num">02</span><span class="step-title">Complete 3 Forms</span><span class="small-muted">Registration, feedback, release. Note allergies.</span></li>
+        <li class="tile"><span class="step-num">03</span><span class="step-title">Pay Fall Tuition</span><span class="small-muted">For each child: <a href="#pay">Option A or B</a></span></li>
+        <li class="tile"><span class="step-num">04</span><span class="step-title">Pick a Volunteer Task</span><span class="small-muted">10 hours per family per year{site.volunteerSignupUrl && <> · <a href={site.volunteerSignupUrl}>sign up</a></>}</span></li>
       </ol>
       <p class="small-muted mt-20">Pre-registering keeps your child’s seat. New students join only grades with openings. <a href={u('/new-families/')}>New family guide <span class="arrow" aria-hidden="true">→</span></a></p>
     </div>
@@ -51,7 +51,7 @@ const qr = resolveImage(pay.zelleQr);
       </ul>
     </div>
     <div class="card estimator" data-estimator data-per-child={pay.tuitionPerChild} data-max={pay.maxChildren} data-due={pay.secondInstallmentDue}>
-      <h3>Estimate what you owe</h3>
+      <h3>Estimate What You Owe</h3>
       <div class="stepper-row">
         <span id="kids-label">Children</span>
         <div class="stepper" role="group" aria-labelledby="kids-label">
@@ -73,7 +73,7 @@ const qr = resolveImage(pay.zelleQr);
   </section>
 
   <section id="pay" class="wrap pt-48">
-    <h2 class="h-display h-section">Pay tuition: choose one option</h2>
+    <h2 class="h-display h-section">Pay Tuition: Choose One Option</h2>
     <p class="lead-muted">Either way, include your child’s name and grade.</p>
     <div class="pay-grid">
       <div class="pay-option featured">
@@ -113,7 +113,7 @@ const qr = resolveImage(pay.zelleQr);
       <div class="pay-option">
         <div class="pay-head">
           <span class="badge" aria-hidden="true">B</span>
-          <div><span class="sub">Option B</span><h3>Pay by check</h3></div>
+          <div><span class="sub">Option B</span><h3>Pay by Check</h3></div>
         </div>
         <dl class="facts roomy">
           <div><dt>Make it payable to</dt><dd>{pay.checkPayee}</dd></div>
@@ -127,7 +127,7 @@ const qr = resolveImage(pay.zelleQr);
 
   <section class="wrap pt-20 section-last grid grid-3-sm">
     <div id="aid" class="card-soft card-tight stack stack-sm">
-      <h2 class="h-plain sm h-on-soft">Need help with tuition?</h2>
+      <h2 class="h-plain sm h-on-soft">Need Help with Tuition?</h2>
       <p class="text-16">Fill out the financial aid section of the registration form. It stays confidential.</p>
     </div>
     <div id="withdraw" class="card card-tight stack stack-sm">

@@ -1,5 +1,5 @@
 ---
-title: Virtual day this Sunday
+title: Virtual Day This Sunday
 date: 2026-11-16
 showFrom: 2026-11-16
 hideAfter: 2026-11-22

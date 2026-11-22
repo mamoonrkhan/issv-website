@@ -7,7 +7,7 @@ const files = import.meta.glob<{ default: ImageMetadata }>(
   { eager: true },
 );
 
-/** Resolve a CMS image path ("/src/assets/photos/eid.jpg") to optimizable metadata. */
+/** Resolve a CMS image path ("/src/assets/photos/greene-middle-school.jpg") to optimizable metadata. */
 export function resolveImage(path: string | undefined | null): ImageMetadata | undefined {
   if (!path) return undefined;
   const key = path.startsWith('/') ? path : '/' + path;

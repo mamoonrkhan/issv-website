@@ -1,5 +1,5 @@
 ---
-title: 2026–27 calendar is out
+title: 2026–27 Calendar Is Out
 date: 2026-08-20
 showFrom: 2026-08-20
 hideAfter: 2026-12-31

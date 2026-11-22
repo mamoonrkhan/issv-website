@@ -7,7 +7,7 @@ import AddToCalendar from '../components/AddToCalendar.astro';
 import site from '../data/site.json';
 import calendar from '../data/calendar.json';
 import override from '../data/sunday.json';
-import gallery from '../data/gallery.json';
+import payment from '../data/payment.json';
 import { getCollection } from 'astro:content';
 import { thisSunday, comingUp, todayISO, isLive } from '../lib/schedule';
 import { u } from '../lib/url';
@@ -23,7 +23,7 @@ const news = (await getCollection('announcements'))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
   .slice(0, 4);
 
-const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permission)).slice(0, 3);
+const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(site.address || site.location);
 ---
 <Base description={site.lead}>
   <section class="hero home-hero">
@@ -39,7 +39,10 @@ const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permiss
         </div>
       </div>
       <div class="hero-photo">
-        <Photo image={site.heroImage} alt={site.heroImageAlt} placeholder="[HERO PHOTO: students in class or at assembly]" sizes="(min-width: 1160px) 440px, 100vw" eager />
+        <Photo image={site.heroImage} alt={site.heroImageAlt} placeholder="[PHOTO: the school building]" sizes="(min-width: 1160px) 440px, 100vw" eager />
+        {site.heroImage && site.heroImageCredit && (
+          <a class="photo-credit" href={site.heroImageCreditUrl || undefined}>{site.heroImageCredit}</a>
+        )}
       </div>
     </div>
   </section>
@@ -64,7 +67,7 @@ const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permiss
   <section class="wrap pt-32 grid grid-3">
     <div class="card card-compact">
       <div class="section-head mb-8">
-        <h2 class="h-plain">Coming up</h2>
+        <h2 class="h-plain">Coming Up</h2>
         <a class="text-link" href={u('/calendar/')}>Calendar <span class="arrow" aria-hidden="true">→</span></a>
       </div>
       <ul class="rows" data-upcoming>
@@ -74,11 +77,11 @@ const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permiss
       </ul>
     </div>
     <div class="card card-compact">
-      <h2 class="h-plain mb-8">For parents</h2>
-      <a class="link-row" href={u('/registration/#pay')}>Pay tuition<span class="arrow" aria-hidden="true">→</span></a>
-      <a class="link-row" href={u('/families/')}>Parent handbook<span class="arrow" aria-hidden="true">→</span></a>
-      <a class="link-row" href={u('/curriculum/')}>Curriculum by grade<span class="arrow" aria-hidden="true">→</span></a>
-      <a class="link-row" href={u('/families/#volunteer')}>Volunteer hours<span class="arrow" aria-hidden="true">→</span></a>
+      <h2 class="h-plain mb-8">For Parents</h2>
+      <a class="link-row" href={u('/registration/#pay')}>Pay Tuition<span class="arrow" aria-hidden="true">→</span></a>
+      <a class="link-row" href={u('/families/')}>Parent Handbook<span class="arrow" aria-hidden="true">→</span></a>
+      <a class="link-row" href={u('/curriculum/')}>Curriculum by Grade<span class="arrow" aria-hidden="true">→</span></a>
+      <a class="link-row" href={u('/families/#volunteer')}>Volunteer Hours<span class="arrow" aria-hidden="true">→</span></a>
     </div>
     <div class="card-soft">
       <h2 class="h-plain h-on-soft mb-8">Announcements</h2>
@@ -98,13 +101,29 @@ const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permiss
     </div>
   </section>
 
-  <section class="wrap pt-56 section-last">
-    <div class="section-head">
-      <h2 class="h-display">Life at school</h2>
-      <a class="text-link" href={u('/about/#gallery')}>See the gallery <span class="arrow" aria-hidden="true">→</span></a>
-    </div>
-    <div class="photo-grid">
-      {homePhotos.map((p) => <Photo image={p.image} alt={p.alt} caption={p.caption} />)}
+  <section class="wrap pt-56 section-last" aria-labelledby="glance-title">
+    <h2 class="h-display mb-16" id="glance-title">At a Glance</h2>
+    <div class="glance card">
+      <div class="glance-item">
+        <span class="label">Where</span>
+        <b>{site.location}</b>
+        <a class="text-link" href={directions} target="_blank" rel="noopener">Get directions <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <div class="glance-item">
+        <span class="label">When</span>
+        <b>{site.hours}</b>
+        <span class="small-muted">September through May</span>
+      </div>
+      <div class="glance-item">
+        <span class="label">Who</span>
+        <b>Ages 5–16</b>
+        <span class="small-muted">KG through Youth Group (Grades 9–10)</span>
+      </div>
+      <div class="glance-item">
+        <span class="label">Tuition</span>
+        <b>${payment.tuitionPerChild} per child, per year</b>
+        <a class="text-link" href={u('/registration/')}>Registration details <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
     </div>
   </section>
 </Base>
@@ -112,6 +131,7 @@ const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permiss
 <script>
   import calendar from '../data/calendar.json';
   import override from '../data/sunday.json';
+import payment from '../data/payment.json';
   import { thisSunday, comingUp } from '../lib/schedule';
 
   // Recompute on load so the card is right even between rebuilds.
