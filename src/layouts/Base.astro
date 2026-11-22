@@ -54,7 +54,7 @@ const banner = (await getCollection('announcements'))
   {isPreview ? (
     <div class="draft-bar" data-pagefind-ignore>
       <span class="draft-pill">Preview</span>
-      <span>Unpublished changes. Families can’t see this page. When it looks right, click <strong>Publish to live site</strong> in the editor.</span>
+      <span>Draft copy for testing changes. Families don’t see this page.</span>
       {process.env.LIVE_URL && <a href={liveUrl}>View live site</a>}
     </div>
   ) : site.previewNotice && (
