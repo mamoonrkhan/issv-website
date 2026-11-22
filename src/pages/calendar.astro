@@ -6,7 +6,7 @@ import AddToCalendar from '../components/AddToCalendar.astro';
 import site from '../data/site.json';
 import calendar from '../data/calendar.json';
 import { u } from '../lib/url';
-import { dateRange, shortDate } from '../lib/schedule.js';
+import { dateRange, shortDate } from '../lib/schedule';
 
 const classDays = calendar.sundays.filter((s) => s.status !== 'no-school');
 const months: { name: string; days: { n: number; date: string; cls: string; label: string }[] }[] = [];
@@ -31,17 +31,17 @@ const events = [...calendar.events].sort((a, b) => a.date.localeCompare(b.date))
     {site.pdfCalendar && <a class="btn btn-ghost" href={u(site.pdfCalendar)}><Icon name="download" />PDF</a>}
   </Hero>
 
-  <section class="wrap" style="padding-top: 48px" aria-labelledby="months-title">
+  <section class="wrap pt-48" aria-labelledby="months-title">
     <h2 id="months-title" class="sr-only">Class days by month</h2>
     <div class="legend">
-      <span><span class="swatch" style="background: var(--green-700)"></span>Class day</span>
-      {hasVirtual && <span><span class="swatch" style="border: 1.5px dashed var(--green-700); background: var(--green-50)"></span>Virtual (Zoom)</span>}
-      <span><span class="swatch" style="border: 1.5px dashed var(--green-700)"></span>Possible virtual class</span>
+      <span><span class="swatch swatch-class"></span>Class day</span>
+      {hasVirtual && <span><span class="swatch swatch-virtual"></span>Virtual (Zoom)</span>}
+      <span><span class="swatch swatch-maybe"></span>Possible virtual class</span>
     </div>
     <div class="months">
       {months.map((m) => (
         <div class="month">
-          <h3 style="font-size: 16px; font-weight: 600">{m.name}</h3>
+          <h3>{m.name}</h3>
           <ul class="days">
             {m.days.map((d) => (
               <li class={`day ${d.cls}`} title={d.label} data-date={d.date}>
@@ -54,25 +54,25 @@ const events = [...calendar.events].sort((a, b) => a.date.localeCompare(b.date))
     </div>
   </section>
 
-  <section class="wrap section-last grid grid-2" style="padding-top: 24px; gap: 24px">
+  <section class="wrap pt-24 section-last grid grid-2 grid-gap-lg">
     <div class="card">
-      <h2 class="h-card-sm" style="margin-bottom: 12px">Events &amp; deadlines</h2>
+      <h2 class="h-card-sm mb-12">Events &amp; deadlines</h2>
       <ul class="rows">
         {events.map((e) => <li class="row"><span class="row-key">{dateRange(e.date, e.end)}</span><span>{e.title}</span></li>)}
       </ul>
     </div>
-    <div class="card" style="align-self: start">
-      <h2 class="h-card-sm" style="margin-bottom: 12px">No school</h2>
+    <div class="card self-start">
+      <h2 class="h-card-sm mb-12">No school</h2>
       <ul class="rows">
         {holidays.map((h) => <li class="row"><span class="row-key">{shortDate(h.date)}</span><span>{h.note || 'No school'}</span></li>)}
       </ul>
-      <p style="margin-top: 14px; font-size: 14px; color: var(--muted)">Virtual days are confirmed by email the week before. Subscribed calendars update automatically.</p>
+      <p class="note mt-14">Virtual days are confirmed by email the week before. Subscribed calendars update automatically.</p>
     </div>
   </section>
 </Base>
 
 <script>
-  import { todayISO, upcomingSunday } from '../lib/schedule.js';
+  import { todayISO, upcomingSunday } from '../lib/schedule';
   // Ring the upcoming Sunday.
   const next = upcomingSunday();
   if (next >= todayISO()) document.querySelector(`.day[data-date="${next}"]`)?.classList.add('today');

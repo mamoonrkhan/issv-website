@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import calendar from '../data/calendar.json';
 import site from '../data/site.json';
-import { addDays } from '../lib/schedule.js';
+import { addDays } from '../lib/schedule';
 
 // Subscribable iCalendar feed built from src/data/calendar.json.
 const TZID = 'America/Los_Angeles';

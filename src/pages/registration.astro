@@ -17,7 +17,7 @@ const qr = resolveImage(pay.zelleQr);
     <a class="btn btn-ghost" href={u('/new-families/')}>New to the school?</a>
   </Hero>
 
-  <section class="wrap section-first" aria-label="Key dates">
+  <section class="wrap pt-40" aria-label="Key dates">
     <div class="grid grid-4">
       <div class="card key-date"><span class="label">Current families</span><b>{pay.currentFamilies}</b></div>
       <div class="card key-date"><span class="label">New families</span><b>{pay.newFamilies}</b></div>
@@ -26,24 +26,24 @@ const qr = resolveImage(pay.zelleQr);
     </div>
   </section>
 
-  <section class="wrap section">
+  <section class="wrap pt-20">
     <div class="card">
-      <h2 class="h-card" id="register" style="margin-bottom: 20px">How to register</h2>
-      <ol class="steps">
-        <li class="tile" style="padding: 20px"><span class="step-num">01</span><span class="step-title">Get a packet</span><span class="small-muted">At the registration desk</span></li>
-        <li class="tile" style="padding: 20px"><span class="step-num">02</span><span class="step-title">Complete 3 forms</span><span class="small-muted">Registration, feedback, release. Note allergies.</span></li>
-        <li class="tile" style="padding: 20px"><span class="step-num">03</span><span class="step-title">Pay fall tuition</span><span class="small-muted">For each child: <a href="#pay">Option A or B</a></span></li>
-        <li class="tile" style="padding: 20px"><span class="step-num">04</span><span class="step-title">Pick a volunteer task</span><span class="small-muted">10 hours per family per year{site.volunteerSignupUrl && <> · <a href={site.volunteerSignupUrl}>sign up</a></>}</span></li>
+      <h2 class="h-card mb-20" id="register">How to register</h2>
+      <ol class="steps steps-numbered">
+        <li class="tile"><span class="step-num">01</span><span class="step-title">Get a packet</span><span class="small-muted">At the registration desk</span></li>
+        <li class="tile"><span class="step-num">02</span><span class="step-title">Complete 3 forms</span><span class="small-muted">Registration, feedback, release. Note allergies.</span></li>
+        <li class="tile"><span class="step-num">03</span><span class="step-title">Pay fall tuition</span><span class="small-muted">For each child: <a href="#pay">Option A or B</a></span></li>
+        <li class="tile"><span class="step-num">04</span><span class="step-title">Pick a volunteer task</span><span class="small-muted">10 hours per family per year{site.volunteerSignupUrl && <> · <a href={site.volunteerSignupUrl}>sign up</a></>}</span></li>
       </ol>
-      <p style="margin-top: 20px" class="small-muted">Pre-registering keeps your child’s seat. New students join only grades with openings. <a href={u('/new-families/')}>New family guide <span class="arrow" aria-hidden="true">→</span></a></p>
+      <p class="small-muted mt-20">Pre-registering keeps your child’s seat. New students join only grades with openings. <a href={u('/new-families/')}>New family guide <span class="arrow" aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
-  <section id="tuition" class="wrap section grid grid-2">
-    <div class="card" style="display: flex; flex-direction: column; gap: 12px">
+  <section id="tuition" class="wrap pt-20 grid grid-2">
+    <div class="card stack">
       <h2 class="h-card">Tuition</h2>
-      <div class="price"><b>{fmt(pay.tuitionPerChild)}</b><span style="color: var(--muted)">per child, per year</span></div>
-      <ul class="bullets" style="gap: 4px">
+      <div class="price"><b>{fmt(pay.tuitionPerChild)}</b><span class="text-muted">per child, per year</span></div>
+      <ul class="bullets stack-xs">
         <li>Same rate for siblings</li>
         <li>Includes registration, all textbooks and snacks</li>
         <li>Pay in full, or half now and half by {pay.secondInstallmentDue}</li>
@@ -72,9 +72,9 @@ const qr = resolveImage(pay.zelleQr);
     </div>
   </section>
 
-  <section id="pay" class="wrap" style="padding-top: 48px">
-    <h2 class="h-display" style="font-size: 34px">Pay tuition: choose one option</h2>
-    <p style="margin: 6px 0 20px; color: var(--muted)">Either way, include your child’s name and grade.</p>
+  <section id="pay" class="wrap pt-48">
+    <h2 class="h-display h-section">Pay tuition: choose one option</h2>
+    <p class="lead-muted">Either way, include your child’s name and grade.</p>
     <div class="pay-grid">
       <div class="pay-option featured">
         <div class="pay-head">
@@ -86,15 +86,15 @@ const qr = resolveImage(pay.zelleQr);
             <button type="button" class="btn btn-primary" data-copy={pay.zelleEmail} data-done="Email copied. Now open your bank app.">
               <Icon name="copy" />Copy Zelle email
             </button>
-            <p style="font-size: 15px; color: var(--muted)">Then in your bank app: Zelle → paste email or scan QR → amount + memo.</p>
+            <p class="small-muted">Then in your bank app: Zelle → paste email or scan QR → amount + memo.</p>
             <dl class="facts">
               <div>
-                <div style="min-width: 0"><dt>Send to</dt><dd>{pay.zelleEmail}</dd></div>
+                <div class="min-w-0"><dt>Send to</dt><dd>{pay.zelleEmail}</dd></div>
                 <button type="button" class="btn-small" data-copy={pay.zelleEmail} aria-label="Copy Zelle email">Copy</button>
               </div>
               <div><div><dt>Name shown in Zelle</dt><dd>{pay.zelleName}</dd></div></div>
               <div>
-                <div style="min-width: 0"><dt>Memo</dt><dd>{pay.memoFormat}</dd></div>
+                <div class="min-w-0"><dt>Memo</dt><dd>{pay.memoFormat}</dd></div>
                 <button type="button" class="btn-small" data-copy={pay.memoFormat} aria-label="Copy memo format">Copy</button>
               </div>
             </dl>
@@ -125,18 +125,18 @@ const qr = resolveImage(pay.zelleQr);
     </div>
   </section>
 
-  <section class="wrap section-last grid" style="padding-top: 20px; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr))">
-    <div id="aid" class="card-soft" style="padding: 24px 28px; display: flex; flex-direction: column; gap: 6px">
-      <h2 class="h-plain" style="font-size: 18px; color: var(--green-900)">Need help with tuition?</h2>
-      <p style="color: var(--green-ink); font-size: 16px">Fill out the financial aid section of the registration form. It stays confidential.</p>
+  <section class="wrap pt-20 section-last grid grid-3-sm">
+    <div id="aid" class="card-soft card-tight stack stack-sm">
+      <h2 class="h-plain sm h-on-soft">Need help with tuition?</h2>
+      <p class="text-16">Fill out the financial aid section of the registration form. It stays confidential.</p>
     </div>
-    <div id="withdraw" class="card card-tight" style="display: flex; flex-direction: column; gap: 6px">
-      <h2 class="h-plain" style="font-size: 18px">Withdrawing</h2>
-      <p style="color: var(--muted); font-size: 16px">Email <a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a>.</p>
+    <div id="withdraw" class="card card-tight stack stack-sm">
+      <h2 class="h-plain sm">Withdrawing</h2>
+      <p class="text-muted text-16">Email <a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a>.</p>
     </div>
-    <div class="card card-tight" style="display: flex; flex-direction: column; gap: 6px">
-      <h2 class="h-plain" style="font-size: 18px">Questions</h2>
-      <p style="color: var(--muted); font-size: 16px">Email <a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a>.</p>
+    <div class="card card-tight stack stack-sm">
+      <h2 class="h-plain sm">Questions</h2>
+      <p class="text-muted text-16">Email <a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a>.</p>
     </div>
   </section>
 </Base>

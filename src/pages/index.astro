@@ -9,7 +9,7 @@ import calendar from '../data/calendar.json';
 import override from '../data/sunday.json';
 import gallery from '../data/gallery.json';
 import { getCollection } from 'astro:content';
-import { thisSunday, comingUp, todayISO, isLive } from '../lib/schedule.js';
+import { thisSunday, comingUp, todayISO, isLive } from '../lib/schedule';
 import { u } from '../lib/url';
 
 const sun = thisSunday(calendar, override);
@@ -61,9 +61,9 @@ const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permiss
     </div>
   </section>
 
-  <section class="wrap section grid grid-3" style="padding-top: 32px">
-    <div class="card" style="padding: 28px">
-      <div class="section-head" style="margin-bottom: 8px">
+  <section class="wrap pt-32 grid grid-3">
+    <div class="card card-compact">
+      <div class="section-head mb-8">
         <h2 class="h-plain">Coming up</h2>
         <a class="text-link" href={u('/calendar/')}>Calendar <span class="arrow" aria-hidden="true">→</span></a>
       </div>
@@ -73,15 +73,15 @@ const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permiss
         ))}
       </ul>
     </div>
-    <div class="card" style="padding: 28px">
-      <h2 class="h-plain" style="margin-bottom: 8px">For parents</h2>
+    <div class="card card-compact">
+      <h2 class="h-plain mb-8">For parents</h2>
       <a class="link-row" href={u('/registration/#pay')}>Pay tuition<span class="arrow" aria-hidden="true">→</span></a>
       <a class="link-row" href={u('/families/')}>Parent handbook<span class="arrow" aria-hidden="true">→</span></a>
       <a class="link-row" href={u('/curriculum/')}>Curriculum by grade<span class="arrow" aria-hidden="true">→</span></a>
       <a class="link-row" href={u('/families/#volunteer')}>Volunteer hours<span class="arrow" aria-hidden="true">→</span></a>
     </div>
     <div class="card-soft">
-      <h2 class="h-plain" style="margin-bottom: 8px; color: var(--green-900)">Announcements</h2>
+      <h2 class="h-plain h-on-soft mb-8">Announcements</h2>
       <ul class="rows news">
         {news.map((n) => (
           <li
@@ -98,7 +98,7 @@ const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permiss
     </div>
   </section>
 
-  <section class="wrap section-last" style="padding-top: 56px">
+  <section class="wrap pt-56 section-last">
     <div class="section-head">
       <h2 class="h-display">Life at school</h2>
       <a class="text-link" href={u('/about/#gallery')}>See the gallery <span class="arrow" aria-hidden="true">→</span></a>
@@ -112,7 +112,7 @@ const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permiss
 <script>
   import calendar from '../data/calendar.json';
   import override from '../data/sunday.json';
-  import { thisSunday, comingUp } from '../lib/schedule.js';
+  import { thisSunday, comingUp } from '../lib/schedule';
 
   // Recompute on load so the card is right even between rebuilds.
   const card = document.querySelector<HTMLElement>('[data-sunday]');
@@ -137,10 +137,3 @@ const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permiss
   }
 </script>
 
-<style>
-  .news li { padding: 11px 0; border-top: 1px solid var(--green-line); display: flex; flex-direction: column; }
-  .news-title { font-weight: 600; font-size: 16px; }
-  .news-text { font-size: 14px; color: var(--green-ink); }
-  .news-empty { display: none !important; font-size: 15px; color: var(--green-ink); }
-  .news:not(:has(li:not([hidden]):not(.news-empty))) .news-empty { display: flex !important; }
-</style>

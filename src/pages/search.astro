@@ -39,7 +39,7 @@ const quick = [
 const chips = ['Tuition', 'Zelle', 'Absence', 'Dress code', 'Eid', 'Pick-up'];
 ---
 <Base title="Search" index={false} description="Search the school website.">
-  <section class="search-page">
+  <section class="narrow-page">
     <h1>Search the site</h1>
     <form role="search" action={u('/search/')} method="get" data-search-form>
       <label for="search-input" class="sr-only">Search</label>
@@ -52,7 +52,7 @@ const chips = ['Tuition', 'Zelle', 'Absence', 'Dress code', 'Eid', 'Pick-up'];
       <span>Popular:</span>
       {chips.map((c) => <button type="button" class="chip" data-chip={c.toLowerCase()}>{c}</button>)}
     </div>
-    <p aria-live="polite" style="margin-top: 8px; font-size: 14px; color: var(--muted)" data-count>Quick links · press <kbd>/</kbd> to search from any page</p>
+    <p class="note search-count" aria-live="polite" data-count>Quick links · press <kbd>/</kbd> to search from any page</p>
     <ul class="results" data-results>
       {quick.slice(0, 6).map((r) => (
         <li><a class="result" href={r.href}><span class="where">{r.page}</span><span class="title">{r.title}</span><span class="text">{r.text}</span></a></li>

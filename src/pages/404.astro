@@ -3,9 +3,9 @@ import Base from '../layouts/Base.astro';
 import { u } from '../lib/url';
 ---
 <Base title="Page not found" index={false}>
-  <section class="search-page" style="text-align: left">
+  <section class="narrow-page">
     <h1>We can’t find that page</h1>
-    <p style="color: var(--muted)">It may have moved when the site was updated. Try searching, or start from the home page.</p>
+    <p class="text-muted">It may have moved when the site was updated. Try searching, or start from the home page.</p>
     <div class="hero-actions">
       <a class="btn btn-primary" href={u('/search/')}>Search the site</a>
       <a class="btn btn-outline" href={u('/')}>Home page</a>

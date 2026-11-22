@@ -6,7 +6,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 import { getCollection } from 'astro:content';
-import { todayISO, isLive } from '../lib/schedule.js';
+import { todayISO, isLive } from '../lib/schedule';
 import { u } from '../lib/url';
 
 interface Props {
@@ -70,7 +70,7 @@ const banner = (await getCollection('announcements'))
   <Footer />
 
   <script>
-    import { todayISO, isLive } from '../lib/schedule.js';
+    import { todayISO, isLive } from '../lib/schedule';
 
     // Show or hide dated content without waiting for the nightly rebuild.
     const today = todayISO();
