@@ -1,6 +1,7 @@
 # Website editor for volunteers (Pages CMS: https://pagescms.org).
 # Volunteers sign in at https://app.pagescms.org with the email they were invited with.
-# Every save is a commit to this repo; the site republishes about two minutes later.
+# Editors save to the `draft` branch. About two minutes later the change shows at /preview/.
+# The "Publish to live site" button (below) then moves everything to the live site.
 
 settings:
   # Keep any keys in a file that aren't listed below, so nothing is ever lost on save.
@@ -12,6 +13,17 @@ settings:
       update: "Update {path} (website editor)"
       delete: "Delete {path} (website editor)"
       rename: "Rename {oldPath} to {newPath} (website editor)"
+
+# Button in the editor's sidebar. Runs .github/workflows/publish.yml.
+actions:
+  - name: publish
+    label: Publish to live site
+    workflow: publish.yml
+    cancelable: false
+    confirm:
+      title: Publish to the live site?
+      message: Everything on the preview page goes live for families in about two minutes.
+      button: Publish
 
 media:
   - name: images

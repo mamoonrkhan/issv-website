@@ -1,0 +1,119 @@
+name: Deploy site
+
+# Builds two copies of the site and publishes them to GitHub Pages:
+#   /             the live site, from the `main` branch
+#   /preview/     editors' unpublished changes, from the `draft` branch
+# Editors save to `draft` in Pages CMS; publish.yml moves their changes to `main`.
+
+on:
+  push:
+    branches: [main, draft]
+  # Nightly rebuild (about 2–3 AM in Palo Alto) so expired posts drop off
+  # and "This Sunday" is right for visitors without JavaScript.
+  schedule:
+    - cron: '15 10 * * *'
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # When the live site changes (e.g. a design update), bring that into the draft too.
+  sync-draft:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: draft
+          fetch-depth: 0
+      - name: Merge main into draft
+        run: |
+          git config user.name "Website editor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git merge --no-edit origin/main -m "Bring live site updates into the draft"
+          git push origin HEAD:draft
+
+  build:
+    needs: sync-draft
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          path: live
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: live/.nvmrc
+          cache: npm
+          cache-dependency-path: live/package-lock.json
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build live site
+        working-directory: live
+        run: npm ci && npm run build
+        env:
+          ASTRO_TELEMETRY_DISABLED: '1'
+          SITE_URL: ${{ steps.pages.outputs.origin }}
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+
+      - id: draft
+        name: Check for a draft branch
+        run: |
+          if gh api "repos/${{ github.repository }}/branches/draft" > /dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - if: steps.draft.outputs.exists == 'true'
+        uses: actions/checkout@v5
+        with:
+          ref: draft
+          path: preview
+          fetch-depth: 0
+      - name: Build preview
+        if: steps.draft.outputs.exists == 'true'
+        working-directory: preview
+        run: |
+          git config user.name "Website editor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Preview = live site + editors' draft changes.
+          git merge --no-edit origin/main -m "Preview build" || {
+            echo "::warning::The draft and the live site have conflicting edits. The preview shows the draft as it is."
+            git merge --abort
+          }
+          npm ci && npm run build
+          mkdir -p ../live/dist/preview
+          cp -R dist/. ../live/dist/preview/
+        env:
+          ASTRO_TELEMETRY_DISABLED: '1'
+          PREVIEW: '1'
+          SITE_URL: ${{ steps.pages.outputs.origin }}
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}/preview/
+          LIVE_URL: ${{ steps.pages.outputs.base_url }}
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: live/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

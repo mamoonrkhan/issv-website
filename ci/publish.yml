@@ -1,0 +1,41 @@
+name: Publish to live site
+
+# Run by the "Publish to live site" button in Pages CMS (or from the Actions tab).
+# Moves everything saved in the editor (the `draft` branch) onto the live site (`main`).
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Sent by Pages CMS (optional)
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Merge draft into main
+        run: |
+          git config user.name "Website editor"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git merge-base --is-ancestor origin/draft HEAD; then
+            echo "Nothing new to publish."
+            exit 0
+          fi
+          git merge --no-edit origin/draft -m "Publish editor changes to the live site"
+          git push origin HEAD:main
+
+  # A push made by this workflow doesn't trigger other workflows, so deploy here.
+  deploy:
+    needs: publish
+    uses: ./.github/workflows/deploy.yml

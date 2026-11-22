@@ -5,6 +5,7 @@ import Hero from '../components/Hero.astro';
 
 const editor = 'https://app.pagescms.org/';
 const helpEmail = 'rk.mamoon25@learnislam.org';
+const previewUrl = import.meta.env.BASE_URL.replace(/\/?$/, '/') + 'preview/';
 const tasks = [
   {
     title: 'Post an Announcement',
@@ -13,7 +14,7 @@ const tasks = [
       'Write a short title and a one- or two-sentence message.',
       'Pick the first and last day it should show.',
       'For urgent news (a closure, a virtual day), turn on the green banner.',
-      'Click Save.',
+      'Click Save, check the preview, then Publish.',
     ],
   },
   {
@@ -22,7 +23,7 @@ const tasks = [
       'Choose Calendar, then open Sundays.',
       'Find the Sunday and change its Status.',
       'For “No school”, add the reason in the note (e.g. Thanksgiving).',
-      'Click Save. The home page, Calendar page and families’ phone calendars all update.',
+      'Click Save, check the preview, then Publish. The home page, Calendar page and families’ phone calendars all update.',
     ],
   },
   {
@@ -30,7 +31,7 @@ const tasks = [
     steps: [
       'Choose This Sunday (Emergency).',
       'Turn on the override, pick “No school”, and write a headline and details.',
-      'Click Save. Remember to turn it off afterwards.',
+      'Click Save, then Publish right away. Remember to turn it off afterwards.',
       'Also post an announcement with the green banner so every page shows it.',
     ],
   },
@@ -39,7 +40,7 @@ const tasks = [
     steps: [
       'Choose Tuition & Payment, or Contact, Links & PDFs.',
       'Change the text, or upload a new PDF or QR code image.',
-      'Click Save.',
+      'Click Save, check the preview, then Publish.',
     ],
   },
 ];
@@ -59,9 +60,14 @@ const tasks = [
       </ol>
     </div>
     <div class="card stack">
-      <h2 class="h-section">Good to Know</h2>
+      <h2 class="h-section">Save, Check, Publish</h2>
+      <ol class="guide-steps">
+        <li><strong>Save</strong> your change in the editor. Families can’t see it yet.</li>
+        <li>About two minutes later, check it on the <a href={previewUrl} target="_blank" rel="noopener">preview page</a>. It looks exactly like the real site, with a dark “Preview” bar on top. If you don’t see your change, wait a minute and refresh.</li>
+        <li>When it looks right, click <strong>Publish to live site</strong> in the editor’s sidebar. It’s live for families about two minutes later.</li>
+      </ol>
+      <h3 class="h-card">Good to Know</h3>
       <ul class="bullets">
-        <li>After you click Save, the website updates by itself in about two minutes. If you don’t see your change, wait a few minutes and refresh the page.</li>
         <li>You can’t break anything. Every change is saved in a history, so any mistake can be undone.</li>
         <li>Please don’t upload photos that show children.</li>
         <li>Questions? Email <a href={`mailto:${helpEmail}`}>{helpEmail}</a>.</li>
