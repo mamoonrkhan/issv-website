@@ -19,6 +19,7 @@ actions:
   - name: publish
     label: Publish to live site
     workflow: publish.yml
+    ref: main
     cancelable: false
     confirm:
       title: Publish to the live site?
