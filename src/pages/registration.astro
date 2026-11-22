@@ -14,8 +14,8 @@ const qr = resolveImage(pay.zelleQr);
 ---
 <Base title="Registration & Tuition" current="registration" description={`Register in person at school. Tuition is ${fmt(pay.tuitionPerChild)} per child; pay by Zelle or check.`}>
   <Hero eyebrow={`${calendar.schoolYear} School Year`} title="Registration & Tuition" lead={`In person at school · ${fmt(pay.tuitionPerChild)} per child · pay by Zelle or check`}>
-    <a class="btn btn-gold" href="#pay">Pay tuition</a>
-    <a class="btn btn-ghost" href={u('/new-families/')}>New to the school?</a>
+    <a class="btn btn-gold" href="#pay">Pay Tuition</a>
+    <a class="btn btn-ghost" href={u('/new-families/')}>New to the School?</a>
   </Hero>
 
   <section class="wrap pt-major" aria-label="Key dates">
@@ -36,7 +36,7 @@ const qr = resolveImage(pay.zelleQr);
         <li class="tile"><span class="step-num">03</span><span class="step-title">Pay Fall Tuition</span><span class="small-muted">For each child: <a href="#pay">Option A or B</a></span></li>
         <li class="tile"><span class="step-num">04</span><span class="step-title">Pick a Volunteer Task</span><span class="small-muted">10 hours per family per year{site.volunteerSignupUrl && <> · <a href={site.volunteerSignupUrl}>sign up</a></>}</span></li>
       </ol>
-      <p class="small-muted mt-20">Pre-registering keeps your child’s seat. New students join only grades with openings. <a href={u('/new-families/')}>New family guide <span class="arrow" aria-hidden="true">→</span></a></p>
+      <p class="small-muted mt-20">Pre-registering keeps your child’s seat. New students join only grades with openings. <a href={u('/new-families/')}>New Family Guide <span class="arrow" aria-hidden="true">→</span></a></p>
     </div>
   </section>
 
@@ -85,13 +85,13 @@ const qr = resolveImage(pay.zelleQr);
         <div class="pay-body">
           <div class="pay-main">
             <button type="button" class="btn btn-primary" data-copy={pay.zelleEmail} data-done="Email copied. Now open your bank app.">
-              <Icon name="copy" />Copy Zelle email
+              <Icon name="copy" />Copy Zelle Email
             </button>
             <p class="small-muted">Then in your bank app: Zelle → paste email or scan QR → amount + memo.</p>
             <dl class="facts">
               <div>
                 <dt>Send to</dt>
-                <dd><span class="min-w-0">{pay.zelleEmail}</span><button type="button" class="btn-small" data-copy={pay.zelleEmail} aria-label="Copy Zelle email">Copy</button></dd>
+                <dd><span class="min-w-0">{pay.zelleEmail}</span><button type="button" class="btn-small" data-copy={pay.zelleEmail} aria-label="Copy Zelle Email">Copy</button></dd>
               </div>
               <div><dt>Name shown in Zelle</dt><dd>{pay.zelleName}</dd></div>
               <div>
@@ -183,7 +183,7 @@ const qr = resolveImage(pay.zelleQr);
       const ok = await copyText(text);
       const msg = ok ? (btn.dataset.done || 'Copied') : `Couldn’t copy. Select and copy: ${text}`;
       if (btn.classList.contains('btn-small')) btn.textContent = ok ? 'Copied' : 'Copy';
-      else btn.textContent = ok ? msg : 'Copy Zelle email';
+      else btn.textContent = ok ? msg : 'Copy Zelle Email';
       if (status) status.textContent = msg;
       setTimeout(() => { btn.innerHTML = original; if (status) status.textContent = ''; }, 2500);
     });

@@ -13,7 +13,7 @@ const primary = variant === 'dark' ? 'btn-gold' : 'btn-outline';
 const secondary = variant === 'dark' ? 'btn-ghost' : 'btn-outline';
 ---
 <div class={`add-cal add-cal-${variant}`}>
-  {variant === 'light' && <span class="add-cal-label" id="add-cal-label">Add to your calendar</span>}
+  {variant === 'light' && <span class="add-cal-label" id="add-cal-label">Add to Your Calendar</span>}
   <div class="add-cal-buttons" role="group" aria-label="Add school dates to your calendar">
     <a class={`btn ${primary}`} href={google} target="_blank" rel="noopener">
       <Icon name="calendar" />{variant === 'dark' ? 'Add to Google Calendar' : 'Google'}
