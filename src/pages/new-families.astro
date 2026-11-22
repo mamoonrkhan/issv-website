@@ -2,9 +2,9 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
-import faq from '../data/faq.json';
-import payment from '../data/payment.json';
-import cur from '../data/curriculum.json';
+import { faq } from '../lib/content';
+import { payment } from '../lib/content';
+import { curriculum as cur } from '../lib/content';
 import { u } from '../lib/url';
 ---
 <Base title="New Families" description="Everything you need to know before your first Sunday at the Islamic School of Silicon Valley.">

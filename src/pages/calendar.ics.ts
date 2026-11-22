@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
-import calendar from '../data/calendar.json';
-import site from '../data/site.json';
+import { calendar } from '../lib/content';
+import { site } from '../lib/content';
 import { addDays } from '../lib/schedule';
 
 // Subscribable iCalendar feed built from src/data/calendar.json.

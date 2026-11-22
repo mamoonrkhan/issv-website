@@ -2,8 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
-import site from '../data/site.json';
-import hb from '../data/handbook.json';
+import { site } from '../lib/content';
+import { handbook as hb } from '../lib/content';
 import { u } from '../lib/url';
 ---
 <Base title="Parent Handbook" current="families" description="Arrival, pick-up, attendance, dress code, conduct and other school policies at a glance.">

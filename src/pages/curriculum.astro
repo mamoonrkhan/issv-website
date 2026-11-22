@@ -2,8 +2,8 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
-import site from '../data/site.json';
-import cur from '../data/curriculum.json';
+import { site } from '../lib/content';
+import { curriculum as cur } from '../lib/content';
 import { u } from '../lib/url';
 
 const subjects = [

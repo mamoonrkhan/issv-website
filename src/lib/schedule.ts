@@ -2,7 +2,7 @@
 // All dates are ISO strings (YYYY-MM-DD) in the school's time zone.
 
 export type Status = 'in-session' | 'virtual' | 'possible-virtual' | 'no-school';
-export interface Sunday { date: string; status: string; note: string }
+export interface Sunday { date: string; status: string; note?: string }
 export interface SchoolEvent { date: string; end?: string; title: string }
 export interface Calendar { sundays: Sunday[]; events: SchoolEvent[] }
 export interface Override { enabled: boolean; date?: string; status: string; title?: string; message?: string }

@@ -1,7 +1,7 @@
 ---
 import Pattern from './Pattern.astro';
 import Email from './Email.astro';
-import site from '../data/site.json';
+import { site } from '../lib/content';
 import { u } from '../lib/url';
 const donate = site.donationUrl || u('/about/#support');
 const year = new Date().getFullYear();

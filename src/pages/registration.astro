@@ -3,9 +3,9 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Icon from '../components/Icon.astro';
-import site from '../data/site.json';
-import pay from '../data/payment.json';
-import calendar from '../data/calendar.json';
+import { site } from '../lib/content';
+import { payment as pay } from '../lib/content';
+import { calendar } from '../lib/content';
 import { resolveImage } from '../lib/images';
 import { u } from '../lib/url';
 

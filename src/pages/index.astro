@@ -5,10 +5,10 @@ import Pattern from '../components/Pattern.astro';
 import Photo from '../components/Photo.astro';
 import Icon from '../components/Icon.astro';
 import AddToCalendar from '../components/AddToCalendar.astro';
-import site from '../data/site.json';
-import calendar from '../data/calendar.json';
-import override from '../data/sunday.json';
-import payment from '../data/payment.json';
+import { site } from '../lib/content';
+import { calendar } from '../lib/content';
+import { sunday as override } from '../lib/content';
+import { payment } from '../lib/content';
 import { getCollection } from 'astro:content';
 import { thisSunday, comingUp, todayISO, isLive } from '../lib/schedule';
 import { u } from '../lib/url';
@@ -136,9 +136,9 @@ const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
 </Base>
 
 <script>
-  import calendar from '../data/calendar.json';
-  import override from '../data/sunday.json';
-import payment from '../data/payment.json';
+  import { calendar } from '../lib/content';
+  import { sunday as override } from '../lib/content';
+import { payment } from '../lib/content';
   import { thisSunday, comingUp } from '../lib/schedule';
 
   // Recompute on load so the card is right even between rebuilds.

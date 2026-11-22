@@ -89,6 +89,7 @@ src/
   pages/                    one file per page, plus calendar.ics.ts and admin.astro (volunteer guide)
   components/               header, footer, hero, photo, email, add-to-calendar…
   layouts/Base.astro        page shell: banners, header, footer, site-wide scripts
+  lib/content.ts            typed access to src/data (import data from here)
   lib/schedule.ts           This Sunday and upcoming-dates logic (build and browser)
   lib/url.ts, images.ts     base-path links, image lookup
   styles/global.css         design tokens and all styles
@@ -101,7 +102,7 @@ public/
 
 ### Conventions
 
-- **Content lives in `src/data` and `src/content`, never in page markup.** If something should be editable, add it to a data file and to `.pages.yml`.
+- **Content lives in `src/data` and `src/content`, never in page markup.** If something should be editable, add it to a data file and to `.pages.yml`. Read it through `src/lib/content.ts`, and mark fields that can be left blank as optional there: the editor drops empty fields when it saves.
 - **Styles live in `src/styles/global.css`.** Use the design tokens and existing classes rather than one-off values:
   - **Headings:** three sizes. Page title (the hero), `.h-section` (serif, for section and large-card titles) and `.h-card` (sans, for small cards).
   - **Spacing:** two values. `.pt-block` (`--gap`, 24px) between related blocks and inside grids, and `.pt-major` (`--space-major`, 48px) after the page header or before a section with its own heading.
