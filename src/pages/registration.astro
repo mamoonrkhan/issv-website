@@ -90,13 +90,13 @@ const qr = resolveImage(pay.zelleQr);
             <p class="small-muted">Then in your bank app: Zelle → paste email or scan QR → amount + memo.</p>
             <dl class="facts">
               <div>
-                <div class="min-w-0"><dt>Send to</dt><dd>{pay.zelleEmail}</dd></div>
-                <button type="button" class="btn-small" data-copy={pay.zelleEmail} aria-label="Copy Zelle email">Copy</button>
+                <dt>Send to</dt>
+                <dd><span class="min-w-0">{pay.zelleEmail}</span><button type="button" class="btn-small" data-copy={pay.zelleEmail} aria-label="Copy Zelle email">Copy</button></dd>
               </div>
-              <div><div><dt>Name shown in Zelle</dt><dd>{pay.zelleName}</dd></div></div>
+              <div><dt>Name shown in Zelle</dt><dd>{pay.zelleName}</dd></div>
               <div>
-                <div class="min-w-0"><dt>Memo</dt><dd>{pay.memoFormat}</dd></div>
-                <button type="button" class="btn-small" data-copy={pay.memoFormat} aria-label="Copy memo format">Copy</button>
+                <dt>Memo</dt>
+                <dd><span class="min-w-0">{pay.memoFormat}</span><button type="button" class="btn-small" data-copy={pay.memoFormat} aria-label="Copy memo format">Copy</button></dd>
               </div>
             </dl>
             <p class="fineprint">Check the name before sending. Zelle payments can’t be undone.</p>
