@@ -1,0 +1,78 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import site from '../data/site.json';
+import cur from '../data/curriculum.json';
+import { u } from '../lib/url';
+---
+<Base title="Curriculum" current="curriculum" description="What students learn at each grade: Quran, memorization and Islamic studies from KG to Youth Group.">
+  <Hero title="Curriculum" lead={cur.lead}>
+    {site.pdfCurriculum && <a class="btn btn-ghost" href={u(site.pdfCurriculum)}><Icon name="download" />Full curriculum (PDF)</a>}
+  </Hero>
+
+  <section class="wrap" style="padding-top: 48px">
+    <div class="card" style="padding: 28px 32px 32px" data-tabs>
+      <div class="tablist" role="tablist" aria-label="Grade">
+        {cur.grades.map((g, i) => (
+          <button type="button" class="tab" role="tab" id={`tab-${g.id}`} aria-controls={`panel-${g.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{g.label}</button>
+        ))}
+      </div>
+      {cur.grades.map((g, i) => (
+        <div class="tabpanel" role="tabpanel" id={`panel-${g.id}`} aria-labelledby={`tab-${g.id}`} tabindex="0" hidden={i !== 0}>
+          <h2 class="h-display" id={g.id}>{g.title}</h2>
+          <div class="subject-grid">
+            <div class="subject"><h3>Quran</h3><p>{g.quran}</p></div>
+            <div class="subject"><h3>Memorize</h3><p>{g.memorize}</p></div>
+            <div class="subject"><h3>Islamic studies</h3><p>{g.studies}</p></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap section-last grid grid-2" style="padding-top: 24px; gap: 24px">
+    <div class="card">
+      <h2 class="h-card-sm" id="schedule" style="margin-bottom: 12px">A Sunday at school</h2>
+      <ul class="rows">{cur.schedule.map((s) => <li class="row"><span class="row-key w120">{s.time}</span><span>{s.what}</span></li>)}</ul>
+    </div>
+    <div class="card">
+      <h2 class="h-card-sm" style="margin-bottom: 12px">Milestones</h2>
+      <ul class="rows">{cur.milestones.map((m) => <li class="row"><span class="row-key w120">{m.when}</span><span>{m.what}</span></li>)}</ul>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Accessible tabs: click, arrow keys, Home/End. URL hash (#gr4) selects a grade.
+  const root = document.querySelector<HTMLElement>('[data-tabs]');
+  if (root) {
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+    const select = (tab: HTMLButtonElement, focus = false, push = false) => {
+      for (const t of tabs) {
+        const on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute('aria-controls')!);
+        if (panel) panel.hidden = !on;
+      }
+      if (focus) tab.focus();
+      if (push) history.replaceState(null, '', '#' + tab.id.replace(/^tab-/, ''));
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t, false, true));
+      t.addEventListener('keydown', (e) => {
+        const n = tabs.length;
+        const to = e.key === 'ArrowRight' ? (i + 1) % n : e.key === 'ArrowLeft' ? (i - 1 + n) % n : e.key === 'Home' ? 0 : e.key === 'End' ? n - 1 : -1;
+        if (to >= 0) { e.preventDefault(); select(tabs[to], true, true); }
+      });
+    });
+    const fromHash = () => {
+      const id = location.hash.slice(1);
+      const t = tabs.find((x) => x.id === 'tab-' + id);
+      if (t) select(t);
+    };
+    fromHash();
+    window.addEventListener('hashchange', fromHash);
+  }
+</script>

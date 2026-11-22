@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import site from '../data/site.json';
+import hb from '../data/handbook.json';
+import { u } from '../lib/url';
+---
+<Base title="Parent handbook" current="families" description="Arrival, pick-up, attendance, dress code, conduct and other school policies at a glance.">
+  <Hero title="Parent handbook" lead={hb.lead}>
+    {site.pdfGuidelines && <a class="btn btn-ghost" href={u(site.pdfGuidelines)}><Icon name="download" />Full guidelines (PDF)</a>}
+  </Hero>
+
+  <section class="wrap" style="padding-top: 48px" aria-label="Essentials">
+    <div class="grid grid-tiles">
+      <div class="card card-tight" style="display: flex; flex-direction: column; gap: 4px; padding: 26px 28px">
+        <span class="label">Arrive by</span>
+        <span class="big-stat">10:00 AM</span>
+        <span class="small-muted">Late? Park and sign in at the desk.</span>
+      </div>
+      <div class="card card-tight" style="display: flex; flex-direction: column; gap: 4px; padding: 26px 28px">
+        <span class="label">Pick up at</span>
+        <span class="big-stat">1:30 PM</span>
+        <span class="small-muted">$1 per minute late, per child.</span>
+      </div>
+      <div class="absence-card">
+        <span class="label" style="color: var(--on-dark)">Missing a Sunday?</span>
+        <span style="font-size: 16px">Use the form. Please don’t call.</span>
+        <a class="btn btn-white" href={site.absenceFormUrl} style="align-self: flex-start">Report an absence</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section-last" style="padding-top: 24px">
+    <div class="card card-list handbook">
+      {hb.sections.map((s, i) => (
+        <details class="disclosure" open={i === 0}>
+          <summary><h2 id={s.id}>{s.title}</h2><Icon name="chevron" size={20} class="chev" /></summary>
+          <ul class="body">{s.items.map((it) => <li>{it}</li>)}</ul>
+        </details>
+      ))}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .absence-card { background: var(--green-700); color: var(--white); border-radius: var(--r-card); padding: 26px 28px; display: flex; flex-direction: column; gap: 10px; }
+  .handbook :global(h2) { scroll-margin-top: 24px; }
+</style>
+
+<script>
+  // Old links like /families/#books open the matching section.
+  const openFromHash = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    if (!id) return;
+    const target = document.getElementById(id);
+    const details = target?.closest('details');
+    if (details) { details.open = true; target!.scrollIntoView({ block: 'start' }); }
+  };
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+</script>

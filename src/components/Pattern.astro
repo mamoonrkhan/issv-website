@@ -1,0 +1,27 @@
+---
+// Eight-point-star line pattern used on heroes, the donate band and the footer strip.
+interface Props { id: string; opacity?: number; small?: boolean; }
+const { id, opacity = 0.12, small = false } = Astro.props;
+---
+{small ? (
+  <svg aria-hidden="true" width="100%" height="28" focusable="false">
+    <defs>
+      <pattern id={id} width="28" height="28" patternUnits="userSpaceOnUse">
+        <rect x="7" y="7" width="14" height="14" fill="none" stroke="#D9B26A" stroke-width="1" />
+        <rect x="7" y="7" width="14" height="14" fill="none" stroke="#D9B26A" stroke-width="1" transform="rotate(45 14 14)" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="28" fill={`url(#${id})`} />
+  </svg>
+) : (
+  <svg class="pattern" aria-hidden="true" focusable="false" style={`opacity:${opacity}`}>
+    <defs>
+      <pattern id={id} width="64" height="64" patternUnits="userSpaceOnUse">
+        <rect x="14" y="14" width="36" height="36" fill="none" stroke="#D9B26A" stroke-width="1.2" />
+        <rect x="14" y="14" width="36" height="36" fill="none" stroke="#D9B26A" stroke-width="1.2" transform="rotate(45 32 32)" />
+        <circle cx="32" cy="32" r="4" fill="none" stroke="#D9B26A" stroke-width="1.2" />
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill={`url(#${id})`} />
+  </svg>
+)}

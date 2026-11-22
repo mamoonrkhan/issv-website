@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import AddToCalendar from '../components/AddToCalendar.astro';
+import site from '../data/site.json';
+import calendar from '../data/calendar.json';
+import { u } from '../lib/url';
+import { dateRange, shortDate } from '../lib/schedule.js';
+
+const classDays = calendar.sundays.filter((s) => s.status !== 'no-school');
+const months: { name: string; days: { n: number; date: string; cls: string; label: string }[] }[] = [];
+for (const s of classDays) {
+  const d = new Date(s.date + 'T12:00:00Z');
+  const name = d.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+  let m = months.find((x) => x.name === name);
+  if (!m) months.push((m = { name, days: [] }));
+  const cls = s.status === 'possible-virtual' ? 'day-maybe' : s.status === 'virtual' ? 'day-virtual' : 'day-class';
+  const label = s.status === 'possible-virtual' ? 'Possible virtual class' : s.status === 'virtual' ? 'Virtual class (Zoom)' : 'Class day';
+  m.days.push({ n: d.getUTCDate(), date: s.date, cls, label });
+}
+const hasVirtual = classDays.some((s) => s.status === 'virtual');
+const first = classDays[0]?.date;
+const last = classDays[classDays.length - 1]?.date;
+const holidays = calendar.sundays.filter((s) => s.status === 'no-school');
+const events = [...calendar.events].sort((a, b) => a.date.localeCompare(b.date));
+---
+<Base title={`Calendar ${calendar.schoolYear}`} current="calendar" description={`School calendar ${calendar.schoolYear}: class days, holidays, events and deadlines.`}>
+  <Hero eyebrow={`${calendar.schoolYear} · ${calendar.hijriYear}`} title="Calendar" lead={`${classDays.length} Sundays · ${shortDate(first)} to ${shortDate(last)}`}>
+    <AddToCalendar variant="gold" label="Add to my calendar" />
+    {site.pdfCalendar && <a class="btn btn-ghost" href={u(site.pdfCalendar)}><Icon name="download" />PDF</a>}
+  </Hero>
+
+  <section class="wrap" style="padding-top: 48px" aria-labelledby="months-title">
+    <h2 id="months-title" class="sr-only">Class days by month</h2>
+    <div class="legend">
+      <span><span class="swatch" style="background: var(--green-700)"></span>Class day</span>
+      {hasVirtual && <span><span class="swatch" style="border: 1.5px dashed var(--green-700); background: var(--green-50)"></span>Virtual (Zoom)</span>}
+      <span><span class="swatch" style="border: 1.5px dashed var(--green-700)"></span>Possible virtual class</span>
+    </div>
+    <div class="months">
+      {months.map((m) => (
+        <div class="month">
+          <h3 style="font-size: 16px; font-weight: 600">{m.name}</h3>
+          <ul class="days">
+            {m.days.map((d) => (
+              <li class={`day ${d.cls}`} title={d.label} data-date={d.date}>
+                <span aria-hidden="true">{d.n}</span><span class="sr-only">{shortDate(d.date)}: {d.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="wrap section-last grid grid-2" style="padding-top: 24px; gap: 24px">
+    <div class="card">
+      <h2 class="h-card-sm" style="margin-bottom: 12px">Events &amp; deadlines</h2>
+      <ul class="rows">
+        {events.map((e) => <li class="row"><span class="row-key">{dateRange(e.date, e.end)}</span><span>{e.title}</span></li>)}
+      </ul>
+    </div>
+    <div class="card" style="align-self: start">
+      <h2 class="h-card-sm" style="margin-bottom: 12px">No school</h2>
+      <ul class="rows">
+        {holidays.map((h) => <li class="row"><span class="row-key">{shortDate(h.date)}</span><span>{h.note || 'No school'}</span></li>)}
+      </ul>
+      <p style="margin-top: 14px; font-size: 14px; color: var(--muted)">Virtual days are confirmed by email the week before. Subscribed calendars update automatically.</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { todayISO, upcomingSunday } from '../lib/schedule.js';
+  // Ring the upcoming Sunday.
+  const next = upcomingSunday();
+  if (next >= todayISO()) document.querySelector(`.day[data-date="${next}"]`)?.classList.add('today');
+</script>

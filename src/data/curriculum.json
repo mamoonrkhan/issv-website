@@ -1,0 +1,28 @@
+{
+  "lead": "Quranic studies in the morning, Islamic studies after the break.",
+  "grades": [
+    { "id": "kg", "label": "KG", "title": "Kindergarten", "quran": "Easy Steps to Quraan Recitation, Step 1", "memorize": "Tasmia, Ta’awwudh, Shahada, Al-Fatihah, Al-Ikhlas, An-Nas", "studies": "Iqra KG Fiqh & Ibadaat · Prophet stories: Adam to Ismail" },
+    { "id": "gr1", "label": "Gr 1", "title": "Grade 1", "quran": "Easy Steps, Step 2 + workbook", "memorize": "Al-Falaq, Al-Asr, Al-Kawthar, Al-Masad", "studies": "We Are Muslims 1 · Our Religion is Islam · Prophets Yusuf to Isa" },
+    { "id": "gr2", "label": "Gr 2", "title": "Grade 2", "quran": "Easy Steps, Step 3 · Let’s Read & Write Arabic 2", "memorize": "Al-Qadr, Al-Feel, An-Nasr, Al-Qari’ah · Our Book of Dua", "studies": "Our Prophet: Makkah & Madinah · We Are Muslims 2" },
+    { "id": "gr3", "label": "Gr 3", "title": "Grade 3", "quran": "Easy Steps, Step 4 · finish Arabic 2 · reading fluently", "memorize": "Revise the short surahs", "studies": "Mercy to Mankind I (Makkah) · We Are Muslims 3" },
+    { "id": "gr4", "label": "Gr 4", "title": "Grade 4", "quran": "Easy Steps, Step 5 · Juz Amma Vol. 1", "memorize": "Tashahhud, Durood, Qunoot · Al-Adiyat, Al-Humazah, Ad-Duha", "studies": "Mercy to Mankind II (Madinah) · We Are Muslims 4 · Teachings of the Quran 2" },
+    { "id": "gr5", "label": "Gr 5", "title": "Grade 5", "quran": "Juz Amma Vol. 1 · Teachings of the Quran 3", "memorize": "Az-Zalzalah, Al-Alaq, At-Takathur, Ayat al-Kursi · salah duas", "studies": "The Rightly Guided Caliphs · Those Promised Paradise · Our Faith & Worship 2" },
+    { "id": "gr6", "label": "Gr 6", "title": "Grade 6", "quran": "Seven Surahs", "memorize": "Selections from Seven Surahs", "studies": "Tahdhib & Akhlaq · Aqidah & Fiqh · A Study of Hadith (ch. 1–10)" },
+    { "id": "gr7", "label": "Gr 7", "title": "Grade 7", "quran": "Tafseer of Al-Hujurat · A Study of the Quran", "memorize": "Duas from Selected Prayers", "studies": "A Study of Hadith (ch. 11–27) · The Sealed Nectar" },
+    { "id": "gr8", "label": "Gr 8", "title": "Grade 8", "quran": "Uloom-ul-Quran", "memorize": "Duas from Selected Prayers", "studies": "Purification of the Heart · Islamic Manners · Muslim civilization" },
+    { "id": "youth", "label": "Youth", "title": "Youth Group (Grades 9–10)", "quran": "Two-year cycle: Juz One, then Juz Two", "memorize": "Nawawi’s Forty Hadith · hadith science", "studies": "Fiqh, halal & haram, Islamic & American Muslim history, life skills · separate boys’ and girls’ groups" }
+  ],
+  "schedule": [
+    { "time": "10:00–10:15", "what": "Assembly" },
+    { "time": "10:15–11:30", "what": "Quranic studies" },
+    { "time": "11:30–12:00", "what": "Break & snack" },
+    { "time": "12:00–1:15", "what": "Islamic studies" },
+    { "time": "1:15–1:30", "what": "Dhuhr prayer" }
+  ],
+  "milestones": [
+    { "when": "By Grade 4", "what": "Reads the Quran" },
+    { "when": "By Grade 6", "what": "Prays salah correctly" },
+    { "when": "By Grade 8", "what": "15–20 surahs and duas memorized" },
+    { "when": "Youth Group", "what": "Ready for high school and beyond" }
+  ]
+}

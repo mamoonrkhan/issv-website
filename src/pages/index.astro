@@ -1,0 +1,146 @@
+---
+import '@fontsource/amiri/arabic-400.css';
+import Base from '../layouts/Base.astro';
+import Pattern from '../components/Pattern.astro';
+import Photo from '../components/Photo.astro';
+import AddToCalendar from '../components/AddToCalendar.astro';
+import site from '../data/site.json';
+import calendar from '../data/calendar.json';
+import override from '../data/sunday.json';
+import gallery from '../data/gallery.json';
+import { getCollection } from 'astro:content';
+import { thisSunday, comingUp, todayISO, isLive } from '../lib/schedule.js';
+import { u } from '../lib/url';
+
+const sun = thisSunday(calendar, override);
+const upcoming = comingUp(calendar, sun.date, 4);
+
+const iso = (d?: Date) => (d ? d.toISOString().slice(0, 10) : '');
+const today = todayISO();
+// Keep anything that isn't expired yet; the browser hides ones whose start date hasn't come.
+const news = (await getCollection('announcements'))
+  .filter((a) => !a.data.hideAfter || iso(a.data.hideAfter) >= today)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 4);
+
+const homePhotos = gallery.photos.filter((p) => p.home && (!p.image || p.permission)).slice(0, 3);
+---
+<Base description={site.lead}>
+  <section class="hero home-hero">
+    <Pattern id="geo-home" opacity={0.14} />
+    <div class="wrap">
+      <div class="hero-text">
+        <p class="bismillah" lang="ar" dir="rtl">بسم الله الرحمن الرحيم</p>
+        <h1>{site.tagline}</h1>
+        <p class="lead">{site.lead}</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold btn-lg" href={u('/new-families/')}>New families start here</a>
+          <a class="btn btn-ghost btn-lg" href={u('/registration/')}>Register &amp; pay</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <Photo image={site.heroImage} alt={site.heroImageAlt} placeholder="[HERO PHOTO: students in class or at assembly]" sizes="(min-width: 1160px) 440px, 100vw" eager />
+      </div>
+    </div>
+  </section>
+
+  <section class="sunday wrap" aria-labelledby="sunday-title">
+    <div class="sunday-card" data-sunday>
+      <div class="sunday-text">
+        <div class="sunday-meta">
+          <span class="label">This Sunday · <span data-f="label">{sun.label}</span></span>
+          <span class={`pill tone-${sun.tone}`} data-f="badge">{sun.badge}</span>
+        </div>
+        <h2 id="sunday-title" data-f="title">{sun.title}</h2>
+        <p data-f="detail">{sun.detail}</p>
+      </div>
+      <div class="sunday-actions">
+        <a class="btn btn-primary" href={site.absenceFormUrl}>Report an absence</a>
+        <AddToCalendar />
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section grid grid-3" style="padding-top: 32px">
+    <div class="card" style="padding: 28px">
+      <div class="section-head" style="margin-bottom: 8px">
+        <h2 class="h-plain">Coming up</h2>
+        <a class="text-link" href={u('/calendar/')}>Calendar <span class="arrow" aria-hidden="true">→</span></a>
+      </div>
+      <ul class="rows" data-upcoming>
+        {upcoming.map((e) => (
+          <li class="row"><span class="row-key w64">{e.label}</span><span>{e.title}</span></li>
+        ))}
+      </ul>
+    </div>
+    <div class="card" style="padding: 28px">
+      <h2 class="h-plain" style="margin-bottom: 8px">For parents</h2>
+      <a class="link-row" href={u('/registration/#pay')}>Pay tuition<span class="arrow" aria-hidden="true">→</span></a>
+      <a class="link-row" href={u('/families/')}>Parent handbook<span class="arrow" aria-hidden="true">→</span></a>
+      <a class="link-row" href={u('/curriculum/')}>Curriculum by grade<span class="arrow" aria-hidden="true">→</span></a>
+      <a class="link-row" href={u('/families/#volunteer')}>Volunteer hours<span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+    <div class="card-soft">
+      <h2 class="h-plain" style="margin-bottom: 8px; color: var(--green-900)">Announcements</h2>
+      <ul class="rows news">
+        {news.map((n) => (
+          <li
+            data-show-from={iso(n.data.showFrom)}
+            data-hide-after={iso(n.data.hideAfter)}
+            hidden={!isLive(iso(n.data.showFrom), iso(n.data.hideAfter), today)}
+          >
+            <span class="news-title">{n.data.title}</span>
+            <span class="news-text">{n.body?.trim()}</span>
+          </li>
+        ))}
+        <li class="news-empty">No announcements right now.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap section-last" style="padding-top: 56px">
+    <div class="section-head">
+      <h2 class="h-display">Life at school</h2>
+      <a class="text-link" href={u('/about/#gallery')}>See the gallery <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+    <div class="photo-grid">
+      {homePhotos.map((p) => <Photo image={p.image} alt={p.alt} caption={p.caption} />)}
+    </div>
+  </section>
+</Base>
+
+<script>
+  import calendar from '../data/calendar.json';
+  import override from '../data/sunday.json';
+  import { thisSunday, comingUp } from '../lib/schedule.js';
+
+  // Recompute on load so the card is right even between rebuilds.
+  const card = document.querySelector<HTMLElement>('[data-sunday]');
+  if (card) {
+    const s = thisSunday(calendar, override);
+    const set = (f: string, v: string) => { const el = card.querySelector(`[data-f="${f}"]`); if (el) el.textContent = v; };
+    set('label', s.label); set('badge', s.badge); set('title', s.title); set('detail', s.detail);
+    const badge = card.querySelector('[data-f="badge"]');
+    if (badge) badge.className = `pill tone-${s.tone}`;
+
+    const list = document.querySelector<HTMLElement>('[data-upcoming]');
+    if (list) {
+      list.replaceChildren(...comingUp(calendar, s.date, 4).map((e) => {
+        const li = document.createElement('li');
+        li.className = 'row';
+        const k = document.createElement('span'); k.className = 'row-key w64'; k.textContent = e.label;
+        const t = document.createElement('span'); t.textContent = e.title;
+        li.append(k, t);
+        return li;
+      }));
+    }
+  }
+</script>
+
+<style>
+  .news li { padding: 11px 0; border-top: 1px solid var(--green-line); display: flex; flex-direction: column; }
+  .news-title { font-weight: 600; font-size: 16px; }
+  .news-text { font-size: 14px; color: var(--green-ink); }
+  .news-empty { display: none !important; font-size: 15px; color: var(--green-ink); }
+  .news:not(:has(li:not([hidden]):not(.news-empty))) .news-empty { display: flex !important; }
+</style>

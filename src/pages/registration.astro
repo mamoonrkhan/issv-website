@@ -1,0 +1,194 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import site from '../data/site.json';
+import pay from '../data/payment.json';
+import { resolveImage } from '../lib/images';
+import { u } from '../lib/url';
+
+const fmt = (n: number) => '$' + n.toLocaleString('en-US');
+const qr = resolveImage(pay.zelleQr);
+---
+<Base title="Registration & tuition" current="registration" description={`Register in person at school. Tuition is ${fmt(pay.tuitionPerChild)} per child; pay by Zelle or check.`}>
+  <Hero title="Registration & tuition" lead={`In person at school · ${fmt(pay.tuitionPerChild)} per child · pay by Zelle or check`}>
+    <a class="btn btn-gold" href="#pay">Pay tuition</a>
+    <a class="btn btn-ghost" href={u('/new-families/')}>New to the school?</a>
+  </Hero>
+
+  <section class="wrap section-first" aria-label="Key dates">
+    <div class="grid grid-4">
+      <div class="card key-date"><span class="label">Current families</span><b>{pay.currentFamilies}</b></div>
+      <div class="card key-date"><span class="label">New families</span><b>{pay.newFamilies}</b></div>
+      <div class="card key-date"><span class="label">Registration closes</span><b>{pay.registrationCloses}</b></div>
+      <div class="card key-date"><span class="label">2nd installment</span><b>{pay.secondInstallmentDue}</b></div>
+    </div>
+  </section>
+
+  <section class="wrap section">
+    <div class="card">
+      <h2 class="h-card" id="register" style="margin-bottom: 20px">How to register</h2>
+      <ol class="steps">
+        <li class="tile" style="padding: 20px"><span class="step-num">01</span><span class="step-title">Get a packet</span><span class="small-muted">At the registration desk</span></li>
+        <li class="tile" style="padding: 20px"><span class="step-num">02</span><span class="step-title">Complete 3 forms</span><span class="small-muted">Registration, feedback, release. Note allergies.</span></li>
+        <li class="tile" style="padding: 20px"><span class="step-num">03</span><span class="step-title">Pay fall tuition</span><span class="small-muted">For each child: <a href="#pay">Option A or B</a></span></li>
+        <li class="tile" style="padding: 20px"><span class="step-num">04</span><span class="step-title">Pick a volunteer task</span><span class="small-muted">10 hours per family per year{site.volunteerSignupUrl && <> · <a href={site.volunteerSignupUrl}>sign up</a></>}</span></li>
+      </ol>
+      <p style="margin-top: 20px" class="small-muted">Pre-registering keeps your child’s seat. New students join only grades with openings. <a href={u('/new-families/')}>New family guide <span class="arrow" aria-hidden="true">→</span></a></p>
+    </div>
+  </section>
+
+  <section id="tuition" class="wrap section grid grid-2">
+    <div class="card" style="display: flex; flex-direction: column; gap: 12px">
+      <h2 class="h-card">Tuition</h2>
+      <div class="price"><b>{fmt(pay.tuitionPerChild)}</b><span style="color: var(--muted)">per child, per year</span></div>
+      <ul class="bullets" style="gap: 4px">
+        <li>Same rate for siblings</li>
+        <li>Includes registration, all textbooks and snacks</li>
+        <li>Pay in full, or half now and half by {pay.secondInstallmentDue}</li>
+        <li>Confidential <a href="#aid">financial aid</a> available</li>
+      </ul>
+    </div>
+    <div class="card estimator" data-estimator data-per-child={pay.tuitionPerChild} data-max={pay.maxChildren} data-due={pay.secondInstallmentDue}>
+      <h3>Estimate what you owe</h3>
+      <div class="stepper-row">
+        <span id="kids-label">Children</span>
+        <div class="stepper" role="group" aria-labelledby="kids-label">
+          <button type="button" aria-label="One fewer child" data-dec disabled>−</button>
+          <output aria-live="polite" data-kids>1</output>
+          <button type="button" aria-label="One more child" data-inc>+</button>
+        </div>
+      </div>
+      <div class="segmented" role="group" aria-label="Payment plan">
+        <button type="button" aria-pressed="true" data-plan="full">Pay in full</button>
+        <button type="button" aria-pressed="false" data-plan="half">2 installments</button>
+      </div>
+      <div class="total">
+        <span data-due-label>Due at registration</span>
+        <output aria-live="polite" data-total>{fmt(pay.tuitionPerChild)}</output>
+      </div>
+      <p class="fineprint">Just an estimate, worked out on this page. Nothing you enter here is sent anywhere.</p>
+    </div>
+  </section>
+
+  <section id="pay" class="wrap" style="padding-top: 48px">
+    <h2 class="h-display" style="font-size: 34px">Pay tuition: choose one option</h2>
+    <p style="margin: 6px 0 20px; color: var(--muted)">Either way, include your child’s name and grade.</p>
+    <div class="pay-grid">
+      <div class="pay-option featured">
+        <div class="pay-head">
+          <span class="badge" aria-hidden="true">A</span>
+          <div><span class="sub">Option A · Recommended</span><h3>Pay with Zelle</h3></div>
+        </div>
+        <div class="pay-body">
+          <div class="pay-main">
+            <button type="button" class="btn btn-primary" data-copy={pay.zelleEmail} data-done="Email copied. Now open your bank app.">
+              <Icon name="copy" />Copy Zelle email
+            </button>
+            <p style="font-size: 15px; color: var(--muted)">Then in your bank app: Zelle → paste email or scan QR → amount + memo.</p>
+            <dl class="facts">
+              <div>
+                <div style="min-width: 0"><dt>Send to</dt><dd>{pay.zelleEmail}</dd></div>
+                <button type="button" class="btn-small" data-copy={pay.zelleEmail} aria-label="Copy Zelle email">Copy</button>
+              </div>
+              <div><div><dt>Name shown in Zelle</dt><dd>{pay.zelleName}</dd></div></div>
+              <div>
+                <div style="min-width: 0"><dt>Memo</dt><dd>{pay.memoFormat}</dd></div>
+                <button type="button" class="btn-small" data-copy={pay.memoFormat} aria-label="Copy memo format">Copy</button>
+              </div>
+            </dl>
+            <p class="fineprint">Check the name before sending. Zelle payments can’t be undone.</p>
+            <p class="status-msg" role="status" aria-live="polite" data-copy-status></p>
+          </div>
+          <figure class="qr">
+            {qr
+              ? <Image src={qr} alt="The school’s Zelle QR code" width={300} height={300} />
+              : <div class="placeholder" role="img" aria-label="Placeholder for the school's Zelle QR code">[ZELLE QR]</div>}
+            <figcaption>Scan in your bank app</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="pay-option">
+        <div class="pay-head">
+          <span class="badge" aria-hidden="true">B</span>
+          <div><span class="sub">Option B</span><h3>Pay by check</h3></div>
+        </div>
+        <dl class="facts roomy">
+          <div><dt>Make it payable to</dt><dd>{pay.checkPayee}</dd></div>
+          <div><dt>Write in the memo</dt><dd>{pay.checkMemo}</dd></div>
+          <div><dt>Hand it in</dt><dd>{pay.checkWhere}</dd></div>
+          {pay.mailingAddress && <div><dt>Or mail it to</dt><dd>{pay.mailingAddress}</dd></div>}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section-last grid" style="padding-top: 20px; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr))">
+    <div id="aid" class="card-soft" style="padding: 24px 28px; display: flex; flex-direction: column; gap: 6px">
+      <h2 class="h-plain" style="font-size: 18px; color: var(--green-900)">Need help with tuition?</h2>
+      <p style="color: var(--green-ink); font-size: 16px">Fill out the financial aid section of the registration form. It stays confidential.</p>
+    </div>
+    <div id="withdraw" class="card card-tight" style="display: flex; flex-direction: column; gap: 6px">
+      <h2 class="h-plain" style="font-size: 18px">Withdrawing</h2>
+      <p style="color: var(--muted); font-size: 16px">Email <a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a>.</p>
+    </div>
+    <div class="card card-tight" style="display: flex; flex-direction: column; gap: 6px">
+      <h2 class="h-plain" style="font-size: 18px">Questions</h2>
+      <p style="color: var(--muted); font-size: 16px">Email <a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a>.</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Tuition estimator (runs only in the browser; nothing is submitted).
+  const est = document.querySelector<HTMLElement>('[data-estimator]');
+  if (est) {
+    const per = Number(est.dataset.perChild) || 800;
+    const max = Number(est.dataset.max) || 8;
+    const due = est.dataset.due || 'Jan 10';
+    let kids = 1;
+    let plan: 'full' | 'half' = 'full';
+    const $ = <T extends HTMLElement>(s: string) => est.querySelector<T>(s)!;
+    const fmt = (n: number) => '$' + n.toLocaleString('en-US');
+    const render = () => {
+      $('[data-kids]').textContent = String(kids);
+      $<HTMLButtonElement>('[data-dec]').disabled = kids <= 1;
+      $<HTMLButtonElement>('[data-inc]').disabled = kids >= max;
+      est.querySelectorAll<HTMLButtonElement>('[data-plan]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.plan === plan)));
+      $('[data-due-label]').textContent = plan === 'full' ? 'Due at registration' : `Now, and again by ${due}`;
+      const total = kids * per;
+      $('[data-total]').textContent = fmt(plan === 'full' ? total : Math.ceil(total / 2));
+    };
+    $('[data-dec]').addEventListener('click', () => { kids = Math.max(1, kids - 1); render(); });
+    $('[data-inc]').addEventListener('click', () => { kids = Math.min(max, kids + 1); render(); });
+    est.querySelectorAll<HTMLButtonElement>('[data-plan]').forEach((b) => b.addEventListener('click', () => { plan = b.dataset.plan as 'full' | 'half'; render(); }));
+    render();
+  }
+
+  // Copy buttons with a fallback for browsers without the async clipboard.
+  async function copyText(text: string): Promise<boolean> {
+    try { await navigator.clipboard.writeText(text); return true; } catch {}
+    const ta = Object.assign(document.createElement('textarea'), { value: text });
+    ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.append(ta); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch {}
+    ta.remove();
+    return ok;
+  }
+  const status = document.querySelector<HTMLElement>('[data-copy-status]');
+  document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) => {
+    const original = btn.innerHTML;
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy || '';
+      const ok = await copyText(text);
+      const msg = ok ? (btn.dataset.done || 'Copied') : `Couldn’t copy. Select and copy: ${text}`;
+      if (btn.classList.contains('btn-small')) btn.textContent = ok ? 'Copied' : 'Copy';
+      else btn.textContent = ok ? msg : 'Copy Zelle email';
+      if (status) status.textContent = msg;
+      setTimeout(() => { btn.innerHTML = original; if (status) status.textContent = ''; }, 2500);
+    });
+  });
+</script>

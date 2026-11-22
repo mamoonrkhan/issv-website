@@ -1,0 +1,11 @@
+{
+  "photos": [
+    { "image": "", "caption": "Eid fun day", "alt": "", "home": true, "permission": false },
+    { "image": "", "caption": "Quranic studies", "alt": "", "home": true, "permission": false },
+    { "image": "", "caption": "Graduation", "alt": "", "home": true, "permission": false },
+    { "image": "", "caption": "Class pictures", "alt": "", "home": false, "permission": false },
+    { "image": "", "caption": "Morning assembly", "alt": "", "home": false, "permission": false },
+    { "image": "", "caption": "Youth Group", "alt": "", "home": false, "permission": false },
+    { "image": "", "caption": "Teacher appreciation", "alt": "", "home": false, "permission": false }
+  ]
+}

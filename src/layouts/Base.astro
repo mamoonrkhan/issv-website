@@ -1,0 +1,120 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/source-serif-4';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+import { getCollection } from 'astro:content';
+import { todayISO, isLive } from '../lib/schedule.js';
+import { u } from '../lib/url';
+
+interface Props {
+  title?: string;
+  description?: string;
+  current?: string;
+  /** Include this page in site search. */
+  index?: boolean;
+}
+const { title, description = site.lead, current, index = true } = Astro.props;
+const fullTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+// Top banner: the newest announcement flagged "banner" that hasn't expired yet.
+const iso = (d?: Date) => (d ? d.toISOString().slice(0, 10) : '');
+const today = todayISO();
+const banner = (await getCollection('announcements'))
+  .filter((a) => a.data.banner && (!a.data.hideAfter || iso(a.data.hideAfter) >= today))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())[0];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  {site.previewNotice && <meta name="robots" content="noindex, nofollow" />}
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href={u('/favicon.svg')} type="image/svg+xml" />
+  <link rel="alternate" type="text/calendar" title="School calendar" href={u('/calendar.ics')} />
+  <meta name="theme-color" content="#0A3A2C" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <slot name="head" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  {site.previewNotice && (
+    <div class="preview-bar" data-pagefind-ignore>Design proposal preview. This is not the school’s official website.</div>
+  )}
+  {banner && (
+    <div
+      class="announce-bar"
+      role="region"
+      aria-label="Announcement"
+      data-pagefind-ignore
+      data-show-from={iso(banner.data.showFrom)}
+      data-hide-after={iso(banner.data.hideAfter)}
+      hidden={!isLive(iso(banner.data.showFrom), iso(banner.data.hideAfter), today)}
+    >
+      <div class="wrap"><strong>{banner.data.title}</strong><span>{banner.body?.trim()}</span></div>
+    </div>
+  )}
+  <Header current={current} />
+  <main id="main" {...(index ? { 'data-pagefind-body': '' } : {})}>
+    <slot />
+  </main>
+  <Footer />
+
+  <script>
+    import { todayISO, isLive } from '../lib/schedule.js';
+
+    // Show or hide dated content without waiting for the nightly rebuild.
+    const today = todayISO();
+    document.querySelectorAll<HTMLElement>('[data-show-from], [data-hide-after]').forEach((el) => {
+      el.hidden = !isLive(el.dataset.showFrom || '', el.dataset.hideAfter || '', today);
+    });
+
+    // Mobile menu
+    const btn = document.querySelector<HTMLButtonElement>('[data-menu-btn]');
+    const menu = document.querySelector<HTMLElement>('[data-menu]');
+    const setOpen = (open: boolean) => {
+      btn?.setAttribute('aria-expanded', String(open));
+      btn?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menu?.classList.toggle('open', open);
+    };
+    btn?.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && btn?.getAttribute('aria-expanded') === 'true') { setOpen(false); btn.focus(); }
+    });
+    window.matchMedia('(min-width: 900px)').addEventListener('change', (e) => e.matches && setOpen(false));
+
+    // Close popover menus (<details data-close-outside>) on outside click or Escape.
+    document.addEventListener('click', (e) => {
+      document.querySelectorAll<HTMLDetailsElement>('details[data-close-outside][open]').forEach((d) => {
+        if (!d.contains(e.target as Node)) d.open = false;
+      });
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      document.querySelectorAll<HTMLDetailsElement>('details[data-close-outside][open]').forEach((d) => {
+        d.open = false; d.querySelector('summary')?.focus();
+      });
+    });
+
+    // "/" opens search from anywhere (unless you're typing).
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return;
+      const t = e.target as HTMLElement;
+      if (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return;
+      e.preventDefault();
+      const box = document.querySelector<HTMLInputElement>('#search-input');
+      if (box) box.focus();
+      else location.href = (document.querySelector<HTMLAnchorElement>('a[aria-keyshortcuts="/"]')?.href) || '/search/';
+    });
+  </script>
+</body>
+</html>

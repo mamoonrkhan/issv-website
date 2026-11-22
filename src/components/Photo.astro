@@ -1,0 +1,24 @@
+---
+import { Picture } from 'astro:assets';
+import { resolveImage } from '../lib/images';
+interface Props {
+  image?: string;
+  alt?: string;
+  caption?: string;
+  placeholder?: string;
+  sizes?: string;
+  eager?: boolean;
+}
+const { image, alt, caption, placeholder = '[PHOTO]', sizes = '(min-width: 1160px) 370px, (min-width: 640px) 50vw, 100vw', eager = false } = Astro.props;
+const src = resolveImage(image);
+---
+<figure class="photo">
+  <div class="frame">
+    {src ? (
+      <Picture src={src} alt={alt || caption || ''} formats={['avif', 'webp']} widths={[400, 800, 1200]} sizes={sizes} loading={eager ? 'eager' : 'lazy'} />
+    ) : (
+      <div class="placeholder" role="img" aria-label={`Placeholder photo: ${caption ?? ''}`}>{placeholder}</div>
+    )}
+  </div>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

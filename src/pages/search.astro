@@ -1,0 +1,151 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import pay from '../data/payment.json';
+import { u } from '../lib/url';
+
+// Hand-picked answers with extra keywords, so "hijab" finds the dress code.
+// Full-text results from Pagefind are added below these.
+const quick = [
+  { page: 'Handbook', title: 'Report an absence', text: 'Use the online form; please don’t call.', href: site.absenceFormUrl, k: 'absence absent sick miss form attendance' },
+  { page: 'Handbook', title: 'Arrival & late policy', text: 'Arrive by 10:00 AM. Late students sign in at the front desk.', href: '/families/#arrival', k: 'late tardy arrival drop off time morning' },
+  { page: 'Handbook', title: 'Pick-up', text: '1:30 PM. $1 per minute late, per child.', href: '/families/#arrival', k: 'pickup pick up pick-up fine late 1:30' },
+  { page: 'Handbook', title: 'Dress code', text: 'Modest, loose clothing; headscarf for girls; no shorts for boys.', href: '/families/#dress', k: 'dress code clothes hijab scarf shorts uniform' },
+  { page: 'Handbook', title: 'Phones & conduct', text: 'Phones off; no toys or games; closed campus.', href: '/families/#conduct', k: 'phone conduct behavior rules discipline' },
+  { page: 'Handbook', title: 'Food & snacks', text: 'Snacks included; eat in the courtyard. Ramadan rules.', href: '/families/#food', k: 'food snack lunch ramadan allergy' },
+  { page: 'Handbook', title: 'Volunteer hours', text: '10 hours per family each year.', href: '/families/#volunteer', k: 'volunteer hours help' },
+  { page: 'Handbook', title: 'Report cards', text: 'Emailed in December and June.', href: '/families/#homework', k: 'report card evaluation grades homework honor roll' },
+  { page: 'Handbook', title: 'Books to keep', text: 'Five books are reused across grades.', href: '/families/#books', k: 'books textbooks reuse' },
+  { page: 'Handbook', title: 'Virtual / Zoom days', text: 'Same schedule on Zoom; cameras on.', href: '/families/#campus', k: 'zoom virtual online remote' },
+  { page: 'Registration', title: 'Tuition', text: `$${pay.tuitionPerChild} per child per year, books included.`, href: '/registration/#tuition', k: 'tuition cost fee price money installment' },
+  { page: 'Registration', title: 'Pay with Zelle', text: 'Copy the school email and pay in your bank app.', href: '/registration/#pay', k: 'zelle pay payment bank' },
+  { page: 'Registration', title: 'Pay by check', text: 'Hand in at the registration desk.', href: '/registration/#pay', k: 'check cheque pay payment' },
+  { page: 'Registration', title: 'How to register', text: `Current families ${pay.currentFamilies}; new families ${pay.newFamilies}.`, href: '/registration/#register', k: 'register registration enroll sign up new family openings' },
+  { page: 'Registration', title: 'Financial aid', text: 'Available and confidential.', href: '/registration/#aid', k: 'financial aid scholarship help afford' },
+  { page: 'Registration', title: 'Withdrawing', text: `Email ${site.emailRegistration}.`, href: '/registration/#withdraw', k: 'withdraw refund cancel leave' },
+  { page: 'Calendar', title: 'School calendar', text: 'Class days, holidays, events and deadlines.', href: '/calendar/', k: 'calendar dates schedule holiday no school' },
+  { page: 'Calendar', title: 'Eid', text: 'No school on Eid al-Fitr and Eid al-Adha, plus an Eid celebration.', href: '/calendar/', k: 'eid fitr adha holiday celebration' },
+  { page: 'Calendar', title: 'Winter break', text: 'No school over winter break.', href: '/calendar/', k: 'winter break christmas holiday' },
+  { page: 'Calendar', title: 'Graduation', text: 'On the last day of school.', href: '/calendar/', k: 'graduation last day end' },
+  { page: 'Calendar', title: 'Add dates to your calendar', text: 'Subscribe in Google or Apple Calendar.', href: '/calendar/', k: 'subscribe google apple ical ics calendar' },
+  { page: 'Curriculum', title: 'Curriculum by grade', text: 'Quran, memorization and Islamic studies for KG–Youth.', href: '/curriculum/', k: 'curriculum quran subjects grade class learn' },
+  { page: 'Curriculum', title: 'Daily schedule', text: 'Assembly 10:00, Quran 10:15, break 11:30, Islamic studies 12:00, Dhuhr 1:15.', href: '/curriculum/#schedule', k: 'schedule time day prayer dhuhr assembly break' },
+  { page: 'New families', title: 'New family guide', text: 'How joining works, what to know, and FAQs.', href: '/new-families/', k: 'new family join enroll first day faq open house siblings' },
+  { page: 'About', title: 'Donate', text: 'Support books, events and financial aid. 501(c)(3).', href: '/about/#support', k: 'donate donation give support tax' },
+  { page: 'About', title: 'Photo gallery', text: 'Eid, graduation, class pictures and more.', href: '/about/#gallery', k: 'photos gallery pictures' },
+  { page: 'About', title: 'Contact & location', text: `${site.location} · ${site.emailGeneral}`, href: '/about/#contact', k: 'contact email address location where phone' },
+].map((x) => ({ ...x, href: u(x.href) }));
+
+const chips = ['Tuition', 'Zelle', 'Absence', 'Dress code', 'Eid', 'Pick-up'];
+---
+<Base title="Search" index={false} description="Search the school website.">
+  <section class="search-page">
+    <h1>Search the site</h1>
+    <form role="search" action={u('/search/')} method="get" data-search-form>
+      <label for="search-input" class="sr-only">Search</label>
+      <div class="search-box">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F5B56" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="M20 20l-4-4" /></svg>
+        <input id="search-input" name="q" type="search" placeholder="Try “tuition”, “dress code” or “Eid”" autocomplete="off" spellcheck="false" />
+      </div>
+    </form>
+    <div class="chips">
+      <span>Popular:</span>
+      {chips.map((c) => <button type="button" class="chip" data-chip={c.toLowerCase()}>{c}</button>)}
+    </div>
+    <p aria-live="polite" style="margin-top: 8px; font-size: 14px; color: var(--muted)" data-count>Quick links · press <kbd>/</kbd> to search from any page</p>
+    <ul class="results" data-results>
+      {quick.slice(0, 6).map((r) => (
+        <li><a class="result" href={r.href}><span class="where">{r.page}</span><span class="title">{r.title}</span><span class="text">{r.text}</span></a></li>
+      ))}
+    </ul>
+    <div class="no-results" hidden data-none>No matches. Email <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a> and we’ll help.</div>
+  </section>
+  <script type="application/json" id="quick-index" set:html={JSON.stringify(quick)} />
+  <div hidden data-base={import.meta.env.BASE_URL}></div>
+</Base>
+
+<script>
+  type Item = { page: string; title: string; text: string; href: string; k: string };
+  type Row = { page: string; title: string; html: string; href: string };
+
+  const quick: Item[] = JSON.parse(document.getElementById('quick-index')!.textContent || '[]');
+  const base = (document.querySelector<HTMLElement>('[data-base]')?.dataset.base || '/').replace(/\/?$/, '/');
+  const input = document.querySelector<HTMLInputElement>('#search-input')!;
+  const list = document.querySelector<HTMLElement>('[data-results]')!;
+  const count = document.querySelector<HTMLElement>('[data-count]')!;
+  const none = document.querySelector<HTMLElement>('[data-none]')!;
+  const defaultCount = count.innerHTML;
+
+  // Pagefind is generated at build time; it's absent in `npm run dev`.
+  let pagefind: any = null;
+  const loading = import(/* @vite-ignore */ `${base}pagefind/pagefind.js`)
+    .then(async (pf) => { await pf.options?.({ baseUrl: base }); pf.init?.(); pagefind = pf; })
+    .catch(() => {});
+
+  const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+  const pageName = (url: string) => {
+    const seg = url.replace(base, '/').split('/').filter(Boolean)[0] || '';
+    return ({ families: 'Handbook', 'new-families': 'New families', registration: 'Registration', calendar: 'Calendar', curriculum: 'Curriculum', about: 'About' } as Record<string, string>)[seg] || 'Home';
+  };
+
+  function render(rows: Row[], q: string) {
+    list.innerHTML = rows.map((r) =>
+      `<li><a class="result" href="${esc(r.href)}"><span class="where">${esc(r.page)}</span><span class="title">${esc(r.title)}</span><span class="text">${r.html}</span></a></li>`
+    ).join('');
+    none.hidden = !(q && rows.length === 0);
+    count.innerHTML = q ? `${rows.length} ${rows.length === 1 ? 'result' : 'results'}` : defaultCount;
+  }
+
+  let token = 0;
+  async function run(raw: string) {
+    const q = raw.trim().toLowerCase();
+    const mine = ++token;
+    if (!q) {
+      render(quick.slice(0, 6).map((x) => ({ page: x.page, title: x.title, href: x.href, html: esc(x.text) })), '');
+      return;
+    }
+    const words = q.split(/\s+/);
+    const rows: Row[] = quick
+      .filter((x) => { const hay = `${x.title} ${x.text} ${x.k} ${x.page}`.toLowerCase(); return words.every((w) => hay.includes(w)); })
+      .slice(0, 5)
+      .map((x) => ({ page: x.page, title: x.title, href: x.href, html: esc(x.text) }));
+    render(rows, q);
+
+    await loading;
+    if (!pagefind || mine !== token) return;
+    const search = await pagefind.debouncedSearch(q, {}, 150);
+    if (!search || mine !== token) return;
+    const data = await Promise.all(search.results.slice(0, 8).map((r: any) => r.data()));
+    if (mine !== token) return;
+    const seen = new Set(rows.map((r) => r.href.split('#')[0] + '#' + (r.href.split('#')[1] || '')));
+    for (const d of data) {
+      const subs = (d.sub_results?.length ? d.sub_results : [d]).slice(0, 2);
+      for (const s of subs) {
+        const key = s.url.split('#')[0] + '#' + (s.url.split('#')[1] || '');
+        if (seen.has(key)) continue;
+        seen.add(key);
+        rows.push({ page: pageName(d.url), title: s.title || d.meta?.title || '', href: s.url, html: s.excerpt });
+      }
+    }
+    render(rows.slice(0, 12), q);
+  }
+
+  const params = new URLSearchParams(location.search);
+  if (params.get('q')) input.value = params.get('q')!;
+  run(input.value);
+
+  const sync = () => {
+    const url = new URL(location.href);
+    input.value ? url.searchParams.set('q', input.value) : url.searchParams.delete('q');
+    history.replaceState(null, '', url);
+  };
+  input.addEventListener('input', () => { run(input.value); sync(); });
+  document.querySelector('[data-search-form]')!.addEventListener('submit', (e) => {
+    e.preventDefault();
+    (list.querySelector('a') as HTMLAnchorElement | null)?.focus();
+  });
+  document.querySelectorAll<HTMLButtonElement>('[data-chip]').forEach((b) =>
+    b.addEventListener('click', () => { input.value = b.dataset.chip!; run(input.value); sync(); input.focus(); })
+  );
+  if (!input.value) input.focus({ preventScroll: true });
+</script>

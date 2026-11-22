@@ -1,0 +1,22 @@
+{
+  "name": "Islamic School of Silicon Valley",
+  "shortName": "ISSV",
+  "tagline": "Islamic learning for kids, every Sunday.",
+  "lead": "A volunteer-run weekend school for ages 5–16 at Greene Middle School, Palo Alto.",
+  "previewNotice": true,
+  "location": "Greene Middle School, Palo Alto",
+  "address": "",
+  "parkingNotes": "",
+  "hours": "Sundays 10 AM – 1:30 PM",
+  "emailGeneral": "islamicschoolsiliconvalley@learnislam.org",
+  "emailRegistration": "register@learnislam.org",
+  "absenceFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdFCZUZuRnQ2TKz4a6erGhCoKYYZknrepf6uXWCf5u2W5O8xQ/viewform",
+  "donationUrl": "",
+  "volunteerSignupUrl": "",
+  "taxId": "26-2889009",
+  "heroImage": "",
+  "heroImageAlt": "",
+  "pdfCalendar": "https://learnislam.org/wp-content/uploads/2026/09/calendar_2026_27-1.pdf",
+  "pdfCurriculum": "https://learnislam.org/wp-content/uploads/2023/09/curriculum22.pdf",
+  "pdfGuidelines": "https://learnislam.org/wp-content/uploads/2023/08/guidelines2023F.pdf"
+}

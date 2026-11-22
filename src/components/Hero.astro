@@ -1,0 +1,16 @@
+---
+import Pattern from './Pattern.astro';
+interface Props { title: string; lead?: string; eyebrow?: string; }
+const { title, lead, eyebrow } = Astro.props;
+---
+<section class="hero">
+  <Pattern id="geo-hero" opacity={0.12} />
+  <div class="wrap">
+    <div class="hero-text">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {lead && <p class="lead">{lead}</p>}
+    </div>
+    {Astro.slots.has('default') && <div class="hero-actions"><slot /></div>}
+  </div>
+</section>

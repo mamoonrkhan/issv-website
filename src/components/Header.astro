@@ -1,0 +1,41 @@
+---
+import Emblem from './Emblem.astro';
+import Icon from './Icon.astro';
+import site from '../data/site.json';
+import { u } from '../lib/url';
+
+interface Props { current?: string; }
+const { current } = Astro.props;
+const links = [
+  { href: '/about/', label: 'About', key: 'about' },
+  { href: '/calendar/', label: 'Calendar', key: 'calendar' },
+  { href: '/curriculum/', label: 'Curriculum', key: 'curriculum' },
+  { href: '/families/', label: 'Handbook', key: 'families' },
+  { href: '/registration/', label: 'Registration', key: 'registration' },
+];
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href={u('/')}>
+      <Emblem />
+      <span class="brand-name">Islamic School of <span class="br">Silicon Valley</span></span>
+    </a>
+    <div class="header-right">
+      <a class="icon-btn mobile-only" href={u('/search/')} aria-label="Search the site"><Icon name="search" /></a>
+      <button class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open menu" data-menu-btn>
+        <Icon name="menu" size={20} class="i-open" /><Icon name="close" size={20} class="i-close" />
+      </button>
+      <nav id="main-nav" class="main-nav" aria-label="Main" data-menu>
+        <ul>
+          {links.map((l) => (
+            <li><a class="nav-link" href={u(l.href)} aria-current={current === l.key ? 'page' : undefined}>{l.label}</a></li>
+          ))}
+          <li class="search-item"><a class="icon-btn" href={u('/search/')} aria-label="Search the site" aria-keyshortcuts="/"><Icon name="search" /></a></li>
+          <li class="nav-cta"><a class="btn btn-primary" href={site.absenceFormUrl}>Report an absence</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary header-cta" href={site.absenceFormUrl}>Report an absence</a>
+    </div>
+  </div>
+</header>
+

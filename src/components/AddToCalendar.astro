@@ -1,0 +1,18 @@
+---
+// "Add to my calendar": subscribe links for Apple/Outlook (webcal), Google, or a plain download.
+import Icon from './Icon.astro';
+import { u } from '../lib/url';
+interface Props { variant?: 'outline' | 'gold'; label?: string; }
+const { variant = 'outline', label = 'Add dates to my calendar' } = Astro.props;
+const ics = new URL(u('/calendar.ics'), Astro.site).href;
+const webcal = ics.replace(/^https?:/, 'webcal:');
+const google = 'https://calendar.google.com/calendar/render?cid=' + encodeURIComponent(webcal);
+---
+<details class={`cal-menu ${variant === 'gold' ? 'on-dark' : ''}`} data-close-outside>
+  <summary class={`btn ${variant === 'gold' ? 'btn-gold' : 'btn-outline'}`}><Icon name="calendar" />{label}</summary>
+  <div class="menu">
+    <a href={webcal}>Apple or Outlook calendar</a>
+    <a href={google} target="_blank" rel="noopener">Google Calendar</a>
+    <a href={u('/calendar.ics')} download="issv-calendar.ics">Download .ics file</a>
+  </div>
+</details>

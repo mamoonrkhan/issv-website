@@ -1,0 +1,69 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Pattern from '../components/Pattern.astro';
+import Photo from '../components/Photo.astro';
+import site from '../data/site.json';
+import gallery from '../data/gallery.json';
+import { u } from '../lib/url';
+
+const photos = gallery.photos.filter((p) => !p.image || p.permission);
+const donateHref = site.donationUrl || `mailto:${site.emailGeneral}?subject=${encodeURIComponent('Donating to the school')}`;
+---
+<Base title="About" current="about" description="A weekly school for Muslim children ages 5–16, built and run by our community’s volunteers.">
+  <Hero title="About us" lead="A weekly school for Muslim children ages 5–16, built and run by our community’s volunteers." />
+
+  <section class="wrap section-first grid grid-2w">
+    <div class="card" style="display: flex; flex-direction: column; gap: 12px">
+      <h2 class="h-card">Our story</h2>
+      <p style="color: var(--ink-2)">Founded as the Islamic School of Stanford, we became the Islamic School of Silicon Valley in May 2015. Today we’re an independent 501(c)(3) with a volunteer board, meeting at Greene Middle School in Palo Alto.</p>
+      <div class="stats">
+        <div class="stat"><b>5–16</b><span>Ages served</span></div>
+        <div class="stat"><b>32</b><span>Sundays a year</span></div>
+        <div class="stat"><b>100%</b><span>Volunteer staff</span></div>
+      </div>
+    </div>
+    <div class="card" style="display: flex; flex-direction: column; gap: 16px">
+      <h2 class="h-card">Our mission</h2>
+      <div class="mission-item"><span class="step-num">01</span><div><div class="step-title">Confident identity</div><div class="small-muted" style="font-size: 16px">A strong, positive Islamic identity.</div></div></div>
+      <div class="mission-item"><span class="step-num">02</span><div><div class="step-title">Sound foundation</div><div class="small-muted" style="font-size: 16px">Quran, Seerah, history and current events.</div></div></div>
+      <div class="mission-item"><span class="step-num">03</span><div><div class="step-title">Lasting friendships</div><div class="small-muted" style="font-size: 16px">A place to grow up together.</div></div></div>
+    </div>
+  </section>
+
+  <section id="gallery" class="wrap" style="padding-top: 48px">
+    <h2 class="h-display" style="margin-bottom: 16px">Gallery</h2>
+    <div class="photo-grid tight">
+      {photos.map((p) => <Photo image={p.image} alt={p.alt} caption={p.caption} />)}
+    </div>
+  </section>
+
+  <section id="support" class="wrap" style="padding-top: 48px">
+    <div class="band">
+      <Pattern id="geo-band" opacity={0.10} />
+      <div class="band-text">
+        <h2>Support the school</h2>
+        <p>Gifts fund books, snacks, events and financial aid. We’re a 501(c)(3), so donations may be tax-deductible (Tax ID {site.taxId}).</p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href={donateHref}>Donate</a>
+        <a class="btn btn-ghost" href={u('/families/#volunteer')}>Volunteer</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap section-last" style="padding-top: 20px">
+    <div class="card">
+      <h2 class="h-card" style="margin-bottom: 20px">Contact</h2>
+      <dl class="contact-list">
+        <div><dt class="label">General</dt><dd><a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a></dd></div>
+        <div><dt class="label">Registration</dt><dd><a href={`mailto:${site.emailRegistration}`}>{site.emailRegistration}</a></dd></div>
+        <div>
+          <dt class="label">Location</dt>
+          <dd>{site.location}{site.address && <><br /><span style="font-weight: 400">{site.address}</span></>}</dd>
+          {site.parkingNotes && <dd style="font-weight: 400; font-size: 15px; color: var(--muted)">{site.parkingNotes}</dd>}
+        </div>
+      </dl>
+    </div>
+  </section>
+</Base>
