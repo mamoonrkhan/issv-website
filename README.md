@@ -39,7 +39,7 @@ Old learnislam.org links (`/aboutus/`, `/late-policy/`, `/reusebooks/`, `/evalua
 
 Volunteers edit the site with **[Pages CMS](https://pagescms.org)**, a free editor with simple forms. They're invited by email and don't need a GitHub account, a password or any technical knowledge. The volunteer how-to lives on the site at **`/admin/`** (also linked as "For Volunteers" in the footer).
 
-Editors just click **Save**, and the site updates by itself about two minutes later. Every save is a commit, so every change is recorded and can be undone. The editor's forms are defined in [`.pages.yml`](.pages.yml).
+Editors just click **Save**, and the site updates by itself in about a minute. Every save is a commit, so every change is recorded and can be undone. The editor's forms are defined in [`.pages.yml`](.pages.yml).
 
 | Section in the editor | What volunteers can change |
 |---|---|
@@ -60,19 +60,13 @@ Editors just click **Save**, and the site updates by itself about two minutes la
 
 ## Publishing
 
-Publishing is automatic. [`deploy.yml`](.github/workflows/deploy.yml) builds the site from `main` (the default branch, where editors save) and publishes it to GitHub Pages:
+Publishing is automatic. [`deploy.yml`](.github/workflows/deploy.yml) builds the site from `main` and publishes it to GitHub Pages in about 40 seconds:
 
-- on every change, including every save in the editor (live in about 1–2 minutes; progress shows in the **Actions** tab),
+- on every change, including every save in the editor (progress shows in the **Actions** tab),
 - every night, so the This Sunday card, upcoming dates and expired announcements stay current,
 - on demand, from **Actions → Deploy site → Run workflow**.
 
 Browsers may show the previous version for up to 10 minutes because of GitHub Pages caching. A hard refresh (Cmd+Shift+R) shows the latest. If a run fails (a red ✕ in **Actions**), the site keeps showing the last good version. Open the failed run to see why.
-
-### Optional: test big changes first (maintainer only)
-
-Volunteers never see this. The `draft` branch is published as a private copy at **`/preview/`**, with a dark "Draft copy" bar and hidden from search engines. Every deploy merges `main` into `draft`, so the preview always shows the live site plus whatever is on `draft`.
-
-To try something before families see it: commit it to `draft` (or switch to `draft` in Pages CMS), check `/preview/`, then run **Actions → Publish to live site → Run workflow** ([`publish.yml`](.github/workflows/publish.yml)), which merges `draft` into `main` and redeploys.
 
 ## Developing locally
 
@@ -102,7 +96,7 @@ src/
 public/
   docs/                     PDFs uploaded in the editor
 .pages.yml                  editor forms (Pages CMS)
-.github/workflows/          deploy.yml (build and publish), publish.yml (draft → live, optional)
+.github/workflows/deploy.yml  build and publish on every change and nightly
 ```
 
 ### Conventions

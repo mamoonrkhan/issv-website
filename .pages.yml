@@ -1,6 +1,6 @@
 # Website editor for volunteers (Pages CMS: https://pagescms.org).
 # Volunteers sign in at https://app.pagescms.org with the email they were invited with.
-# Every save goes live on the site about two minutes later.
+# Every save goes live on the site in about a minute.
 
 settings:
   # Keep any keys in a file that aren't listed below, so nothing is ever lost on save.
