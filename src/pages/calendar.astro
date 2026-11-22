@@ -10,13 +10,18 @@ import { dateRange, shortDate } from '../lib/schedule';
 
 const classDays = calendar.sundays.filter((s) => s.status !== 'no-school');
 const months: { name: string; days: { n: number; date: string; cls: string; label: string }[] }[] = [];
-for (const s of classDays) {
+// Every Sunday in the year, so the month boxes show holidays too.
+const sundays = [...calendar.sundays].sort((a, b) => a.date.localeCompare(b.date));
+for (const s of sundays) {
   const d = new Date(s.date + 'T12:00:00Z');
   const name = d.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
   let m = months.find((x) => x.name === name);
   if (!m) months.push((m = { name, days: [] }));
-  const cls = s.status === 'possible-virtual' ? 'day-maybe' : s.status === 'virtual' ? 'day-virtual' : 'day-class';
-  const label = s.status === 'possible-virtual' ? 'Possible virtual class' : s.status === 'virtual' ? 'Virtual class (Zoom)' : 'Class day';
+  const [cls, label] =
+    s.status === 'no-school' ? ['day-off', `No school${s.note ? ` (${s.note})` : ''}`]
+    : s.status === 'possible-virtual' ? ['day-maybe', 'Possible virtual class']
+    : s.status === 'virtual' ? ['day-virtual', 'Virtual class (Zoom)']
+    : ['day-class', 'Class day'];
   m.days.push({ n: d.getUTCDate(), date: s.date, cls, label });
 }
 const hasVirtual = classDays.some((s) => s.status === 'virtual');
@@ -37,6 +42,7 @@ const events = [...calendar.events].sort((a, b) => a.date.localeCompare(b.date))
       <span><span class="swatch swatch-class"></span>Class day</span>
       {hasVirtual && <span><span class="swatch swatch-virtual"></span>Virtual (Zoom)</span>}
       <span><span class="swatch swatch-maybe"></span>Possible virtual class</span>
+      <span><span class="swatch swatch-off"></span>No school</span>
     </div>
     <div class="months">
       {months.map((m) => (

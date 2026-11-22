@@ -386,6 +386,7 @@ a:hover .arrow { transform: translateX(4px); }
 .swatch-class { background: var(--green-700); }
 .swatch-virtual { border: 1.5px dashed var(--green-700); background: var(--green-50); }
 .swatch-maybe { border: 1.5px dashed var(--green-700); }
+.swatch-off { background: var(--stone-200); border: 1px solid var(--stone-400); }
 .months { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
 .month { display: flex; flex-direction: column; gap: 12px; }
 .month h3 { font-size: var(--fs-card); font-weight: 600; }
@@ -397,6 +398,7 @@ a:hover .arrow { transform: translateX(4px); }
 .day-class { background: var(--green-700); color: var(--white); }
 .day-maybe { border: 1.5px dashed var(--green-700); color: var(--green-700); }
 .day-virtual { border: 1.5px dashed var(--green-700); color: var(--green-900); background: var(--green-50); }
+.day-off { background: var(--stone-200); color: var(--muted); font-weight: 500; text-decoration: line-through; text-decoration-thickness: 1.5px; }
 .day.today { box-shadow: 0 0 0 3px var(--white), 0 0 0 5px var(--gold-500); }
 
 /* ---------- Curriculum tabs ---------- */
@@ -441,7 +443,7 @@ a:hover .arrow { transform: translateX(4px); }
 .total span { color: var(--muted); }
 .total output { font-family: var(--font-serif); font-size: 32px; font-weight: 700; color: var(--green-900); }
 
-.pay-grid { display: grid; gap: var(--gap); align-items: stretch; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+.pay-grid { display: grid; gap: var(--gap); align-items: start; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
 .pay-option { background: var(--white); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
 .pay-option.featured { border: 2px solid var(--green-700); }
 .pay-head { padding: 18px 28px; display: flex; align-items: center; gap: 14px; background: var(--stone-200); }
@@ -469,7 +471,8 @@ a:hover .arrow { transform: translateX(4px); }
 .qr .placeholder { background: var(--ground); }
 .qr figcaption { font-size: 13px; color: var(--muted); }
 .fineprint { font-size: 13px; color: var(--muted); }
-.status-msg { font-size: 14px; color: var(--green-700); font-weight: 600; min-height: 1.4em; }
+.status-msg { font-size: 14px; color: var(--green-700); font-weight: 600; }
+.status-msg:empty { display: none; }
 
 /* ---------- Search ---------- */
 .narrow-page { max-width: 820px; margin: 0 auto; padding: var(--space-major) var(--gutter) 96px; display: flex; flex-direction: column; gap: 20px; }
