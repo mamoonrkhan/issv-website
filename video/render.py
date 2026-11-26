@@ -125,7 +125,7 @@ def main() -> None:
                 t0 = voice_at + off
                 for p in pieces:
                     d = dur * len(p) / total_chars
-                    caps.append({'s': round(t0, 3), 'e': round(t0 + d, 3), 'text': p})
+                    caps.append({'s': round(t0, 3), 'e': round(t0 + d, 3), 'v': round(t0 + d, 3), 'text': p})
                     t0 += d
         # Hold each caption until the next one starts, if the gap is short.
         for a, b in zip(caps, caps[1:]):

@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="stage.css" />
 </head>
 <body>
+<div id="bgfx"></div>
 <!--
   Guide video: running a virtual class (for teachers).
   Edit the narration in VIDEO.lines at the bottom, then re-render: see video/README.md.
@@ -15,10 +16,10 @@
 <!-- 0. Title -->
 <section data-scene="title">
   <div class="center">
-    <span class="chip">ISSV Teacher Guide</span>
-    <h1>Running a<br />Virtual Class</h1>
-    <p>Google Classroom + Google Meet</p>
-    <div class="logos"><span>1 · Sign in</span><span>2 · Meet link</span><span>3 · Remind</span><span>4 · Teach</span><span>5 · Attendance &amp; wrap up</span></div>
+    <span class="chip anim" style="--d:.05">ISSV Teacher Guide</span>
+    <h1 class="anim" style="--d:.2">Running a<br />Virtual Class</h1>
+    <p class="anim" style="--d:.4">Google Classroom + Google Meet</p>
+    <div class="logos"><span class="anim" style="--d:0.60">1 · Sign in</span><span class="anim" style="--d:0.69">2 · Meet link</span><span class="anim" style="--d:0.78">3 · Remind</span><span class="anim" style="--d:0.87">4 · Teach</span><span class="anim" style="--d:0.96">5 · Attendance &amp; wrap up</span></div>
   </div>
 </section>
 
@@ -156,10 +157,10 @@
 <!-- 6. Outro -->
 <section data-scene="outro">
   <div class="center">
-    <span class="chip">All set</span>
-    <h1>You’re ready to teach</h1>
-    <p>Written steps: <b>School website → School Day → Online Classes</b></p>
-    <p style="font-size:20px;color:var(--muted)">Missing a class or setting? Email <b>issvsupport@learnislam.org</b></p>
+    <span class="chip anim" style="--d:.05">All set</span>
+    <h1 class="anim" style="--d:.2">You’re ready to teach</h1>
+    <p class="anim" style="--d:.4">Written steps: <b>School website → School Day → Online Classes</b></p>
+    <p class="anim" style="--d:.55;font-size:20px;color:var(--muted)">Missing a class or setting? Email <b>issvsupport@learnislam.org</b></p>
   </div>
 </section>
 
@@ -176,6 +177,8 @@
   #r-box.posted { border-color: var(--green); background: var(--green-50); }
   #r-box.posted #r-post { display: none; }
   #r-box.typing { border: 2px solid var(--g-blue); }
+  #r-box.typing:not(.posted) #r-text::after { content: '|'; margin-left: 2px; color: var(--g-blue); font-weight: 300; opacity: clamp(0, sin(calc(var(--t, 0) * 8rad)) * 10 + 0.5, 1); }
+  #r-box.posted { transform: scale(calc(0.97 + 0.03 * var(--pop-posted, 1))); }
 </style>
 
 <script>
@@ -190,16 +193,16 @@ window.VIDEO = {
 
     { scene: 'account', text: 'First, make sure you’re signed in with your LearnIslam account, not a personal Gmail.',
       say: 'First, make sure you’re signed in with your Learn Islam account, not a personal Gmail.',
-      cues: [ { at: 0.6, cursor: '#a-avatar' }, { at: 1.4, click: true }, { at: 1.5, add: '#a-menu', cls: 'on' }, { at: 2.6, cursor: '#a-school' }, { at: 3.2, add: '#a-school', cls: 'ring' } ] },
+      cues: [ { at: 0.6, cursor: '#a-avatar' }, { at: 1.4, click: true }, { at: 1.5, add: '#a-menu', cls: 'on' }, { at: 2.6, cursor: '#a-school' }, { at: 3.2, add: '#a-school', cls: 'ring' }, { at: 2.2, zoom: '#a-menu', s: 1.25 } ] },
     { scene: 'account', text: 'The admin has already created your classes and added your students, so they’re waiting on your Classroom home page.',
-      cues: [ { at: 0.2, click: true }, { at: 0.8, cursor: '#a-class' }, { at: 1.4, add: '#a-class', cls: 'ring' }, { at: 1.4, add: '#a-class2', cls: 'ring' } ] },
+      cues: [ { at: 0, zoom: null }, { at: 0.2, click: true }, { at: 0.8, cursor: '#a-class' }, { at: 1.4, add: '#a-class', cls: 'ring' }, { at: 1.4, add: '#a-class2', cls: 'ring' } ] },
 
     { scene: 'meetlink', text: 'Each grade has a first period class and a second period class, and each one needs its own Meet link. You only do this once.',
       cues: [] },
     { scene: 'meetlink', text: 'In each class, click the gear icon to open “Settings”.',
       cues: [ { at: 0.8, cursor: '#m-gear' }, { at: 1.8, click: true }, { at: 2.0, add: '#m-settings', cls: 'on' } ] },
     { scene: 'meetlink', text: 'Settings opens as a new page. Scroll down to “Manage Meet link”, next to the Google Meet logo, and click it.',
-      cues: [ { at: 0.8, cursor: '#m-scroll' }, { at: 1.2, scroll: '#m-scroll', by: 250, dur: 1.8 }, { at: 3.6, cursor: '#m-manage' }, { at: 4.3, add: '#m-manage', cls: 'ring' }, { at: 5.6, click: true }, { at: 5.7, add: '#m-dlg', cls: 'on' } ] },
+      cues: [ { at: 0.8, cursor: '#m-scroll' }, { at: 1.2, scroll: '#m-scroll', by: 250, dur: 1.8 }, { at: 3.0, zoom: '#m-manage', s: 1.25, in: '.set-view' }, { at: 3.6, cursor: '#m-manage' }, { at: 4.3, add: '#m-manage', cls: 'ring' }, { at: 5.2, zoom: null, in: '.set-view' }, { at: 5.6, click: true }, { at: 5.7, add: '#m-dlg', cls: 'on' } ] },
     { scene: 'meetlink', text: 'Click “Generate link”, turn on “Visible to students”, and click “Save”.',
       cues: [ { at: 0.3, cursor: '#m-gen' }, { at: 1.2, click: true }, { at: 1.3, add: '#m-link', cls: 'on' }, { at: 1.8, cursor: '#m-toggle' }, { at: 2.6, click: true }, { at: 2.7, add: '#m-toggle', cls: 'on' }, { at: 3.3, cursor: '#m-dsave' }, { at: 4.0, click: true }, { at: 4.1, add: '#m-dlg', cls: 'gone' } ] },
     { scene: 'meetlink', text: 'Now each class has one Meet link for every virtual Sunday. Please don’t post links anywhere else.',
@@ -213,16 +216,16 @@ window.VIDEO = {
 
     { scene: 'meet', text: 'On Sunday, open the Meet at about 9:50, straight from your class page.', say: 'On Sunday, open the Meet at about nine fifty, straight from your class page.' },
     { scene: 'meet', text: 'Click the “Host controls” shield, and turn on “Host management”. Now you can mute everyone, decide who joins, and remove anyone disrupting class.',
-      cues: [ { at: 0.4, cursor: '#t-shield' }, { at: 1.4, click: true }, { at: 1.5, add: '#t-panel', cls: 'on' }, { at: 2.6, cursor: '#t-toggle' }, { at: 3.4, click: true }, { at: 3.5, add: '#t-toggle', cls: 'on' } ] },
+      cues: [ { at: 0.4, cursor: '#t-shield' }, { at: 1.4, click: true }, { at: 1.5, add: '#t-panel', cls: 'on' }, { at: 2.2, zoom: '#t-panel', s: 1.18 }, { at: 2.6, cursor: '#t-toggle' }, { at: 3.4, click: true }, { at: 3.5, add: '#t-toggle', cls: 'on' } ] },
     { scene: 'meet', text: 'Students signed in with a personal account will show up as “asking to join”.',
-      cues: [ { at: 0.2, add: '#t-panel', cls: 'gone' }, { at: 0.6, add: '#t-ask', cls: 'on' } ] },
+      cues: [ { at: 0, zoom: null }, { at: 0.2, add: '#t-panel', cls: 'gone' }, { at: 0.6, add: '#t-ask', cls: 'on' } ] },
     { scene: 'meet', text: 'Check the name against your class roster before admitting, and fix any display names you don’t recognize.',
       cues: [ { at: 0, add: '#t-ask', cls: 'on' }, { at: 0.5, cursor: '#t-admit' }, { at: 1.6, click: true }, { at: 1.7, add: '#t-ask', cls: 'gone' }, { at: 1.8, add: '#t-tile2', cls: 'on' } ] },
 
     { scene: 'meet', text: 'Before class ends, open the “People” panel, and take attendance from the participants listed.',
-      cues: [ { at: 0.8, cursor: '#t-people' }, { at: 1.8, click: true }, { at: 1.9, add: '#t-ppl', cls: 'on' }, { at: 3.6, add: '#t-plist', cls: 'ring' } ] },
+      cues: [ { at: 0.8, cursor: '#t-people' }, { at: 1.8, click: true }, { at: 1.9, add: '#t-ppl', cls: 'on' }, { at: 2.8, zoom: '#t-plist', s: 1.3 }, { at: 3.6, add: '#t-plist', cls: 'ring' } ] },
     { scene: 'meet', text: 'When class is over, click the red button, and choose “End the call for everyone”.',
-      cues: [ { at: 0, add: '#t-ppl', cls: 'gone' }, { at: 0.5, cursor: '#t-leave' }, { at: 1.6, click: true }, { at: 1.7, add: '#t-end', cls: 'on' }, { at: 2.6, cursor: '#t-endall' }, { at: 3.6, click: true }, { at: 3.7, add: '#t-endall', cls: 'ring' } ] },
+      cues: [ { at: 0, zoom: null }, { at: 0, add: '#t-ppl', cls: 'gone' }, { at: 0.5, cursor: '#t-leave' }, { at: 1.6, click: true }, { at: 1.7, add: '#t-end', cls: 'on' }, { at: 2.6, cursor: '#t-endall' }, { at: 3.6, click: true }, { at: 3.7, add: '#t-endall', cls: 'ring' } ] },
 
     { scene: 'wrap', text: 'Then post any homework in “Classwork”.',
       cues: [ { at: 0.4, cursor: '#w-classwork' }, { at: 1.0, add: '#w-classwork', cls: 'ring' } ] },
@@ -235,7 +238,7 @@ window.VIDEO = {
 <style>
   .popup.gone, .panel.gone, .settings.gone, .dlg.gone { display: none; }
   .settings { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 5; }
-  .settings.on { opacity: 1; }
+  .settings.on { opacity: var(--in-on, 1); transform: translateX(calc((1 - var(--in-on, 1)) * 50px)); }
   .set-top { height: 60px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; padding: 0 24px; font-size: 21px; font-weight: 600; background: #fff; position: relative; z-index: 2; }
   .set-top .btn-g { margin-left: auto; }
   .set-x { color: var(--muted); font-size: 18px; }
@@ -249,9 +252,9 @@ window.VIDEO = {
   .meet-logo i:first-child { position: absolute; left: 0; top: 0; width: 22px; height: 26px; border-radius: 4px; background: linear-gradient(135deg, #00832D 0 33%, #0066DA 33% 66%, #E94235 66%); }
   .meet-logo i:last-child { position: absolute; right: 0; top: 4px; border-left: 12px solid #FFBA00; border-top: 9px solid transparent; border-bottom: 9px solid transparent; }
   .dlg { position: absolute; left: 50%; top: 110px; width: 520px; margin-left: -260px; background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 16px 50px rgba(0,0,0,.3); opacity: 0; z-index: 6; }
-  .dlg.on { opacity: 1; }
+  .dlg.on { opacity: var(--in-on, 1); transform: scale(calc(0.9 + 0.1 * var(--pop-on, 1))); }
   .meet .people { position: absolute; top: 0; right: 0; bottom: 84px; width: 380px; background: #fff; color: var(--ink); padding: 22px; border-radius: 0 0 0 14px; opacity: 0; }
-  .meet .people.on { opacity: 1; }
+  .meet .people.on { opacity: var(--in-on, 1); transform: translateX(calc((1 - var(--in-on, 1)) * 50px)); }
   .meet .people h3 { margin: 0 0 12px; font-size: 20px; }
   .meet .people .p { display: flex; align-items: center; gap: 12px; padding: 9px 4px; font-size: 16px; }
   .meet .people .p .avatar { width: 32px; height: 32px; font-size: 14px; }
