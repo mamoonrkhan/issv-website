@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Teacher setup: running a virtual class</title>
+<link rel="stylesheet" href="stage.css" />
+</head>
+<body>
+<!--
+  Guide video: running a virtual class (for teachers).
+  Edit the narration in VIDEO.lines at the bottom, then re-render: see video/README.md.
+  The screens are simplified illustrations, not real Google screens.
+-->
+
+<!-- 0. Title -->
+<section data-scene="title">
+  <div class="center">
+    <span class="chip">ISSV Teacher Guide</span>
+    <h1>Running a<br />Virtual Class</h1>
+    <p>Google Classroom + Google Meet, in about two minutes</p>
+    <div class="logos"><span>1 · Sign in</span><span>2 · Meet link</span><span>3 · Remind</span><span>4 · Teach</span><span>5 · Wrap up</span></div>
+  </div>
+</section>
+
+<!-- 1. Account -->
+<section data-scene="account">
+  <div class="step-head"><span class="step-num">1</span><span class="step-title">Sign in with your ISSV account</span><span class="brand">ISSV Teacher Guide</span></div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">classroom.google.com</span></div>
+    <div class="win-body">
+      <div class="app-top"><span class="logo"></span>Classroom<div class="right"><span class="avatar" id="a-avatar">A</span></div></div>
+      <div style="padding: 28px 24px; display: flex; gap: 20px;">
+        <div class="card-class" id="a-class"><div class="top">Grade 4<br /><small style="font-weight:500;font-size:15px">Islamic Studies</small></div><div class="bot"></div></div>
+        <div class="card-class" style="opacity:.0"></div>
+      </div>
+      <div class="menu" id="a-menu">
+        <div class="acct" id="a-school"><span class="avatar">A</span><div><b>Amina Rahman</b><span>ISSV school account</span></div><span class="tag tag-school">Use this</span></div>
+        <div class="acct"><span class="avatar" style="background:#9AA0A6">A</span><div><b>amina.r@gmail.com</b><span>Personal account</span></div><span class="tag tag-personal">Not for class</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Meet link -->
+<section data-scene="meetlink">
+  <div class="step-head"><span class="step-num">2</span><span class="step-title">Turn on the class Meet link (once)</span><span class="brand">ISSV Teacher Guide</span></div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">classroom.google.com/c/grade-4</span></div>
+    <div class="win-body">
+      <div class="app-top"><span class="logo"></span>Grade 4<div class="tabs"><span class="cur">Stream</span><span>Classwork</span><span>People</span></div>
+        <div class="right"><span class="gear" id="m-gear"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span><span class="avatar">A</span></div></div>
+      <div class="banner">Grade 4<small>Islamic Studies</small></div>
+      <div class="cols">
+        <div class="side-card hidden" id="m-side"><b>Meet</b><span class="meet-btn">Join</span></div>
+        <div><div class="post">Announce something to your class<span class="ph"></span></div><div class="post"><span class="ph"></span><span class="ph"></span></div></div>
+      </div>
+      <div class="panel" id="m-panel">
+        <h3>Class settings</h3>
+        <h4>General</h4>
+        <div class="row"><span>Meet link</span><span class="btn-g" id="m-gen">Generate link</span></div>
+        <div class="row"><span class="link-out" id="m-link">meet.google.com/abc-defg-hij</span></div>
+        <div class="row"><span>Visible to students</span><span class="toggle" id="m-toggle"></span></div>
+        <div style="display:flex;justify-content:flex-end;margin-top:22px"><span class="btn-g" id="m-save">Save</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Reminder -->
+<section data-scene="remind">
+  <div class="step-head"><span class="step-num">3</span><span class="step-title">Post a reminder on Saturday</span><span class="brand">ISSV Teacher Guide</span></div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">classroom.google.com/c/grade-4</span></div>
+    <div class="win-body">
+      <div class="app-top"><span class="logo"></span>Grade 4<div class="tabs"><span class="cur">Stream</span><span>Classwork</span><span>People</span></div><div class="right"><span class="avatar">A</span></div></div>
+      <div class="banner">Grade 4<small>Islamic Studies</small></div>
+      <div class="cols">
+        <div class="side-card"><b>Meet</b><span class="meet-btn">Join</span></div>
+        <div>
+          <div class="post" id="r-box" style="min-height: 120px; color: var(--ink); font-size: 18px; line-height: 1.5;">
+            <span id="r-ph" class="r-ph">Announce something to your class</span>
+            <span id="r-text"></span>
+            <div style="display:flex;justify-content:flex-end;margin-top:12px"><span class="btn-g" id="r-post">Post</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Meet: host controls, admitting, ending -->
+<section data-scene="meet">
+  <div class="step-head"><span class="step-num">4</span><span class="step-title">Open the Meet at 9:50 and run class</span><span class="brand">ISSV Teacher Guide</span></div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">meet.google.com/abc-defg-hij</span></div>
+    <div class="win-body"><div class="meet">
+      <div class="tile"><span class="face">A</span><span class="name">Amina Rahman (you, host)</span></div>
+      <div class="tile tile2" id="t-tile2"><span class="face">Y</span><span class="name">Yusuf A.</span></div>
+      <div class="bar">
+        <span class="b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8EAED" stroke-width="2"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
+        <span class="b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8EAED" stroke-width="2"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10.5l5-3v9l-5-3z"/></svg></span>
+        <span class="b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8EAED" stroke-width="2"><path d="M7 11V6a1.5 1.5 0 0 1 3 0v5M10 10V4.5a1.5 1.5 0 0 1 3 0V10M13 10V5.5a1.5 1.5 0 0 1 3 0V12M16 8.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-12.5 4.3L4 15a1.5 1.5 0 0 1 2.3-2L7 14"/></svg></span>
+        <span class="b red" id="t-leave"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 9c-3.5 0-6.6 1.3-8.6 3.2-.4.4-.4 1 0 1.4l1.8 1.8c.4.4 1 .4 1.4 0l1.6-1.4c.3-.3.4-.6.4-1v-1.6c1-.3 2.2-.5 3.4-.5s2.4.2 3.4.5V13c0 .4.1.7.4 1l1.6 1.4c.4.4 1 .4 1.4 0l1.8-1.8c.4-.4.4-1 0-1.4C18.6 10.3 15.5 9 12 9z"/></svg></span>
+        <span class="b shield" id="t-shield"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8EAED" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.5a2 2 0 0 1 4 0V11"/></svg></span>
+      </div>
+      <div class="panel" id="t-panel">
+        <h3>Host controls</h3>
+        <div class="row"><span><b>Host management</b><br /><small style="color:var(--muted)">Mute everyone, manage who joins</small></span><span class="toggle" id="t-toggle"></span></div>
+        <div class="row" style="opacity:.6"><span>Turn off everyone's microphone</span></div>
+      </div>
+      <div class="popup" id="t-ask">
+        <h3>Someone wants to join this call</h3>
+        <div class="acct" style="padding:6px 0"><span class="avatar" style="background:#E37400">Y</span><div><b>Yusuf A.</b><span>yusuf.a@gmail.com · personal account</span></div></div>
+        <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:10px"><span class="btn-ghost">Deny</span><span class="btn-g" id="t-admit">Admit</span></div>
+      </div>
+      <div class="dialog" id="t-end">
+        <b style="font-size:19px">Leave the call?</b>
+        <span class="opt">Just leave the call</span>
+        <span class="opt" id="t-endall"><b>End the call for everyone</b></span>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 5. Wrap up in Classroom -->
+<section data-scene="wrap">
+  <div class="step-head"><span class="step-num">5</span><span class="step-title">Wrap up</span><span class="brand">ISSV Teacher Guide</span></div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">classroom.google.com/c/grade-4</span></div>
+    <div class="win-body">
+      <div class="app-top"><span class="logo"></span>Grade 4<div class="tabs"><span class="cur">Stream</span><span id="w-classwork">Classwork</span><span id="w-people">People</span></div><div class="right"><span class="avatar">A</span></div></div>
+      <div class="banner">Grade 4<small>Islamic Studies</small></div>
+      <div class="cols"><div class="side-card"><b>Meet</b><span class="meet-btn">Join</span></div><div><div class="post"><span class="ph"></span><span class="ph"></span></div><div class="post"><span class="ph"></span><span class="ph"></span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Outro -->
+<section data-scene="outro">
+  <div class="center">
+    <span class="chip">That’s it!</span>
+    <h1>You’re ready to teach</h1>
+    <p>Written steps: <b>School website → School Day → Online Classes</b></p>
+    <p style="font-size:20px;color:var(--muted)">Missing a class or a setting? Email the school office.</p>
+  </div>
+</section>
+
+<span class="note">Simplified illustration. Real screens may look slightly different.</span>
+<svg id="cursor" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.5L10 19z" fill="#fff" stroke="#13201B" stroke-width="1.6" stroke-linejoin="round"/></svg>
+<span id="ripple"></span>
+<div id="progress"></div>
+
+<style>
+  #r-text:not(:empty) + * { }
+  .r-ph { color: var(--muted); }
+  #r-box.typing .r-ph { display: none; }
+  #r-box.posted { border-color: var(--green); background: var(--green-50); }
+  #r-box.posted #r-post { display: none; }
+  #r-box.typing { border: 2px solid var(--g-blue); }
+</style>
+
+<script>
+window.VIDEO = {
+  id: 'teacher-setup',
+  voice: 'af_heart',
+  speed: 0.95,
+  lines: [
+    { scene: 'title', text: 'This short guide shows ISSV teachers how to run a virtual Sunday class with Google Classroom and Google Meet.',
+      say: 'This short guide shows I S S V teachers how to run a virtual Sunday class with Google Classroom and Google Meet.' },
+
+    { scene: 'account', text: 'First, make sure you’re signed in with your ISSV school account, not a personal Gmail.',
+      say: 'First, make sure you’re signed in with your I S S V school account, not a personal Gmail.',
+      cues: [ { at: 0.6, cursor: '#a-avatar' }, { at: 1.4, click: true }, { at: 1.5, add: '#a-menu', cls: 'on' }, { at: 2.6, cursor: '#a-school' }, { at: 3.2, add: '#a-school', cls: 'ring' } ] },
+    { scene: 'account', text: 'The admin has already created your class and added your students, so it’s waiting on your Classroom home page.',
+      cues: [ { at: 0.2, click: true }, { at: 0.8, cursor: '#a-class' }, { at: 1.4, add: '#a-class', cls: 'ring' } ] },
+
+    { scene: 'meetlink', text: 'You only need to do this next part once. In your class, click the gear icon to open Settings.',
+      cues: [ { at: 2.2, cursor: '#m-gear' }, { at: 3.4, click: true }, { at: 3.6, add: '#m-panel', cls: 'on' } ] },
+    { scene: 'meetlink', text: 'Under General, find Meet link, and generate a link.',
+      cues: [ { at: 0, add: '#m-panel', cls: 'on' }, { at: 0.8, cursor: '#m-gen' }, { at: 2.2, click: true }, { at: 2.4, add: '#m-link', cls: 'on' } ] },
+    { scene: 'meetlink', text: 'Turn on Visible to students, then click Save.',
+      cues: [ { at: 0, add: '#m-panel', cls: 'on' }, { at: 0, add: '#m-link', cls: 'on' }, { at: 0.4, cursor: '#m-toggle' }, { at: 1.3, click: true }, { at: 1.4, add: '#m-toggle', cls: 'on' }, { at: 2.0, cursor: '#m-save' }, { at: 2.8, click: true } ] },
+    { scene: 'meetlink', text: 'Now your class has one Meet link for every virtual Sunday. Please don’t post links anywhere else.',
+      cues: [ { at: 0, add: '#m-panel', cls: 'gone' }, { at: 0.3, add: '#m-side', cls: 'on' }, { at: 0.5, cursor: '#m-side' }, { at: 1.2, add: '#m-side', cls: 'ring' } ] },
+
+    { scene: 'remind', text: 'On Saturday, post a quick reminder in the Stream.',
+      cues: [ { at: 0.6, cursor: '#r-box' }, { at: 1.6, click: true }, { at: 1.7, add: '#r-box', cls: 'typing' } ] },
+    { scene: 'remind', text: 'Something like: Virtual class tomorrow at ten. Join from the Meet link on this page, signed in with your school account.',
+      cues: [ { at: 0, add: '#r-box', cls: 'typing' }, { at: 0.3, type: '#r-text', text: 'Virtual class tomorrow at 10! Join from the Meet link on this page, signed in with your school account.', dur: 5.5 }, { at: 6.2, cursor: '#r-post' }, { at: 7.0, click: true }, { at: 7.1, add: '#r-box', cls: 'posted' } ] },
+
+    { scene: 'meet', text: 'On Sunday, open the Meet at about 9:50, straight from your class page.', say: 'On Sunday, open the Meet at about nine fifty, straight from your class page.' },
+    { scene: 'meet', text: 'Click the Host controls shield, and turn on Host management. Now you can mute everyone and decide who joins.',
+      cues: [ { at: 0.4, cursor: '#t-shield' }, { at: 1.4, click: true }, { at: 1.5, add: '#t-panel', cls: 'on' }, { at: 2.6, cursor: '#t-toggle' }, { at: 3.4, click: true }, { at: 3.5, add: '#t-toggle', cls: 'on' } ] },
+    { scene: 'meet', text: 'Students signed in with a personal account will show up as asking to join.',
+      cues: [ { at: 0.2, add: '#t-panel', cls: 'gone' }, { at: 0.6, add: '#t-ask', cls: 'on' } ] },
+    { scene: 'meet', text: 'Only admit names you recognize, and remind them to use their school account next time.',
+      cues: [ { at: 0, add: '#t-ask', cls: 'on' }, { at: 0.5, cursor: '#t-admit' }, { at: 1.6, click: true }, { at: 1.7, add: '#t-ask', cls: 'gone' }, { at: 1.8, add: '#t-tile2', cls: 'on' } ] },
+
+    { scene: 'meet', text: 'When class is over, click the red button, and choose End the call for everyone.',
+      cues: [ { at: 0.5, cursor: '#t-leave' }, { at: 1.6, click: true }, { at: 1.7, add: '#t-end', cls: 'on' }, { at: 2.6, cursor: '#t-endall' }, { at: 3.6, click: true }, { at: 3.7, add: '#t-endall', cls: 'ring' } ] },
+
+    { scene: 'wrap', text: 'Then post any homework in Classwork, and take attendance from the People list.',
+      cues: [ { at: 1.0, cursor: '#w-classwork' }, { at: 1.6, add: '#w-classwork', cls: 'ring' }, { at: 3.2, cursor: '#w-people' }, { at: 3.8, add: '#w-people', cls: 'ring' } ] },
+
+    { scene: 'outro', text: 'That’s it! The written steps are on the Online Classes page of the school website. If a class or setting is missing, email the school office.' },
+  ],
+};
+</script>
+<style>.popup.gone, .panel.gone { display: none; }</style>
+<script src="engine.js"></script>
+<script>Engine.init();</script>
+</body>
+</html>

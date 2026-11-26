@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Students and parents: joining a virtual class</title>
+<link rel="stylesheet" href="stage.css" />
+<style>
+  .popup.gone, .panel.gone, .menu.gone { display: none; }
+  .card-class .bot { display: flex; align-items: center; justify-content: flex-end; padding: 0 16px; }
+  .card-class.joined .join-chip { display: none; }
+  .card-class .done { display: none; font-size: 15px; color: var(--muted); }
+  .card-class.joined .done { display: inline; }
+  .add-prof { display: flex; align-items: center; gap: 12px; padding: 12px; border-top: 1px solid var(--line); margin-top: 6px; font-size: 15px; color: var(--ink-2); border-radius: 12px; }
+  .add-prof .plus { width: 38px; height: 38px; border-radius: 50%; border: 1.5px dashed #9AA0A6; display: grid; place-items: center; font-size: 22px; color: var(--muted); }
+  /* Meet waiting room */
+  .green { position: absolute; inset: 0; display: grid; grid-template-columns: 1.3fr 1fr; gap: 36px; padding: 40px 48px; align-items: center; }
+  .preview { position: relative; height: 330px; border-radius: 16px; background: #3C4043; display: grid; place-items: center; }
+  .preview .face { width: 110px; height: 110px; border-radius: 50%; background: #1E8E3E; color: #fff; font-size: 44px; font-weight: 700; display: grid; place-items: center; }
+  .preview .ctrls { position: absolute; bottom: 16px; left: 0; right: 0; display: flex; justify-content: center; gap: 14px; }
+  .rb { width: 54px; height: 54px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.7); display: grid; place-items: center; }
+  .rb.off { background: #EA4335; border-color: #EA4335; }
+  .rb .slash { display: none; }
+  .rb.off .slash { display: block; }
+  .ready { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+  .ready h3 { margin: 0; font-size: 28px; }
+  .ready span { color: var(--muted); font-size: 16px; }
+  .ready .join-now { color: #fff; }
+  .join-now { background: var(--g-blue); color: #fff; font-weight: 600; font-size: 17px; padding: 13px 30px; border-radius: 999px; }
+  /* in-call mute state + raised hand */
+  .meet .b.off { background: #EA4335; }
+  .hand { position: absolute; right: 14px; top: 12px; width: 44px; height: 44px; border-radius: 50%; background: #FBBC04; display: none; place-items: center; font-size: 24px; }
+  .hand.on { display: grid; }
+  .meet .b.hand-btn.on { background: #8AB4F8; }
+  /* asking to join */
+  .asking { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+  .asking h3 { margin: 0; font-size: 30px; }
+  .asking .who { display: flex; align-items: center; gap: 12px; padding: 12px 18px; border-radius: 14px; background: #FCEEEA; color: #8A2E17; font-size: 16px; }
+  .spinner { width: 44px; height: 44px; border-radius: 50%; border: 5px solid var(--line); border-top-color: var(--g-blue); }
+</style>
+</head>
+<body>
+<!--
+  Guide video: joining a virtual class (for students and parents).
+  Edit the narration in VIDEO.lines at the bottom, then re-render: see video/README.md.
+  The screens are simplified illustrations, not real Google screens.
+-->
+
+<section data-scene="title">
+  <div class="center">
+    <span class="chip">ISSV Student &amp; Parent Guide</span>
+    <h1>Joining a<br />Virtual Class</h1>
+    <p>Google Classroom + Google Meet, in about two minutes</p>
+    <div class="logos"><span>1 · School account</span><span>2 · Classroom</span><span>3 · Join Meet</span><span>4 · In class</span><span>5 · If you’re stuck</span></div>
+  </div>
+</section>
+
+<!-- 1. Account -->
+<section data-scene="account">
+  <div class="step-head"><span class="step-num">1</span><span class="step-title">Use your ISSV school account</span><span class="brand">ISSV Student &amp; Parent Guide</span></div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">classroom.google.com</span></div>
+    <div class="win-body">
+      <div class="app-top"><span class="logo"></span>Classroom<div class="right"><span class="avatar" id="a-avatar" style="background:#1E8E3E">Z</span></div></div>
+      <div style="padding: 28px 24px;"><div class="card-class"><div class="top">Grade 4<br /><small style="font-weight:500;font-size:15px">Islamic Studies</small></div><div class="bot"></div></div></div>
+      <div class="menu" id="a-menu">
+        <div class="acct" id="a-school"><span class="avatar" style="background:#1E8E3E">Z</span><div><b>Zaid Ahmed</b><span>ISSV school account</span></div><span class="tag tag-school">Use this</span></div>
+        <div class="acct"><span class="avatar" style="background:#9AA0A6">F</span><div><b>fatima.ahmed@gmail.com</b><span>Parent’s account</span></div><span class="tag tag-personal">Not for class</span></div>
+        <div class="add-prof" id="a-add"><span class="plus">+</span>Add a Chrome profile for school</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. Classroom -->
+<section data-scene="classroom">
+  <div class="step-head"><span class="step-num">2</span><span class="step-title">Find your class in Google Classroom</span><span class="brand">ISSV Student &amp; Parent Guide</span></div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">classroom.google.com</span></div>
+    <div class="win-body">
+      <div class="app-top"><span class="logo"></span>Classroom<div class="right"><span class="avatar" style="background:#1E8E3E">Z</span></div></div>
+      <div style="padding: 28px 24px;">
+        <div class="card-class" id="c-card"><div class="top">Grade 4<br /><small style="font-weight:500;font-size:15px">Islamic Studies</small></div>
+          <div class="bot"><span class="btn-g join-chip" id="c-join">Join</span><span class="done">You’re in!</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3a. Class page: Meet join -->
+<section data-scene="classpage">
+  <div class="step-head"><span class="step-num">3</span><span class="step-title">Join the Meet from your class</span><span class="brand">ISSV Student &amp; Parent Guide</span></div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">classroom.google.com/c/grade-4</span></div>
+    <div class="win-body">
+      <div class="app-top"><span class="logo"></span>Grade 4<div class="tabs"><span class="cur">Stream</span><span>Classwork</span><span>People</span></div><div class="right"><span class="avatar" style="background:#1E8E3E">Z</span></div></div>
+      <div class="banner">Grade 4<small>Islamic Studies</small></div>
+      <div class="cols">
+        <div class="side-card" id="p-meet"><b>Meet</b><span class="meet-btn" id="p-join">Join</span></div>
+        <div><div class="post" style="color:var(--ink)"><b>Teacher</b> · Virtual class tomorrow at 10! Join from the Meet link on this page.</div><div class="post"><span class="ph"></span><span class="ph"></span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3b. Waiting room -->
+<section data-scene="greenroom">
+  <div class="step-head"><span class="step-num">3</span><span class="step-title">Mic off, camera on, then join</span><span class="brand">ISSV Student &amp; Parent Guide</span></div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">meet.google.com/abc-defg-hij</span></div>
+    <div class="win-body"><div class="green">
+      <div class="preview"><span class="face">Z</span>
+        <div class="ctrls">
+          <span class="rb" id="g-mic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/><path class="slash" d="M4 4l16 16"/></svg></span>
+          <span class="rb" id="g-cam"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10.5l5-3v9l-5-3z"/></svg></span>
+        </div>
+      </div>
+      <div class="ready"><h3>Ready to join?</h3><span>Signed in as Zaid Ahmed (ISSV)</span><span class="join-now" id="g-joinnow">Join now</span></div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 4. In class -->
+<section data-scene="inclass">
+  <div class="step-head"><span class="step-num">4</span><span class="step-title">In class</span><span class="brand">ISSV Student &amp; Parent Guide</span></div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">meet.google.com/abc-defg-hij</span></div>
+    <div class="win-body"><div class="meet">
+      <div class="tile"><span class="face">T</span><span class="name">Teacher</span></div>
+      <div class="tile tile2 on" style="opacity:1"><span class="face" style="background:#1E8E3E">Z</span><span class="name">Zaid Ahmed (you)</span><span class="hand" id="i-handbadge">✋</span></div>
+      <div class="bar">
+        <span class="b off" id="i-mic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/><path d="M4 4l16 16"/></svg></span>
+        <span class="b" id="i-cam"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8EAED" stroke-width="2"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10.5l5-3v9l-5-3z"/></svg></span>
+        <span class="b hand-btn" id="i-hand"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8EAED" stroke-width="2"><path d="M7 11V6a1.5 1.5 0 0 1 3 0v5M10 10V4.5a1.5 1.5 0 0 1 3 0V10M13 10V5.5a1.5 1.5 0 0 1 3 0V12M16 8.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-12.5 4.3L4 15a1.5 1.5 0 0 1 2.3-2L7 14"/></svg></span>
+        <span class="b red"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 9c-3.5 0-6.6 1.3-8.6 3.2-.4.4-.4 1 0 1.4l1.8 1.8c.4.4 1 .4 1.4 0l1.6-1.4c.3-.3.4-.6.4-1v-1.6c1-.3 2.2-.5 3.4-.5s2.4.2 3.4.5V13c0 .4.1.7.4 1l1.6 1.4c.4.4 1 .4 1.4 0l1.8-1.8c.4-.4.4-1 0-1.4C18.6 10.3 15.5 9 12 9z"/></svg></span>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- 5. Stuck -->
+<section data-scene="stuck">
+  <div class="step-head"><span class="step-num">5</span><span class="step-title">Stuck on “Asking to join”?</span><span class="brand">ISSV Student &amp; Parent Guide</span></div>
+  <div class="win"><div class="win-bar"><i></i><i></i><i></i><span class="url">meet.google.com/abc-defg-hij</span></div>
+    <div class="win-body">
+      <div class="app-top" style="justify-content:flex-end"><div class="right"><span class="avatar" id="s-avatar" style="background:#9AA0A6">F</span></div></div>
+      <div class="asking" style="top:60px"><span class="spinner"></span><h3>Asking to join…</h3><span class="who" id="s-who"><b>fatima.ahmed@gmail.com</b> · parent’s account</span></div>
+      <div class="menu" id="s-menu">
+        <div class="acct" id="s-school"><span class="avatar" style="background:#1E8E3E">Z</span><div><b>Zaid Ahmed</b><span>ISSV school account</span></div><span class="tag tag-school">Switch to this</span></div>
+        <div class="acct"><span class="avatar" style="background:#9AA0A6">F</span><div><b>fatima.ahmed@gmail.com</b><span>Parent’s account</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-scene="outro">
+  <div class="center">
+    <span class="chip">You’re ready</span>
+    <h1>See you in class!</h1>
+    <p>Written steps: <b>School website → School Day → Online Classes</b></p>
+    <p style="font-size:20px;color:var(--muted)">Still stuck? Email the school office.</p>
+  </div>
+</section>
+
+<span class="note">Simplified illustration. Real screens may look slightly different.</span>
+<svg id="cursor" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.5L10 19z" fill="#fff" stroke="#13201B" stroke-width="1.6" stroke-linejoin="round"/></svg>
+<span id="ripple"></span>
+<div id="progress"></div>
+
+<script>
+window.VIDEO = {
+  id: 'student-join',
+  voice: 'af_heart',
+  speed: 0.95,
+  lines: [
+    { scene: 'title', text: 'This short guide shows ISSV students and parents how to join a virtual Sunday class.',
+      say: 'This short guide shows I S S V students and parents how to join a virtual Sunday class.' },
+
+    { scene: 'account', text: 'First, make sure you’re signed in with your ISSV school account, not a parent’s or personal Gmail.',
+      say: 'First, make sure you’re signed in with your I S S V school account, not a parent’s or personal Gmail.',
+      cues: [ { at: 0.6, cursor: '#a-avatar' }, { at: 1.4, click: true }, { at: 1.5, add: '#a-menu', cls: 'on' }, { at: 2.6, cursor: '#a-school' }, { at: 3.2, add: '#a-school', cls: 'ring' } ] },
+    { scene: 'account', text: 'On a shared computer, add a separate Chrome profile just for school, and use it every time.',
+      cues: [ { at: 0, add: '#a-menu', cls: 'on' }, { at: 0.8, cursor: '#a-add' }, { at: 1.6, add: '#a-add', cls: 'ring' } ] },
+
+    { scene: 'classroom', text: 'Next, go to classroom.google.com, or open the Classroom app. Your class is already there.',
+      say: 'Next, go to classroom dot google dot com, or open the Classroom app. Your class is already there.',
+      cues: [ { at: 3.4, add: '#c-card', cls: 'ring' } ] },
+    { scene: 'classroom', text: 'If you see a Join button on it, click it.',
+      cues: [ { at: 0, add: '#c-card', cls: 'ring' }, { at: 0.3, cursor: '#c-join' }, { at: 1.4, click: true }, { at: 1.5, add: '#c-card', cls: 'joined' } ] },
+
+    { scene: 'classpage', text: 'On a virtual Sunday, open your class and click Join next to Meet. It’s the same link every week.',
+      cues: [ { at: 1.2, cursor: '#p-join' }, { at: 2.0, add: '#p-meet', cls: 'ring' }, { at: 3.6, click: true } ] },
+    { scene: 'greenroom', text: 'Before you join, turn your microphone off and keep your camera on. Then click Join now.',
+      cues: [ { at: 0.6, cursor: '#g-mic' }, { at: 1.7, click: true }, { at: 1.8, add: '#g-mic', cls: 'off' }, { at: 2.8, cursor: '#g-cam' }, { at: 3.4, add: '#g-cam', cls: 'ring' }, { at: 4.6, cursor: '#g-joinnow' }, { at: 5.4, click: true } ] },
+
+    { scene: 'inclass', text: 'In class, keep your camera on, and stay muted until it’s your turn to speak.',
+      cues: [ { at: 1.0, add: '#i-cam', cls: 'ring' }, { at: 2.8, add: '#i-mic', cls: 'ring' } ] },
+    { scene: 'inclass', text: 'To ask a question, click Raise hand.',
+      cues: [ { at: 0.3, cursor: '#i-hand' }, { at: 1.3, click: true }, { at: 1.4, add: '#i-hand', cls: 'on' }, { at: 1.4, add: '#i-handbadge', cls: 'on' } ] },
+    { scene: 'inclass', text: 'Join by 10:15 to test your sound. Class runs until 1:30, just like a normal Sunday.',
+      say: 'Join by ten fifteen to test your sound. Class runs until one thirty, just like a normal Sunday.',
+      cues: [ { at: 0, add: '#i-hand', cls: 'on' }, { at: 0, add: '#i-handbadge', cls: 'on' } ] },
+
+    { scene: 'stuck', text: 'If you’re stuck on Asking to join, you’re probably on the wrong account.',
+      cues: [ { at: 1.6, add: '#s-who', cls: 'ring' } ] },
+    { scene: 'stuck', text: 'Click your profile picture, switch to your school account, and open the link again from Classroom.',
+      cues: [ { at: 0.4, cursor: '#s-avatar' }, { at: 1.4, click: true }, { at: 1.5, add: '#s-menu', cls: 'on' }, { at: 2.4, cursor: '#s-school' }, { at: 3.2, add: '#s-school', cls: 'ring' }, { at: 3.8, click: true } ] },
+
+    { scene: 'outro', text: 'That’s it! The written steps are on the Online Classes page of the school website. Still stuck? Email the school office.' },
+  ],
+};
+</script>
+<script src="engine.js"></script>
+<script>Engine.init();</script>
+</body>
+</html>

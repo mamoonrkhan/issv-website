@@ -28,7 +28,7 @@ A proposed new website for the Islamic School of Silicon Valley. It's fast, work
 | School Day | `/school-day/` | Hub for a school day: guides, timeline, absence and virtual-day help |
 | Parking & pick-up | `/school-day/getting-here/` | Where to park at Greene, green-vest volunteers, pick-up rules, Greene's parking rules (credited) |
 | Campus map | `/school-day/campus/` | Simplified map adapted from Greene's student map: ISSV wings, event spaces, prayer area, off-limits areas, rooms by grade |
-| Online classes | `/school-day/online/` | Google Classroom and Meet steps for students/parents and teachers, plus troubleshooting |
+| Online classes | `/school-day/online/` | Google Classroom and Meet steps for students/parents and teachers, a teacher video guide, and troubleshooting |
 | Calendar | `/calendar/` | Class days by month, events, holidays, one-tap subscribe for Google, Apple and Outlook |
 | Curriculum | `/curriculum/` | Tabs for each grade (KG to Youth Group), daily schedule, milestones |
 | Parent handbook | `/families/` | Jump links, then policies in collapsible sections. Links like `/families/#dress` open the right one |
@@ -101,6 +101,7 @@ src/
   assets/photos/            images uploaded in the editor (optimized at build)
 public/
   docs/                     PDFs uploaded in the editor
+video/                      guide videos: animated scenes + AI narration script (see video/README.md)
 .pages.yml                  editor forms (Pages CMS)
 .github/workflows/deploy.yml  build and publish on every change and nightly
 ```

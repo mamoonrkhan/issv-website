@@ -685,6 +685,11 @@ a:hover .arrow { transform: translateX(4px); }
 .mock-post i { display: block; height: 7px; border-radius: 4px; background: var(--stone-200); }
 .mock-post i + i { width: 60%; }
 .mock figcaption { padding: 0 16px 14px; font-size: 14px; color: var(--muted); }
+.video-card { margin: 24px 0 0; background: var(--white); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; box-shadow: var(--shadow-card); max-width: 880px; }
+.video-card video { display: block; width: 100%; aspect-ratio: 16 / 9; background: var(--mint); }
+.video-card figcaption { display: flex; gap: 10px; align-items: flex-start; padding: 14px 18px; font-size: 15px; color: var(--muted); }
+.video-card figcaption svg { flex: none; color: var(--green-700); margin-top: 2px; }
+.video-card b { color: var(--green-900); }
 .help-line { margin: 0; padding: 22px 0 26px; font-size: 15px; color: var(--muted); }
 
 /* Home: Sundays quick links */

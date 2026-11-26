@@ -32,6 +32,13 @@ const classroom = 'https://classroom.google.com/';
     </div>
 
     <div class="tabpanel" role="tabpanel" id="panel-students" aria-labelledby="tab-students">
+      <figure class="video-card">
+        <video controls preload="none" playsinline poster={u('/videos/student-join.jpg')}>
+          <source src={u('/videos/student-join.mp4')} type="video/mp4" />
+          <track kind="captions" src={u('/videos/student-join.vtt')} srclang="en" label="English" default />
+        </video>
+        <figcaption><Icon name="video" size={18} /><span><b>Watch: Joining a Virtual Class</b> · 1:19, with captions. The same steps are written out below.</span></figcaption>
+      </figure>
       <div class="online-grid">
         <ol class="big-steps">
           {(o.students ?? []).map((s, i) => (
@@ -58,6 +65,13 @@ const classroom = 'https://classroom.google.com/';
     </div>
 
     <div class="tabpanel" role="tabpanel" id="panel-teachers" aria-labelledby="tab-teachers" hidden>
+      <figure class="video-card">
+        <video controls preload="none" playsinline poster={u('/videos/teacher-setup.jpg')}>
+          <source src={u('/videos/teacher-setup.mp4')} type="video/mp4" />
+          <track kind="captions" src={u('/videos/teacher-setup.vtt')} srclang="en" label="English" default />
+        </video>
+        <figcaption><Icon name="video" size={18} /><span><b>Watch: Running a Virtual Class</b> · 1:40, with captions. The same steps are written out below.</span></figcaption>
+      </figure>
       <ol class="big-steps big-steps-2">
         {(o.teachers ?? []).map((s, i) => (
           <li><span class="big-num">{i + 1}</span><div><h3 class="h-card">{s.title}</h3>{s.body && <p class="text-ink-2 text-16">{s.body}</p>}</div></li>
