@@ -1,0 +1,75 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Icon from '../../components/Icon.astro';
+import SundaysNav from '../../components/SundaysNav.astro';
+import CampusMap from '../../components/CampusMap.astro';
+import { campus as c } from '../../lib/content';
+import { u } from '../../lib/url';
+
+const rooms = c.rooms ?? [];
+const anyRooms = rooms.some((r) => r.where);
+---
+<Base title="Campus Map" current="sundays" description="Where ISSV classes, events and Dhuhr prayer are at Greene Middle School, and which areas are off-limits.">
+  <Hero eyebrow="Sundays at ISSV" title="Campus Map" lead={c.lead ?? ''} />
+  <SundaysNav current="campus" />
+
+  <section class="wrap pt-major" aria-labelledby="map-heading">
+    <h2 class="sr-only" id="map-heading">Map</h2>
+    <figure class="map-card card">
+      <div class="map-scroll" tabindex="0" aria-label="Campus map, scrolls sideways on small screens">
+        <CampusMap />
+      </div>
+      <ul class="map-legend" aria-label="Map key">
+        <li><span class="key key-issv"></span>ISSV classrooms</li>
+        <li><span class="key key-event"></span>Events (Gym, MPR)</li>
+        <li><span class="key key-prayer"></span>Dhuhr prayer</li>
+        <li><span class="key key-ok"></span>Youth Group only</li>
+        <li><span class="key key-off"></span>Off-limits</li>
+        <li><span class="key key-bldg"></span>Greene only, not used by ISSV</li>
+        <li><span class="key key-p">P</span>Parking</li>
+        <li><span class="key key-vest"></span>Volunteer in green vest</li>
+      </ul>
+      <figcaption class="fineprint">Simplified and not to scale. North is to the left. Adapted from Greene Middle School’s <a href="https://greene.pausd.org/school-life/campus-map">August 2026 Student Map</a> (Palo Alto Unified School District).</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap pt-major grid grid-3" aria-label="Areas">
+    <div class="card card-sm stack area area-issv">
+      <span class="area-icon"><Icon name="book" size={22} /></span>
+      <h2 class="h-card">Classes</h2>
+      <p class="text-ink-2 text-16">Our classrooms are in the <b>N, F, C and P wings</b> on the Middlefield side of campus, a short walk from the Middlefield Parking Lot.</p>
+    </div>
+    <div class="card card-sm stack area area-event">
+      <span class="area-icon"><Icon name="star" size={22} /></span>
+      <h2 class="h-card">Events &amp; Prayer</h2>
+      <p class="text-ink-2 text-16">{c.events}</p>
+      <p class="text-ink-2 text-16">Dhuhr prayer is after class in the lunch area between the F and G wings.</p>
+    </div>
+    <div class="card card-sm stack area area-off">
+      <span class="area-icon"><Icon name="ban" size={22} /></span>
+      <h2 class="h-card">Off-Limits</h2>
+      <ul class="bullets">{(c.offLimits ?? []).map((o) => <li>{o}</li>)}</ul>
+      {c.allowed && <p class="small-muted">{c.allowed}</p>}
+    </div>
+  </section>
+
+  <section class="wrap pt-major section-last" aria-labelledby="rooms-title">
+    <div class="card">
+      <div class="section-head">
+        <h2 class="h-section" id="rooms-title">Classrooms by Grade</h2>
+        {!anyRooms && <span class="pill tone-gold">Coming soon</span>}
+      </div>
+      {anyRooms ? (
+        <ul class="room-grid">
+          {rooms.map((r) => (
+            <li><span class="room-grade">{r.grade}</span><span class={r.where ? 'room-where' : 'room-where text-muted'}>{r.where || 'Ask at the front desk'}</span></li>
+          ))}
+        </ul>
+      ) : (
+        <p class="text-muted">Room numbers for each grade will be posted here. Until then, the volunteers in green vests at the doors will point you to the right room.</p>
+      )}
+      <p class="callout mt-gap"><Icon name="ban" size={20} /><span><b>Closed campus.</b> Students stay on the Greene campus during school, unless a parent or guardian comes to take them, or Youth Group students are with a chaperone. <a href={u('/sundays/getting-here/#pickup')}>Pick-up rules</a></span></p>
+    </div>
+  </section>
+</Base>

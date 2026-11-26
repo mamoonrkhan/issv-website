@@ -46,14 +46,14 @@ export const GET: APIRoute = () => {
       continue;
     }
     const name = `${site.shortName} school`;
-    const summary = s.status === 'virtual' ? `${name} (virtual, on Zoom)` : s.status === 'possible-virtual' ? `${name} (possible virtual day)` : name;
+    const summary = s.status === 'virtual' ? `${name} (virtual, on Google Meet)` : s.status === 'possible-virtual' ? `${name} (possible virtual day)` : name;
     const desc = [s.note, s.status === 'possible-virtual' ? 'We’ll confirm by email the week before.' : ''].filter(Boolean).join(' ');
     event(`sunday-${s.date}`, [
       `DTSTART;TZID=${TZID}:${ymd(s.date)}T${hm(calendar.startTime)}`,
       `DTEND;TZID=${TZID}:${ymd(s.date)}T${hm(calendar.endTime)}`,
       `SUMMARY:${esc(summary)}`,
       ...(desc ? [`DESCRIPTION:${esc(desc)}`] : []),
-      `LOCATION:${esc(s.status === 'virtual' ? 'Zoom (link sent by email)' : site.address || site.location)}`,
+      `LOCATION:${esc(s.status === 'virtual' ? 'Google Meet (join from Google Classroom)' : site.address || site.location)}`,
     ]);
   }
   for (const e of calendar.events) {

@@ -1,0 +1,76 @@
+{
+  "lead": "Virtual Sundays run on Google Classroom and Google Meet. Here’s how to get in, for students, parents and teachers.",
+  "students": [
+    {
+      "title": "Sign in with your school account",
+      "body": "Use the ISSV Google account the school gave you, not a personal or parent Gmail. Most problems (being stuck on “Ask to join”, a class that won’t show up) come from being signed in with the wrong account."
+    },
+    {
+      "title": "Open your class in Google Classroom",
+      "body": "Go to classroom.google.com or open the Classroom app. The school adds you to your class, so it shows up on your home page. If you see a Join button on it, click it."
+    },
+    {
+      "title": "Join the Meet from Classroom",
+      "body": "On your class’s Stream page, click Join next to Meet. Every class uses this link every virtual Sunday, so you don’t need to look in your email."
+    },
+    {
+      "title": "Be ready by 10:00 AM",
+      "body": "Join between 10:00 and 10:15 to check your camera and sound. Class follows the usual Sunday schedule and ends at 1:30 PM."
+    }
+  ],
+  "etiquette": [
+    "Camera on for the whole class",
+    "Join muted. Unmute only when it’s your turn to speak.",
+    "Use the Raise hand button to ask a question",
+    "Find a quiet spot, and dress as you would for school",
+    "Don’t share the class link with anyone"
+  ],
+  "teachers": [
+    {
+      "title": "Use your ISSV account",
+      "body": "The admin creates every Google Classroom and adds you and your students. Sign in with your school account so your classes and the Meet controls show up."
+    },
+    {
+      "title": "Turn on your class’s Meet link (once)",
+      "body": "In your class, open Settings (the gear), find Meet link under General, generate the link and turn on “Visible to students”. Save. Use this same link every virtual Sunday, and don’t post links anywhere else."
+    },
+    {
+      "title": "Post a reminder the day before",
+      "body": "On Saturday, post in the Stream: “Virtual class tomorrow at 10. Join from the Meet link at the top of this page, signed in with your school account.”"
+    },
+    {
+      "title": "Open the Meet 10 minutes early",
+      "body": "Start the call from Classroom at about 9:50. Turn on Host controls (the shield icon) so you can mute everyone and manage who joins."
+    },
+    {
+      "title": "Admit students carefully",
+      "body": "Students signed in with a personal account will show up as “asking to join”. Admit them only if you recognize the name, then remind them to switch to their school account next time."
+    },
+    {
+      "title": "Wrap up",
+      "body": "Post any homework in Classwork, take attendance from the People list, and when you leave, choose “End the call for everyone”."
+    }
+  ],
+  "troubleshooting": [
+    {
+      "q": "I’m stuck on “Ask to join” or it says I can’t join.",
+      "a": "You’re probably signed in with a personal Gmail. Click your profile picture (top right), switch to your school account, and open the link again from Classroom."
+    },
+    {
+      "q": "My class doesn’t show up in Classroom.",
+      "a": "Check which account is signed in (profile picture, top right). If it’s your school account and the class still isn’t there, email the school."
+    },
+    {
+      "q": "We share one computer, and it keeps using the parent’s account.",
+      "a": "In Chrome, click the profile icon (top right) and choose Add to create a separate profile for the student’s school account. Use that window for class every time."
+    },
+    {
+      "q": "We’re joining from a phone or tablet.",
+      "a": "Install the Google Classroom and Google Meet apps. In each app, tap the profile picture and add the school account, then make sure it’s the one selected."
+    },
+    {
+      "q": "Nobody can hear me, or I can’t hear the class.",
+      "a": "Check that you’re unmuted, then click the three dots, open Settings, and pick the right microphone and speaker under Audio."
+    }
+  ]
+}

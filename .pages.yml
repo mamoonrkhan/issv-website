@@ -100,7 +100,7 @@ content:
         options:
           values:
             - { name: no-school, label: No school }
-            - { name: virtual, label: Virtual (Zoom) }
+            - { name: virtual, label: Virtual (Google Meet) }
             - { name: in-session, label: In session }
       - name: title
         label: Headline
@@ -138,7 +138,7 @@ content:
             options:
               values:
                 - { name: in-session, label: In session }
-                - { name: virtual, label: Virtual (Zoom) }
+                - { name: virtual, label: Virtual (Google Meet) }
                 - { name: possible-virtual, label: Possible virtual }
                 - { name: no-school, label: No school }
           - name: note
@@ -289,6 +289,98 @@ content:
           - { name: a, label: Answer, type: text }
 
   # ------------------------------------------------------------------
+  - name: arrival
+    label: "Sundays: Parking & Pick-Up"
+    type: file
+    path: src/data/arrival.json
+    format: json
+    operations: { create: false, delete: false }
+    fields:
+      - { name: lead, label: Intro line, type: string }
+      - name: parking
+        label: Parking areas
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{name}"
+        fields:
+          - { name: name, label: Name, type: string }
+          - { name: how, label: How to get there, type: text }
+          - { name: best, label: Mark as closest to class, type: boolean }
+      - { name: parkingNote, label: Note under the parking areas, type: text }
+      - { name: volunteers, label: Where the green-vest volunteers stand, type: string, list: true }
+      - { name: pickup, label: Pick-up rules, type: text, list: true }
+      - { name: closedCampus, label: Closed campus rule, type: text }
+      - { name: greeneRules, label: Greene's parking rules, type: text, list: true }
+      - { name: sharing, label: Sharing the campus (other events), type: text }
+
+  # ------------------------------------------------------------------
+  - name: campus
+    label: "Sundays: Campus Map"
+    type: file
+    path: src/data/campus.json
+    format: json
+    operations: { create: false, delete: false }
+    fields:
+      - { name: lead, label: Intro line, type: string }
+      - name: rooms
+        label: Classrooms by grade
+        type: object
+        description: Fill in the room for each grade. Grades left empty show “Ask at the front desk”.
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{grade}: {where}"
+        fields:
+          - { name: grade, label: Grade, type: string }
+          - { name: where, label: Room, type: string, description: "e.g. N3, or C1–C2" }
+      - { name: events, label: Where events are held, type: text }
+      - { name: offLimits, label: Off-limits areas, type: string, list: true }
+      - { name: allowed, label: Note about the basketball courts, type: text }
+
+  # ------------------------------------------------------------------
+  - name: online
+    label: "Sundays: Online Classes"
+    type: file
+    path: src/data/online.json
+    format: json
+    operations: { create: false, delete: false }
+    fields:
+      - { name: lead, label: Intro line, type: string }
+      - name: students
+        label: Steps for students & parents
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - { name: title, label: Step, type: string }
+          - { name: body, label: Details, type: text }
+      - { name: etiquette, label: Rules in class, type: string, list: true }
+      - name: teachers
+        label: Steps for teachers
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - { name: title, label: Step, type: string }
+          - { name: body, label: Details, type: text }
+      - name: troubleshooting
+        label: Troubleshooting questions
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{q}"
+        fields:
+          - { name: q, label: Problem, type: string }
+          - { name: a, label: Fix, type: text }
+
+  # ------------------------------------------------------------------
   - name: site
     label: Contact, Links & PDFs
     type: file
@@ -300,7 +392,6 @@ content:
       - { name: emailRegistration, label: Registration email, type: string }
       - { name: location, label: Location, type: string }
       - { name: address, label: Street address (optional), type: string }
-      - { name: parkingNotes, label: Parking notes (optional), type: text }
       - { name: hours, label: Hours, type: string }
       - { name: absenceFormUrl, label: Absence form link (Google Form), type: string }
       - { name: donationUrl, label: Donation link (optional), type: string, description: "If empty, the Donate button opens an email instead." }

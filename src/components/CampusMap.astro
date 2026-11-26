@@ -1,0 +1,213 @@
+---
+// Simplified campus map of Greene Middle School, showing only what ISSV families need.
+// Adapted from Greene's August 2026 Student Map (PAUSD). Not to scale.
+// Same orientation as Greene's map: Middlefield Rd on the right, N. California Ave along the bottom, north to the left.
+interface Props { showParking?: boolean; }
+const { showParking = true } = Astro.props;
+
+// [x, y, w, h, label?]
+type Box = [number, number, number, number, string?];
+const greene: Box[] = [
+  [272, 295, 168, 135, 'Locker rooms'],
+  [272, 575, 168, 65],
+  [263, 645, 177, 70],
+  [322, 850, 156, 90, 'Music'],
+  [348, 940, 130, 62],
+  [923, 278, 53, 99],
+  [1005, 288, 128, 84, 'M1 · M2'],
+  [1087, 420, 46, 135],
+  [1153, 400, 40, 165],
+  [497, 742, 193, 43, 'A-wing'],
+  [497, 818, 163, 40],
+  [690, 742, 200, 43, 'Library'],
+  [683, 818, 227, 62, 'Office'],
+  [960, 742, 190, 43, 'B-wing'],
+  [940, 815, 212, 43],
+];
+const vests: [number, number][] = [
+  [1490, 572], // lot entrance (Middlefield)
+  [1300, 660], // crosswalk lot → C/N wings
+  [1205, 760], // C-wing doors
+  [1150, 985], // N. California Loop → walkway
+];
+---
+<svg class="campus-map" viewBox="40 240 1545 910" role="img" aria-labelledby="map-title map-desc">
+  <title id="map-title">Simplified map of Greene Middle School for ISSV families</title>
+  <desc id="map-desc">
+    Middlefield Road runs along the right side and North California Avenue along the bottom. The Middlefield Parking Lot is on the right, next to the N-wing.
+    ISSV classes are in the N, F, C and P wings on the right (east) side of campus. Dhuhr prayer is in the lunch area between the F and G wings.
+    Events are in the Gym or the MPR on the left (west) side. The construction zone in the middle, the pool, tennis courts and fields are off-limits.
+    Youth Group may use the basketball courts. Volunteers in green vests stand at the lot entrance, the crosswalk, the C-wing doors and the N. California Loop.
+  </desc>
+  <defs>
+    <pattern id="hatch" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="14" height="14" class="m-off-bg" />
+      <line x1="0" y1="0" x2="0" y2="14" class="m-off-line" />
+    </pattern>
+  </defs>
+
+  <!-- streets -->
+  <rect x="40" y="1108" width="1545" height="42" class="m-road" />
+  <text x="700" y="1136" class="m-road-label">N. CALIFORNIA AVE</text>
+  <rect x="1528" y="240" width="42" height="910" class="m-road" />
+  <text x="1556" y="700" class="m-road-label" transform="rotate(-90 1556 700)" text-anchor="middle">MIDDLEFIELD RD</text>
+
+  <!-- campus ground -->
+  <rect x="60" y="262" width="1455" height="840" rx="18" class="m-ground" />
+
+  <!-- outdoor areas -->
+  <rect x="75" y="300" width="180" height="165" rx="8" class="m-ok" />
+  <text x="165" y="372" class="m-label m-center">Basketball</text>
+  <text x="165" y="396" class="m-small m-center">Youth Group only</text>
+
+  <rect x="80" y="480" width="120" height="95" rx="8" fill="url(#hatch)" class="m-off" />
+  <text x="140" y="533" class="m-label m-center m-off-text">Pool</text>
+
+  <rect x="95" y="590" width="105" height="220" rx="8" fill="url(#hatch)" class="m-off" />
+  <text x="147" y="705" class="m-label m-center m-off-text" transform="rotate(-90 147 705)">Tennis courts</text>
+
+  <rect x="215" y="718" width="212" height="97" rx="10" class="m-yard" />
+  <text x="321" y="772" class="m-small m-center">Lunch area</text>
+
+  <!-- construction -->
+  <rect x="468" y="258" width="455" height="476" rx="6" fill="url(#hatch)" class="m-off" />
+  <text x="695" y="488" class="m-big m-center m-off-text">Construction zone</text>
+  <text x="695" y="522" class="m-label m-center m-off-text">Off-limits</text>
+
+  <!-- Greene buildings we don't use -->
+  {greene.map(([x, y, w, h, label]) => (
+    <g>
+      <rect x={x} y={y} width={w} height={h} rx="4" class="m-bldg" />
+      {label && <text x={x + w / 2} y={y + h / 2 + 7} class="m-small m-center m-bldg-text">{label}</text>}
+    </g>
+  ))}
+
+  <!-- event spaces -->
+  <rect x="272" y="430" width="168" height="145" rx="4" class="m-event" />
+  <text x="356" y="498" class="m-label m-center">Gym</text>
+  <text x="356" y="524" class="m-small m-center">events only</text>
+  <rect x="97" y="825" width="225" height="203" rx="6" class="m-event" />
+  <text x="209" y="922" class="m-big m-center">MPR</text>
+  <text x="209" y="954" class="m-small m-center">events &amp; ceremonies</text>
+
+  <!-- prayer area between F and G -->
+  <rect x="1028" y="395" width="56" height="200" rx="10" class="m-prayer" />
+  <path d="M1056 452l7 15 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2z" class="m-star" />
+  <text x="1056" y="528" class="m-small m-center m-prayer-text">Dhuhr</text>
+  <text x="1056" y="550" class="m-small m-center m-prayer-text">prayer</text>
+
+  <!-- ISSV classroom wings -->
+  <g class="m-issv-group">
+    <rect x="925" y="455" width="28" height="120" rx="4" class="m-issv" />
+    <rect x="983" y="425" width="40" height="150" rx="4" class="m-issv" />
+    <rect x="962" y="605" width="73" height="43" rx="4" class="m-issv" />
+    <rect x="1053" y="605" width="137" height="43" rx="4" class="m-issv" />
+    <text x="1121" y="634" class="m-label m-center m-issv-text">F-wing</text>
+
+    <rect x="1220" y="338" width="62" height="290" rx="4" class="m-issv" />
+    <text x="1251" y="490" class="m-label m-center m-issv-text" transform="rotate(-90 1251 490)">N-wing · N1–N7</text>
+
+    <rect x="1240" y="688" width="88" height="202" rx="4" class="m-issv" />
+    <text x="1284" y="795" class="m-label m-center m-issv-text" transform="rotate(-90 1284 795)">C-wing · C1–C10</text>
+
+    <rect x="1390" y="795" width="82" height="235" rx="4" class="m-issv" />
+    <text x="1431" y="918" class="m-label m-center m-issv-text" transform="rotate(-90 1431 918)">P1–P6</text>
+    <rect x="1258" y="945" width="102" height="73" rx="4" class="m-issv" />
+    <text x="1309" y="988" class="m-label m-center m-issv-text">P7 · P8</text>
+  </g>
+  <text x="1170" y="382" class="m-small m-center">G-wing</text>
+
+  {showParking && (
+    <g>
+      <!-- Middlefield lot -->
+      <rect x="1305" y="370" width="150" height="285" rx="8" class="m-lot" />
+      {Array.from({ length: 9 }, (_, i) => (
+        <line x1="1318" y1={392 + i * 28} x2="1350" y2={408 + i * 28} class="m-stall" />
+      ))}
+      {Array.from({ length: 9 }, (_, i) => (
+        <line x1="1405" y1={392 + i * 28} x2="1440" y2={408 + i * 28} class="m-stall" />
+      ))}
+      <text x="1380" y="345" class="m-label m-center m-park-text">Middlefield Lot</text>
+      <circle cx="1380" cy="512" r="22" class="m-p" />
+      <text x="1380" y="521" class="m-p-text m-center">P</text>
+      <path d="M1525 520 H1462" class="m-arrow" marker-end="url(#arrowhead)" />
+
+      <!-- N. California Loop -->
+      <path d="M525 1095 C600 960, 1050 960, 1140 1095" class="m-loop" />
+      <rect x="700" y="1015" width="170" height="40" rx="6" class="m-lot" />
+      {Array.from({ length: 8 }, (_, i) => (
+        <line x1={712 + i * 20} y1="1020" x2={722 + i * 20} y2="1050" class="m-stall" />
+      ))}
+      <text x="785" y="1000" class="m-label m-center m-park-text">N. California Loop</text>
+      <circle cx="660" cy="1035" r="22" class="m-p" />
+      <text x="660" y="1044" class="m-p-text m-center">P</text>
+
+      <!-- walking routes -->
+      <path d="M1305 640 C1290 660, 1290 670, 1290 688" class="m-walk" />
+      <path d="M1140 1000 C1180 960, 1210 920, 1240 880" class="m-walk" />
+      <path d="M1300 660 C1340 720, 1380 770, 1400 795" class="m-walk" />
+    </g>
+  )}
+
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 10 5 0 10z" class="m-arrowhead" />
+    </marker>
+  </defs>
+
+  <!-- volunteers in green vests -->
+  {vests.map(([x, y]) => (
+    <g class="m-vest">
+      <circle cx={x} cy={y} r="17" />
+      <path d={`M${x - 7} ${y - 8}l7 5 7-5 3 3v13h-6v-5h-8v5h-6v-13z`} />
+    </g>
+  ))}
+
+  <!-- compass: north points left on Greene's map -->
+  <g transform="translate(110 1062)">
+    <path d="M-40 0 L0 -10 L-6 0 L0 10 Z" class="m-compass" />
+    <text x="-58" y="7" class="m-label">N</text>
+  </g>
+</svg>
+
+<style>
+  .campus-map { display: block; width: 100%; height: auto; font-family: var(--font-sans); }
+  .m-ground { fill: #F4F7F5; stroke: var(--line); stroke-width: 2; }
+  .m-road { fill: #DADFDC; }
+  .m-road-label { font-size: 20px; font-weight: 700; letter-spacing: .12em; fill: #6B7772; }
+  .m-bldg { fill: #E3E7E5; stroke: #C9D0CC; stroke-width: 1.5; }
+  .m-bldg-text { fill: #6B7772; }
+  .m-issv { fill: var(--green-700); }
+  .m-issv-text { fill: #fff; font-weight: 700; }
+  .m-event { fill: var(--gold-50); stroke: var(--gold-400); stroke-width: 3; }
+  .m-off { stroke: #D39A8B; stroke-width: 2; }
+  .m-off-bg { fill: #FBEDE8; }
+  .m-off-line { stroke: #EBC2B6; stroke-width: 5; }
+  .m-off-text { fill: var(--red-ink); font-weight: 700; }
+  .m-ok { fill: #E2F2EA; stroke: #9CCBB4; stroke-width: 2; stroke-dasharray: 8 6; }
+  .m-yard { fill: #EEF2EF; stroke: #CBD5D0; stroke-width: 1.5; stroke-dasharray: 6 5; }
+  .m-prayer { fill: #FFF6E2; stroke: var(--gold-400); stroke-width: 2.5; }
+  .m-prayer-text { fill: var(--gold-ink); font-weight: 700; }
+  .m-star { fill: var(--gold-400); }
+  .m-lot { fill: #D5DCD8; }
+  .m-stall { stroke: #fff; stroke-width: 3; }
+  .m-loop { fill: none; stroke: #D5DCD8; stroke-width: 34; }
+  .m-p { fill: #1F5FA8; }
+  .m-p-text { fill: #fff; font-size: 26px; font-weight: 800; }
+  .m-park-text { fill: #1F5FA8; font-weight: 700; }
+  .m-arrow { stroke: #1F5FA8; stroke-width: 5; fill: none; }
+  .m-arrowhead { fill: #1F5FA8; }
+  .m-walk { fill: none; stroke: var(--green-700); stroke-width: 4; stroke-dasharray: 2 9; stroke-linecap: round; }
+  .m-vest circle { fill: #7ED321; stroke: #fff; stroke-width: 3; }
+  .m-vest path { fill: #1B3A0A; }
+  .m-compass { fill: var(--ink-2); }
+  .m-label { font-size: 21px; font-weight: 600; fill: var(--ink); }
+  .m-small { font-size: 17px; fill: var(--ink-2); }
+  .m-big { font-size: 30px; font-weight: 800; fill: var(--ink); }
+  .m-center { text-anchor: middle; }
+</style>
+
+<script>
+  // On narrow screens the map scrolls sideways; start at the right, where our wings and parking are.
+  document.querySelectorAll<HTMLElement>('.map-scroll').forEach((el) => { el.scrollLeft = el.scrollWidth; });
+</script>

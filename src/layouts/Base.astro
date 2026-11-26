@@ -1,6 +1,5 @@
 ---
 import '@fontsource-variable/inter';
-import '@fontsource-variable/source-serif-4';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -39,7 +38,7 @@ const banner = (await getCollection('announcements'))
   <link rel="canonical" href={canonical} />
   <link rel="icon" href={u('/favicon.svg')} type="image/svg+xml" />
   <link rel="alternate" type="text/calendar" title="School calendar" href={u('/calendar.ics')} />
-  <meta name="theme-color" content="#0A3A2C" />
+  <meta name="theme-color" content="#F0F8F4" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
@@ -91,7 +90,7 @@ const banner = (await getCollection('announcements'))
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && btn?.getAttribute('aria-expanded') === 'true') { setOpen(false); btn.focus(); }
     });
-    window.matchMedia('(min-width: 900px)').addEventListener('change', (e) => e.matches && setOpen(false));
+    window.matchMedia('(min-width: 980px)').addEventListener('change', (e) => e.matches && setOpen(false));
 
     // "/" opens search from anywhere (unless you're typing).
     document.addEventListener('keydown', (e) => {

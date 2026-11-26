@@ -10,14 +10,17 @@ import { u } from '../lib/url';
 const quick = [
   { page: 'Handbook', title: 'Report an Absence', text: 'Use the online form; please don’t call.', href: site.absenceFormUrl, k: 'absence absent sick miss form attendance' },
   { page: 'Handbook', title: 'Arrival & Late Policy', text: 'Arrive by 10:00 AM. Late students sign in at the front desk.', href: '/families/#arrival', k: 'late tardy arrival drop off time morning' },
-  { page: 'Handbook', title: 'Pick-Up', text: '1:30 PM. $1 per minute late, per child.', href: '/families/#arrival', k: 'pickup pick up pick-up fine late 1:30' },
+  { page: 'Sundays', title: 'Pick-Up', text: '1:30 PM. KG–Grade 8 are picked up from the classroom by a parent.', href: '/sundays/getting-here/#pickup', k: 'pickup pick up pick-up fine late 1:30 dismissal' },
   { page: 'Handbook', title: 'Dress Code', text: 'Modest, loose clothing; headscarf for girls; no shorts for boys.', href: '/families/#dress', k: 'dress code clothes hijab scarf shorts uniform' },
   { page: 'Handbook', title: 'Phones & Conduct', text: 'Phones off; no toys or games; closed campus.', href: '/families/#conduct', k: 'phone conduct behavior rules discipline' },
   { page: 'Handbook', title: 'Food & Snacks', text: 'Snacks included; eat in the courtyard. Ramadan rules.', href: '/families/#food', k: 'food snack lunch ramadan allergy' },
   { page: 'Handbook', title: 'Volunteer Hours', text: '10 hours per family each year.', href: '/families/#volunteer', k: 'volunteer hours help' },
   { page: 'Handbook', title: 'Report Cards', text: 'Emailed in December and June.', href: '/families/#homework', k: 'report card evaluation grades homework honor roll' },
   { page: 'Handbook', title: 'Books to Keep', text: 'Five books are reused across grades.', href: '/families/#books', k: 'books textbooks reuse' },
-  { page: 'Handbook', title: 'Virtual / Zoom Days', text: 'Same schedule on Zoom; cameras on.', href: '/families/#campus', k: 'zoom virtual online remote' },
+  { page: 'Sundays', title: 'Online Classes', text: 'Join Google Meet from Google Classroom with your school account.', href: '/sundays/online/', k: 'zoom meet google classroom virtual online remote link class code account gmail join' },
+  { page: 'Sundays', title: 'Online Classes for Teachers', text: 'Set up the Meet link in Classroom, host controls, admitting students.', href: '/sundays/online/#teachers', k: 'teacher meet classroom host link setup admit' },
+  { page: 'Sundays', title: 'Parking', text: 'Middlefield Parking Lot or the N. California Loop. Follow the volunteers in green vests.', href: '/sundays/getting-here/', k: 'parking park car lot drop off directions address middlefield california loop vest' },
+  { page: 'Sundays', title: 'Campus Map', text: 'Classes in the N, F, C and P wings. Events in the Gym or MPR.', href: '/sundays/campus/', k: 'map campus room classroom building wing where auditorium gym mpr prayer dhuhr off limits' },
   { page: 'Registration', title: 'Tuition', text: `$${pay.tuitionPerChild} per child per year, books included.`, href: '/registration/#tuition', k: 'tuition cost fee price money installment' },
   { page: 'Registration', title: 'Pay with Zelle', text: 'Copy the school email and pay in your bank app.', href: '/registration/#pay', k: 'zelle pay payment bank' },
   { page: 'Registration', title: 'Pay by Check', text: 'Hand in at the registration desk.', href: '/registration/#pay', k: 'check cheque pay payment' },
@@ -36,7 +39,7 @@ const quick = [
   { page: 'About', title: 'Contact & Location', text: `${site.location} · ${site.emailGeneral}`, href: '/about/#contact', k: 'contact email address location where phone' },
 ].map((x) => ({ ...x, href: u(x.href) }));
 
-const chips = ['Tuition', 'Zelle', 'Absence', 'Dress Code', 'Eid', 'Pick-Up'];
+const chips = ['Parking', 'Online Classes', 'Tuition', 'Absence', 'Dress Code', 'Pick-Up'];
 ---
 <Base title="Search" index={false} description="Search the school website.">
   <Hero eyebrow="Search" title="Search the Site" lead="Find policies, dates and forms. Press / on any page to jump here." />
@@ -85,7 +88,7 @@ const chips = ['Tuition', 'Zelle', 'Absence', 'Dress Code', 'Eid', 'Pick-Up'];
   const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
   const pageName = (url: string) => {
     const seg = url.replace(base, '/').split('/').filter(Boolean)[0] || '';
-    return ({ families: 'Handbook', 'new-families': 'New Families', registration: 'Registration', calendar: 'Calendar', curriculum: 'Curriculum', about: 'About' } as Record<string, string>)[seg] || 'Home';
+    return ({ families: 'Handbook', 'new-families': 'New Families', registration: 'Registration', calendar: 'Calendar', curriculum: 'Curriculum', about: 'About', sundays: 'Sundays' } as Record<string, string>)[seg] || 'Home';
   };
 
   function render(rows: Row[], q: string) {

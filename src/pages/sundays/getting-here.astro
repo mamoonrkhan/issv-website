@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Icon from '../../components/Icon.astro';
+import SundaysNav from '../../components/SundaysNav.astro';
+import CampusMap from '../../components/CampusMap.astro';
+import { site, arrival as a } from '../../lib/content';
+import { u } from '../../lib/url';
+
+const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(site.address || site.location);
+const greeneGuide = 'https://greene.pausd.org/about-us/getting-to-school';
+const walkRoll = 'https://www.cityofpaloalto.org/civicax/filebank/documents/72345';
+---
+<Base title="Parking & Pick-Up" current="sundays" description="Where to park at Greene Middle School, the volunteers in green vests, and how pick-up works.">
+  <Hero eyebrow="Sundays at ISSV" title="Parking & Pick-Up" lead={a.lead ?? ''}>
+    <a class="btn btn-primary" href={directions} target="_blank" rel="noopener"><Icon name="pin" />Open in Google Maps<span class="sr-only"> (opens in a new tab)</span></a>
+  </Hero>
+  <SundaysNav current="getting-here" />
+
+  <section class="wrap pt-major" aria-labelledby="park-title">
+    <div class="section-head">
+      <h2 class="h-section" id="park-title">Where to Park</h2>
+      {site.address && <span class="small-muted"><Icon name="pin" size={16} /> {site.address}</span>}
+    </div>
+    <div class="grid grid-2">
+      {(a.parking ?? []).map((p, i) => (
+        <div class={`card card-sm stack ${p.best ? 'card-highlight' : ''}`}>
+          <div class="park-head">
+            <span class="park-badge" aria-hidden="true">P{i + 1}</span>
+            <h3 class="h-card">{p.name}</h3>
+            {p.best && <span class="pill tone-green">Closest to class</span>}
+          </div>
+          {p.how && <p class="text-ink-2 text-16">{p.how}</p>}
+        </div>
+      ))}
+    </div>
+    {a.parkingNote && <p class="callout mt-gap"><Icon name="alert" size={20} /><span>{a.parkingNote}</span></p>}
+  </section>
+
+  <section class="wrap pt-major" aria-labelledby="map-heading">
+    <h2 class="h-section mb-16" id="map-heading">Map</h2>
+    <figure class="map-card card">
+      <div class="map-scroll" tabindex="0" aria-label="Campus map, scrolls sideways on small screens">
+        <CampusMap />
+      </div>
+      <ul class="map-legend" aria-label="Map key">
+        <li><span class="key key-p">P</span>Parking</li>
+        <li><span class="key key-vest"></span>Volunteer in green vest</li>
+        <li><span class="key key-walk"></span>Walking route</li>
+        <li><span class="key key-issv"></span>ISSV classrooms</li>
+      </ul>
+      <figcaption class="fineprint">Simplified and not to scale. Adapted from Greene Middle School’s <a href="https://greene.pausd.org/school-life/campus-map">August 2026 Student Map</a>. <a href={u('/sundays/campus/')}>See the full campus guide</a>.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap pt-major grid grid-2w" aria-label="Volunteers and pick-up">
+    <div class="card stack stack-md">
+      <div class="vest-hero">
+        <span class="vest-badge"><Icon name="vest" size={30} /></span>
+        <div>
+          <h2 class="h-section">Look for the Green Vests</h2>
+          <p class="text-muted">Our volunteers wear bright green vests. Please follow their directions.</p>
+        </div>
+      </div>
+      <ul class="checks">
+        {(a.volunteers ?? []).map((v) => <li><Icon name="check" size={18} />{v}</li>)}
+      </ul>
+    </div>
+    <div class="card stack stack-md" id="pickup">
+      <h2 class="h-section">Pick-Up at 1:30</h2>
+      <ul class="checks">
+        {(a.pickup ?? []).map((v) => <li><Icon name="check" size={18} />{v}</li>)}
+      </ul>
+      {a.closedCampus && <p class="callout callout-red"><Icon name="ban" size={20} /><span><b>Closed campus.</b> {a.closedCampus}</span></p>}
+    </div>
+  </section>
+
+  <section class="wrap pt-major section-last" aria-labelledby="rules-title">
+    <div class="card">
+      <h2 class="h-section" id="rules-title">Greene’s Parking Rules</h2>
+      <p class="lead-muted">Greene Middle School’s rules still apply on Sundays, and police do give tickets.</p>
+      <ul class="rule-grid">
+        {(a.greeneRules ?? []).map((r) => <li><Icon name="ban" size={18} /><span>{r}</span></li>)}
+      </ul>
+      {a.sharing && <p class="callout mt-gap"><Icon name="users" size={20} /><span>{a.sharing}</span></p>}
+      <div class="sources">
+        <span class="label">Sources</span>
+        <ul>
+          <li><a href={greeneGuide}>Getting to School</a>, Frank S. Greene Jr. Middle School (Palo Alto Unified School District)</li>
+          <li><a href={walkRoll}>Greene Walk and Roll Map</a>, City of Palo Alto Safe Routes to School, for families who walk or bike</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -20,7 +20,7 @@ for (const s of sundays) {
   const [cls, label] =
     s.status === 'no-school' ? ['day-off', `No school${s.note ? ` (${s.note})` : ''}`]
     : s.status === 'possible-virtual' ? ['day-maybe', 'Possible virtual class']
-    : s.status === 'virtual' ? ['day-virtual', 'Virtual class (Zoom)']
+    : s.status === 'virtual' ? ['day-virtual', 'Virtual class (Google Meet)']
     : ['day-class', 'Class day'];
   m.days.push({ n: d.getUTCDate(), date: s.date, cls, label });
 }
@@ -40,7 +40,7 @@ const events = [...calendar.events].sort((a, b) => a.date.localeCompare(b.date))
     <h2 id="months-title" class="sr-only">Class Days by Month</h2>
     <div class="legend">
       <span><span class="swatch swatch-class"></span>Class day</span>
-      {hasVirtual && <span><span class="swatch swatch-virtual"></span>Virtual (Zoom)</span>}
+      {hasVirtual && <span><span class="swatch swatch-virtual"></span>Virtual (Google Meet)</span>}
       <span><span class="swatch swatch-maybe"></span>Possible virtual class</span>
       <span><span class="swatch swatch-off"></span>No school</span>
     </div>

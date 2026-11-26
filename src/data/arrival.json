@@ -1,0 +1,39 @@
+{
+  "lead": "Where to park, who to look for, and how pick-up works at Greene Middle School.",
+  "parking": [
+    {
+      "name": "Middlefield Parking Lot",
+      "how": "Enter from Middlefield Road. This is the main lot and the closest one to our classrooms in the C, F, N and P wings.",
+      "best": true
+    },
+    {
+      "name": "N. California Loop",
+      "how": "The half-circle driveway in front of the school on North California Avenue. From there, walk east along the front of the school to our wings.",
+      "best": false
+    }
+  ],
+  "parkingNote": "Both are open to families and volunteers on Sundays. Skip any space marked Staff Only, and don’t use disabled spaces without a placard.",
+  "volunteers": [
+    "At the lot entrance, waving cars in and pointing to open spaces",
+    "At the crosswalks, helping families walk safely from the lot to campus",
+    "At the building doors, pointing students to the right wing",
+    "Back out at 1:30 PM for pick-up"
+  ],
+  "pickup": [
+    "Class ends at 1:30 PM.",
+    "KG through Grade 8: a parent or guardian must come to the classroom to pick up their child.",
+    "Youth Group students may leave on their own.",
+    "Volunteers and security guards watch the campus at dismissal to keep everyone safe and moving.",
+    "Dhuhr prayer is held right after class in the lunch area between the F and G wings. It’s optional."
+  ],
+  "closedCampus": "Students may not leave the Greene campus during school. The only exceptions: a parent or guardian comes to take them, or Youth Group students leave with a chaperone.",
+  "greeneRules": [
+    "Don’t park or stop at red curbs, even for a quick drop-off.",
+    "Disabled spaces need a placard. These are enforced with tickets.",
+    "No double parking. Pull all the way into a space.",
+    "Don’t use the small driveways by the C-Wing, or behind the MPR and tennis courts, for drop-off or pick-up.",
+    "Don’t open car doors into the North California bike lane.",
+    "Don’t use Bus Only zones."
+  ],
+  "sharing": "We’re guests at Greene. If there’s another event on campus, like a swim meet, give them their space: park where volunteers direct you and stay out of their area."
+}

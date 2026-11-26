@@ -1,0 +1,107 @@
+---
+import Base from '../../layouts/Base.astro';
+import Hero from '../../components/Hero.astro';
+import Icon from '../../components/Icon.astro';
+import SundaysNav from '../../components/SundaysNav.astro';
+import { site, online as o } from '../../lib/content';
+import { u } from '../../lib/url';
+
+const classroom = 'https://classroom.google.com/';
+---
+<Base title="Online Classes" current="sundays" description="How to join ISSV virtual classes on Google Classroom and Google Meet, for students, parents and teachers.">
+  <Hero eyebrow="Sundays at ISSV" title="Online Classes" lead={o.lead ?? ''}>
+    <a class="btn btn-primary" href={classroom} target="_blank" rel="noopener"><Icon name="external" />Open Google Classroom<span class="sr-only"> (opens in a new tab)</span></a>
+  </Hero>
+  <SundaysNav current="online" />
+
+  <section class="wrap pt-major" aria-label="The one rule">
+    <div class="rule-banner">
+      <span class="rule-icon"><Icon name="users" size={26} /></span>
+      <div>
+        <h2 class="h-card">The one rule that fixes most problems</h2>
+        <p>Always join from <b>Google Classroom</b>, signed in with your <b>ISSV school account</b>, not a personal or parent Gmail.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap pt-major" aria-labelledby="who-title">
+    <h2 class="sr-only" id="who-title">Choose your guide</h2>
+    <div class="tablist" role="tablist" aria-label="Guides">
+      <button class="tab" role="tab" id="tab-students" aria-controls="panel-students" aria-selected="true">Students &amp; Parents</button>
+      <button class="tab" role="tab" id="tab-teachers" aria-controls="panel-teachers" aria-selected="false" tabindex="-1">Teachers</button>
+    </div>
+
+    <div class="tabpanel" role="tabpanel" id="panel-students" aria-labelledby="tab-students">
+      <div class="online-grid">
+        <ol class="big-steps">
+          {(o.students ?? []).map((s, i) => (
+            <li><span class="big-num">{i + 1}</span><div><h3 class="h-card">{s.title}</h3>{s.body && <p class="text-ink-2 text-16">{s.body}</p>}</div></li>
+          ))}
+        </ol>
+        <aside class="stack stack-md">
+          <figure class="mock" aria-label="Illustration: where the Meet link is in Google Classroom">
+            <div class="mock-bar"><span></span><span></span><span></span><b>classroom.google.com</b></div>
+            <div class="mock-banner">Grade 4 · Islamic Studies</div>
+            <div class="mock-body">
+              <div class="mock-meet"><Icon name="video" size={18} /><span>Meet</span><span class="mock-join">Join</span></div>
+              <div class="mock-post"><i></i><i></i></div>
+              <div class="mock-post"><i></i><i></i></div>
+            </div>
+            <figcaption>Look for <b>Meet · Join</b> on your class’s Stream page. (Illustration.)</figcaption>
+          </figure>
+          <div class="card card-sm stack">
+            <h3 class="h-card">In class</h3>
+            <ul class="checks">{(o.etiquette ?? []).map((e) => <li><Icon name="check" size={18} />{e}</li>)}</ul>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div class="tabpanel" role="tabpanel" id="panel-teachers" aria-labelledby="tab-teachers" hidden>
+      <ol class="big-steps big-steps-2">
+        {(o.teachers ?? []).map((s, i) => (
+          <li><span class="big-num">{i + 1}</span><div><h3 class="h-card">{s.title}</h3>{s.body && <p class="text-ink-2 text-16">{s.body}</p>}</div></li>
+        ))}
+      </ol>
+      <p class="callout mt-gap"><Icon name="alert" size={20} /><span>Don’t see the Meet link setting, or a class is missing? Email <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a> and the admin will fix it.</span></p>
+    </div>
+  </section>
+
+  <section class="wrap pt-major section-last">
+    <div class="card card-list">
+      <h2 class="h-section card-list-title">Something Not Working?</h2>
+      {(o.troubleshooting ?? []).map((t) => (
+        <details class="disclosure">
+          <summary><span class="q">{t.q}</span><Icon name="chevron" size={20} class="chev" /></summary>
+          <p class="body">{t.a}</p>
+        </details>
+      ))}
+      <p class="small-muted pb-16">Still stuck? Email <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a>. On a virtual Sunday, check the <a href={u('/')}>home page</a> for updates.</p>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Accessible tabs: click or use arrow keys.
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+  const select = (tab: HTMLButtonElement, focus = false) => {
+    tabs.forEach((t) => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      const panel = document.getElementById(t.getAttribute('aria-controls')!);
+      if (panel) panel.hidden = !on;
+    });
+    if (focus) tab.focus();
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => { select(t); history.replaceState(null, '', '#' + t.id.replace('tab-', '')); });
+    t.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') select(tabs[(i + 1) % tabs.length], true);
+      if (e.key === 'ArrowLeft') select(tabs[(i - 1 + tabs.length) % tabs.length], true);
+    });
+  });
+  // /sundays/online/#teachers opens the teacher guide.
+  const fromHash = tabs.find((t) => t.id === 'tab-' + location.hash.slice(1));
+  if (fromHash) select(fromHash);
+</script>

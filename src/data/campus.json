@@ -1,0 +1,23 @@
+{
+  "lead": "We use only part of Greene Middle School. Here’s where classes are, where events happen, and which areas are off-limits.",
+  "rooms": [
+    { "grade": "KG", "where": "" },
+    { "grade": "Grade 1", "where": "" },
+    { "grade": "Grade 2", "where": "" },
+    { "grade": "Grade 3", "where": "" },
+    { "grade": "Grade 4", "where": "" },
+    { "grade": "Grade 5", "where": "" },
+    { "grade": "Grade 6", "where": "" },
+    { "grade": "Grade 7", "where": "" },
+    { "grade": "Grade 8", "where": "" },
+    { "grade": "Youth Group", "where": "" }
+  ],
+  "events": "Assemblies, ceremonies, Eid events and graduation are held in the Gym or the MPR (Multi-Purpose Room). The event announcement says which one.",
+  "offLimits": [
+    "The construction zone in the middle of campus",
+    "The pool, and the gym except during school events",
+    "Fields, tennis courts and other outdoor play areas",
+    "Any locked room. If it’s locked, it’s not for us."
+  ],
+  "allowed": "Youth Group students may use the basketball courts during break. Bring your own ball."
+}
