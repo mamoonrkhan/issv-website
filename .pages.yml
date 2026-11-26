@@ -290,7 +290,7 @@ content:
 
   # ------------------------------------------------------------------
   - name: arrival
-    label: "Sundays: Parking & Pick-Up"
+    label: "School Day: Parking & Pick-Up"
     type: file
     path: src/data/arrival.json
     format: json
@@ -317,7 +317,7 @@ content:
 
   # ------------------------------------------------------------------
   - name: campus
-    label: "Sundays: Campus Map"
+    label: "School Day: Campus Map"
     type: file
     path: src/data/campus.json
     format: json
@@ -341,7 +341,7 @@ content:
 
   # ------------------------------------------------------------------
   - name: online
-    label: "Sundays: Online Classes"
+    label: "School Day: Online Classes"
     type: file
     path: src/data/online.json
     format: json

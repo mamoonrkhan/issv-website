@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import Icon from '../../components/Icon.astro';
-import SundaysNav from '../../components/SundaysNav.astro';
+import SchoolDayNav from '../../components/SchoolDayNav.astro';
 import CampusMap from '../../components/CampusMap.astro';
 import { site, arrival as a } from '../../lib/content';
 import { u } from '../../lib/url';
@@ -11,11 +11,11 @@ const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeUR
 const greeneGuide = 'https://greene.pausd.org/about-us/getting-to-school';
 const walkRoll = 'https://www.cityofpaloalto.org/civicax/filebank/documents/72345';
 ---
-<Base title="Parking & Pick-Up" current="sundays" description="Where to park at Greene Middle School, the volunteers in green vests, and how pick-up works.">
-  <Hero eyebrow="Sundays at ISSV" title="Parking & Pick-Up" lead={a.lead ?? ''}>
+<Base title="Parking & Pick-Up" current="school-day" description="Where to park at Greene Middle School, the volunteers in green vests, and how pick-up works.">
+  <Hero eyebrow="School Day" title="Parking & Pick-Up" lead={a.lead ?? ''}>
     <a class="btn btn-primary" href={directions} target="_blank" rel="noopener"><Icon name="pin" />Open in Google Maps<span class="sr-only"> (opens in a new tab)</span></a>
   </Hero>
-  <SundaysNav current="getting-here" />
+  <SchoolDayNav current="getting-here" />
 
   <section class="wrap pt-major" aria-labelledby="park-title">
     <div class="section-head">
@@ -49,7 +49,7 @@ const walkRoll = 'https://www.cityofpaloalto.org/civicax/filebank/documents/7234
         <li><span class="key key-walk"></span>Walking route</li>
         <li><span class="key key-issv"></span>ISSV classrooms</li>
       </ul>
-      <figcaption class="fineprint">Simplified and not to scale. Adapted from Greene Middle School’s <a href="https://greene.pausd.org/school-life/campus-map">August 2026 Student Map</a>. <a href={u('/sundays/campus/')}>See the full campus guide</a>.</figcaption>
+      <figcaption class="fineprint">Simplified and not to scale. Adapted from Greene Middle School’s <a href="https://greene.pausd.org/school-life/campus-map">August 2026 Student Map</a>. <a href={u('/school-day/campus/')}>See the full campus guide</a>.</figcaption>
     </figure>
   </section>
 
@@ -59,7 +59,7 @@ const walkRoll = 'https://www.cityofpaloalto.org/civicax/filebank/documents/7234
         <span class="vest-badge"><Icon name="vest" size={30} /></span>
         <div>
           <h2 class="h-section">Look for the Green Vests</h2>
-          <p class="text-muted">Our volunteers wear bright green vests. Please follow their directions.</p>
+          <p class="text-muted">Our volunteers. Please follow their directions.</p>
         </div>
       </div>
       <ul class="checks">
@@ -78,7 +78,7 @@ const walkRoll = 'https://www.cityofpaloalto.org/civicax/filebank/documents/7234
   <section class="wrap pt-major section-last" aria-labelledby="rules-title">
     <div class="card">
       <h2 class="h-section" id="rules-title">Greene’s Parking Rules</h2>
-      <p class="lead-muted">Greene Middle School’s rules still apply on Sundays, and police do give tickets.</p>
+      <p class="lead-muted">They apply on Sundays too, and police do ticket.</p>
       <ul class="rule-grid">
         {(a.greeneRules ?? []).map((r) => <li><Icon name="ban" size={18} /><span>{r}</span></li>)}
       </ul>
@@ -87,7 +87,7 @@ const walkRoll = 'https://www.cityofpaloalto.org/civicax/filebank/documents/7234
         <span class="label">Sources</span>
         <ul>
           <li><a href={greeneGuide}>Getting to School</a>, Frank S. Greene Jr. Middle School (Palo Alto Unified School District)</li>
-          <li><a href={walkRoll}>Greene Walk and Roll Map</a>, City of Palo Alto Safe Routes to School, for families who walk or bike</li>
+          <li><a href={walkRoll}>Greene Walk and Roll Map</a>, City of Palo Alto Safe Routes to School (walking and biking)</li>
         </ul>
       </div>
     </div>

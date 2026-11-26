@@ -1,23 +1,53 @@
 {
-  "lead": "We use only part of Greene Middle School. Here’s where classes are, where events happen, and which areas are off-limits.",
+  "lead": "We use only part of Greene Middle School. Here’s where to go and where not to.",
   "rooms": [
-    { "grade": "KG", "where": "" },
-    { "grade": "Grade 1", "where": "" },
-    { "grade": "Grade 2", "where": "" },
-    { "grade": "Grade 3", "where": "" },
-    { "grade": "Grade 4", "where": "" },
-    { "grade": "Grade 5", "where": "" },
-    { "grade": "Grade 6", "where": "" },
-    { "grade": "Grade 7", "where": "" },
-    { "grade": "Grade 8", "where": "" },
-    { "grade": "Youth Group", "where": "" }
+    {
+      "grade": "KG",
+      "where": ""
+    },
+    {
+      "grade": "Grade 1",
+      "where": ""
+    },
+    {
+      "grade": "Grade 2",
+      "where": ""
+    },
+    {
+      "grade": "Grade 3",
+      "where": ""
+    },
+    {
+      "grade": "Grade 4",
+      "where": ""
+    },
+    {
+      "grade": "Grade 5",
+      "where": ""
+    },
+    {
+      "grade": "Grade 6",
+      "where": ""
+    },
+    {
+      "grade": "Grade 7",
+      "where": ""
+    },
+    {
+      "grade": "Grade 8",
+      "where": ""
+    },
+    {
+      "grade": "Youth Group",
+      "where": ""
+    }
   ],
-  "events": "Assemblies, ceremonies, Eid events and graduation are held in the Gym or the MPR (Multi-Purpose Room). The event announcement says which one.",
+  "events": "Assemblies, ceremonies, Eid events and graduation are in the Gym or the MPR. The announcement says which.",
   "offLimits": [
-    "The construction zone in the middle of campus",
-    "The pool, and the gym except during school events",
+    "The construction zone",
+    "The pool, and the gym outside events",
     "Fields and other outdoor play areas",
-    "Any locked room. If it’s locked, it’s not for us."
+    "Any locked room"
   ],
-  "allowed": "Students may use the tennis courts if they bring their own equipment. Youth Group students may use the basketball courts. Bring your own ball."
+  "allowed": "Youth Group may use the basketball and tennis courts with their own equipment."
 }

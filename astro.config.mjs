@@ -21,5 +21,10 @@ export default defineConfig({
     '/late-policy': to('/families/#arrival'),
     '/reusebooks': to('/families/#books'),
     '/evaluation-reports': to('/families/#homework'),
+    // The School Day section was first published as /sundays/.
+    '/sundays': to('/school-day/'),
+    '/sundays/getting-here': to('/school-day/getting-here/'),
+    '/sundays/campus': to('/school-day/campus/'),
+    '/sundays/online': to('/school-day/online/'),
   },
 });

@@ -561,7 +561,7 @@ a:hover .arrow { transform: translateX(4px); }
 .site-footer .btn-gold, .site-footer .btn-gold:hover { color: var(--green-900); }
 .site-footer .bottom { padding-top: 18px; padding-bottom: 26px; border-top: 1px solid #1F5546; font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
 
-/* ---------- Sundays section ---------- */
+/* ---------- School Day section ---------- */
 .subnav { position: relative; margin-top: -26px; z-index: 2; }
 .subnav ul {
   list-style: none; margin: 0; padding: 6px; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none;
@@ -580,7 +580,7 @@ a:hover .arrow { transform: translateX(4px); }
   background: var(--white); border: 1px solid var(--line); border-radius: var(--r-card); box-shadow: var(--shadow-card);
 }
 .guide-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--stone-400); color: var(--ink); }
-.guide-card .text-link { margin-top: auto; padding-top: 6px; }
+.guide-card .text-link { margin-top: auto; padding-top: 6px; color: var(--green-700); }
 .guide-icon, .area-icon {
   width: 46px; height: 46px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center;
   background: var(--green-50); color: var(--green-700); margin-bottom: 6px;
@@ -685,7 +685,7 @@ a:hover .arrow { transform: translateX(4px); }
 .mock-post i { display: block; height: 7px; border-radius: 4px; background: var(--stone-200); }
 .mock-post i + i { width: 60%; }
 .mock figcaption { padding: 0 16px 14px; font-size: 14px; color: var(--muted); }
-.pb-16 { padding-bottom: 16px; }
+.help-line { margin: 0; padding: 22px 0 26px; font-size: 15px; color: var(--muted); }
 
 /* Home: Sundays quick links */
 .quick-links { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }

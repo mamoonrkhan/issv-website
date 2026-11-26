@@ -2,24 +2,24 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import Icon from '../../components/Icon.astro';
-import SundaysNav from '../../components/SundaysNav.astro';
+import SchoolDayNav from '../../components/SchoolDayNav.astro';
 import { site, curriculum as cur } from '../../lib/content';
 import { u } from '../../lib/url';
 
 const directions = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(site.address || site.location);
 const guides = [
-  { href: '/sundays/getting-here/', icon: 'car', title: 'Parking & Pick-Up', text: 'Where to park at Greene, the volunteers in green vests, and how pick-up works at 1:30.' },
-  { href: '/sundays/campus/', icon: 'map', title: 'Campus Map', text: 'Which wings our classes are in, where events and prayer happen, and what’s off-limits.' },
-  { href: '/sundays/online/', icon: 'laptop', title: 'Online Classes', text: 'Google Classroom and Meet, step by step, for students, parents and teachers.' },
-  { href: '/families/', icon: 'book', title: 'Parent Handbook', text: 'Late policy, attendance, dress code, conduct and the rest of the rules.' },
+  { href: '/school-day/getting-here/', icon: 'car', title: 'Parking & Pick-Up', text: 'Where to park, the green-vest volunteers, and 1:30 pick-up.' },
+  { href: '/school-day/campus/', icon: 'map', title: 'Campus Map', text: 'Our wings, event spaces, and what’s off-limits.' },
+  { href: '/school-day/online/', icon: 'laptop', title: 'Online Classes', text: 'Classroom and Meet, step by step, for families and teachers.' },
+  { href: '/families/', icon: 'book', title: 'Parent Handbook', text: 'Lateness, attendance, dress code and conduct.' },
 ] as const;
 ---
-<Base title="Sundays at ISSV" current="sundays" description="Everything for a school Sunday: parking, pick-up, the campus map and online classes.">
-  <Hero eyebrow="Sundays at ISSV" title="Your Sunday, Start to Finish" lead={`Classes run ${site.hours.replace('Sundays ', '')} at ${site.location}. Here’s how the day works.`}>
-    <a class="btn btn-primary" href={u('/sundays/getting-here/')}><Icon name="car" />Parking &amp; Pick-Up</a>
+<Base title="School Day" current="school-day" description="Everything for a school Sunday: parking, pick-up, the campus map and online classes.">
+  <Hero eyebrow="School Day" title="Your School Day" lead={`Sundays, ${site.hours.replace('Sundays ', '')}, at ${site.location}.`}>
+    <a class="btn btn-primary" href={u('/school-day/getting-here/')}><Icon name="car" />Parking &amp; Pick-Up</a>
     <a class="btn btn-outline" href={directions} target="_blank" rel="noopener"><Icon name="pin" />Directions<span class="sr-only"> (opens in a new tab)</span></a>
   </Hero>
-  <SundaysNav current="hub" />
+  <SchoolDayNav current="hub" />
 
   <section class="wrap pt-major" aria-labelledby="guides-title">
     <h2 class="h-section mb-16" id="guides-title">Guides</h2>
@@ -40,23 +40,23 @@ const guides = [
       <div class="card">
         <h2 class="h-section mb-20" id="day-title">A Sunday at ISSV</h2>
         <ol class="timeline">
-          <li><span class="t-time">9:45</span><span class="t-what"><b>Arrive and park</b><span class="small-muted">Follow the volunteers in green vests to your wing.</span></span></li>
+          <li><span class="t-time">9:45</span><span class="t-what"><b>Arrive and park</b><span class="small-muted">Follow the green vests to your wing.</span></span></li>
           {cur.schedule.map((s) => (
-            <li><span class="t-time">{s.time.split('–')[0]}</span><span class="t-what"><b>{s.what}</b><span class="small-muted">{s.time}</span></span></li>
+            <li><span class="t-time">{s.time.split('–')[0]}</span><span class="t-what"><b>{s.what}</b></span></li>
           ))}
-          <li><span class="t-time">1:30</span><span class="t-what"><b>Pick-up</b><span class="small-muted">KG–Grade 8 are picked up from the classroom by a parent or guardian.</span></span></li>
+          <li><span class="t-time">1:30</span><span class="t-what"><b>Pick-up</b><span class="small-muted">KG–Grade 8 from the classroom, by a parent.</span></span></li>
         </ol>
       </div>
       <div class="stack stack-md">
         <div class="card card-sm card-highlight stack">
           <span class="label">Missing a Sunday?</span>
-          <span class="text-16">Use the absence form. Please don’t call.</span>
+          <span class="text-16">Use the form. Please don’t call.</span>
           <a class="btn btn-primary self-start" href={site.absenceFormUrl}>Report an Absence</a>
         </div>
         <div class="card card-sm stack">
           <span class="label">Virtual Sunday?</span>
-          <span class="text-16">The calendar and the home page show it. Join from your class in Google Classroom, signed in with your school account.</span>
-          <a class="text-link" href={u('/sundays/online/')}>Online class guide <span class="arrow" aria-hidden="true">→</span></a>
+          <span class="text-16">Join from Google Classroom with your school account.</span>
+          <a class="text-link" href={u('/school-day/online/')}>Online class guide <span class="arrow" aria-hidden="true">→</span></a>
         </div>
         <div class="card card-sm stack">
           <span class="label">Where</span>

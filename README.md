@@ -25,10 +25,10 @@ A proposed new website for the Islamic School of Silicon Valley. It's fast, work
 | Home | `/` | "This Sunday" card (status, absence form, calendar buttons, announcements), upcoming dates, parent links, at-a-glance facts |
 | About | `/about/` | Story, mission, donations, contact |
 | New families | `/new-families/` | How joining works, common questions |
-| Sundays | `/sundays/` | Hub for a school day: guides, timeline, absence and virtual-day help |
-| Parking & pick-up | `/sundays/getting-here/` | Where to park at Greene, green-vest volunteers, pick-up rules, Greene's parking rules (credited) |
-| Campus map | `/sundays/campus/` | Simplified map adapted from Greene's student map: ISSV wings, event spaces, prayer area, off-limits areas, rooms by grade |
-| Online classes | `/sundays/online/` | Google Classroom and Meet steps for students/parents and teachers, plus troubleshooting |
+| School Day | `/school-day/` | Hub for a school day: guides, timeline, absence and virtual-day help |
+| Parking & pick-up | `/school-day/getting-here/` | Where to park at Greene, green-vest volunteers, pick-up rules, Greene's parking rules (credited) |
+| Campus map | `/school-day/campus/` | Simplified map adapted from Greene's student map: ISSV wings, event spaces, prayer area, off-limits areas, rooms by grade |
+| Online classes | `/school-day/online/` | Google Classroom and Meet steps for students/parents and teachers, plus troubleshooting |
 | Calendar | `/calendar/` | Class days by month, events, holidays, one-tap subscribe for Google, Apple and Outlook |
 | Curriculum | `/curriculum/` | Tabs for each grade (KG to Youth Group), daily schedule, milestones |
 | Parent handbook | `/families/` | Jump links, then policies in collapsible sections. Links like `/families/#dress` open the right one |
@@ -52,7 +52,7 @@ Editors just click **Save**, and the site updates by itself in about a minute. E
 | Calendar | Each Sunday's status (in session, virtual, possible virtual, no school) and note, plus events. Updates the Calendar page, the This Sunday card and the calendar feed. |
 | Tuition & Payment | Zelle details and QR code, check payee, tuition and dates |
 | Parent Handbook, Curriculum, New Family Questions | The text on those pages |
-| Sundays: Parking & Pick-Up, Campus Map, Online Classes | The text of those guides, including room numbers for each grade |
+| School Day: Parking & Pick-Up, Campus Map, Online Classes | The text of those guides, including room numbers for each grade |
 | Contact, Links & PDFs | Emails, links, PDF uploads, the home page photo and its credit |
 
 ### Inviting volunteers

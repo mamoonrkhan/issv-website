@@ -2,24 +2,24 @@
 import Base from '../../layouts/Base.astro';
 import Hero from '../../components/Hero.astro';
 import Icon from '../../components/Icon.astro';
-import SundaysNav from '../../components/SundaysNav.astro';
+import SchoolDayNav from '../../components/SchoolDayNav.astro';
 import { site, online as o } from '../../lib/content';
 import { u } from '../../lib/url';
 
 const classroom = 'https://classroom.google.com/';
 ---
-<Base title="Online Classes" current="sundays" description="How to join ISSV virtual classes on Google Classroom and Google Meet, for students, parents and teachers.">
-  <Hero eyebrow="Sundays at ISSV" title="Online Classes" lead={o.lead ?? ''}>
+<Base title="Online Classes" current="school-day" description="How to join ISSV virtual classes on Google Classroom and Google Meet, for students, parents and teachers.">
+  <Hero eyebrow="School Day" title="Online Classes" lead={o.lead ?? ''}>
     <a class="btn btn-primary" href={classroom} target="_blank" rel="noopener"><Icon name="external" />Open Google Classroom<span class="sr-only"> (opens in a new tab)</span></a>
   </Hero>
-  <SundaysNav current="online" />
+  <SchoolDayNav current="online" />
 
   <section class="wrap pt-major" aria-label="The one rule">
     <div class="rule-banner">
       <span class="rule-icon"><Icon name="users" size={26} /></span>
       <div>
-        <h2 class="h-card">The one rule that fixes most problems</h2>
-        <p>Always join from <b>Google Classroom</b>, signed in with your <b>ISSV school account</b>, not a personal or parent Gmail.</p>
+        <h2 class="h-card">The rule that fixes most problems</h2>
+        <p>Join from <b>Google Classroom</b> with your <b>ISSV school account</b>, never a personal Gmail.</p>
       </div>
     </div>
   </section>
@@ -47,7 +47,7 @@ const classroom = 'https://classroom.google.com/';
               <div class="mock-post"><i></i><i></i></div>
               <div class="mock-post"><i></i><i></i></div>
             </div>
-            <figcaption>Look for <b>Meet · Join</b> on your class’s Stream page. (Illustration.)</figcaption>
+            <figcaption>Look for <b>Meet · Join</b> on your class’s Stream page.</figcaption>
           </figure>
           <div class="card card-sm stack">
             <h3 class="h-card">In class</h3>
@@ -63,7 +63,7 @@ const classroom = 'https://classroom.google.com/';
           <li><span class="big-num">{i + 1}</span><div><h3 class="h-card">{s.title}</h3>{s.body && <p class="text-ink-2 text-16">{s.body}</p>}</div></li>
         ))}
       </ol>
-      <p class="callout mt-gap"><Icon name="alert" size={20} /><span>Don’t see the Meet link setting, or a class is missing? Email <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a> and the admin will fix it.</span></p>
+      <p class="callout mt-gap"><Icon name="alert" size={20} /><span>No Meet link setting, or a class missing? Email <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a> and the admin will fix it.</span></p>
     </div>
   </section>
 
@@ -76,7 +76,7 @@ const classroom = 'https://classroom.google.com/';
           <p class="body">{t.a}</p>
         </details>
       ))}
-      <p class="small-muted pb-16">Still stuck? Email <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a>. On a virtual Sunday, check the <a href={u('/')}>home page</a> for updates.</p>
+      <p class="help-line">Still stuck? Email <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a>, and check the <a href={u('/')}>home page</a> for updates.</p>
     </div>
   </section>
 </Base>
@@ -101,7 +101,7 @@ const classroom = 'https://classroom.google.com/';
       if (e.key === 'ArrowLeft') select(tabs[(i - 1 + tabs.length) % tabs.length], true);
     });
   });
-  // /sundays/online/#teachers opens the teacher guide.
+  // /school-day/online/#teachers opens the teacher guide.
   const fromHash = tabs.find((t) => t.id === 'tab-' + location.hash.slice(1));
   if (fromHash) select(fromHash);
 </script>
