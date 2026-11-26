@@ -95,6 +95,7 @@ export interface Campus {
   lead?: string;
   rooms?: { grade: string; where?: string }[];
   events?: string;
+  lunch?: string;
   offLimits?: string[];
   allowed?: string;
 }

@@ -156,7 +156,7 @@
 <!-- 6. Outro -->
 <section data-scene="outro">
   <div class="center">
-    <span class="chip">That’s it!</span>
+    <span class="chip">All set</span>
     <h1>You’re ready to teach</h1>
     <p>Written steps: <b>School website → School Day → Online Classes</b></p>
     <p style="font-size:20px;color:var(--muted)">Missing a class or setting? Email <b>issvsupport@learnislam.org</b></p>
@@ -196,11 +196,11 @@ window.VIDEO = {
 
     { scene: 'meetlink', text: 'Each grade has a first period class and a second period class, and each one needs its own Meet link. You only do this once.',
       cues: [] },
-    { scene: 'meetlink', text: 'In each class, click the gear icon to open Settings.',
+    { scene: 'meetlink', text: 'In each class, click the gear icon to open “Settings”.',
       cues: [ { at: 0.8, cursor: '#m-gear' }, { at: 1.8, click: true }, { at: 2.0, add: '#m-settings', cls: 'on' } ] },
-    { scene: 'meetlink', text: 'Settings opens as a new page. Scroll down to Manage Meet link, next to the Google Meet logo, and click it.',
+    { scene: 'meetlink', text: 'Settings opens as a new page. Scroll down to “Manage Meet link”, next to the Google Meet logo, and click it.',
       cues: [ { at: 0.8, cursor: '#m-scroll' }, { at: 1.2, scroll: '#m-scroll', by: 250, dur: 1.8 }, { at: 3.6, cursor: '#m-manage' }, { at: 4.3, add: '#m-manage', cls: 'ring' }, { at: 5.6, click: true }, { at: 5.7, add: '#m-dlg', cls: 'on' } ] },
-    { scene: 'meetlink', text: 'Click Generate link, turn on Visible to students, and click Save.',
+    { scene: 'meetlink', text: 'Click “Generate link”, turn on “Visible to students”, and click “Save”.',
       cues: [ { at: 0.3, cursor: '#m-gen' }, { at: 1.2, click: true }, { at: 1.3, add: '#m-link', cls: 'on' }, { at: 1.8, cursor: '#m-toggle' }, { at: 2.6, click: true }, { at: 2.7, add: '#m-toggle', cls: 'on' }, { at: 3.3, cursor: '#m-dsave' }, { at: 4.0, click: true }, { at: 4.1, add: '#m-dlg', cls: 'gone' } ] },
     { scene: 'meetlink', text: 'Now each class has one Meet link for every virtual Sunday. Please don’t post links anywhere else.',
       cues: [ { at: 0, add: '#m-settings', cls: 'gone' }, { at: 0.3, add: '#m-side', cls: 'on' }, { at: 0.5, cursor: '#m-side' }, { at: 1.2, add: '#m-side', cls: 'ring' } ] },
@@ -212,23 +212,23 @@ window.VIDEO = {
       cues: [ { at: 0, add: '#r-box', cls: 'typing' }, { at: 0.3, type: '#r-text', text: 'Virtual class tomorrow! Test your connection 10:00–10:15; class starts 10:15. Join from the Meet link here with your LearnIslam account.', dur: 6.5 }, { at: 7.2, cursor: '#r-post' }, { at: 8.0, click: true }, { at: 8.1, add: '#r-box', cls: 'posted' } ] },
 
     { scene: 'meet', text: 'On Sunday, open the Meet at about 9:50, straight from your class page.', say: 'On Sunday, open the Meet at about nine fifty, straight from your class page.' },
-    { scene: 'meet', text: 'Click the Host controls shield, and turn on Host management. Now you can mute everyone, decide who joins, and remove anyone disrupting class.',
+    { scene: 'meet', text: 'Click the “Host controls” shield, and turn on “Host management”. Now you can mute everyone, decide who joins, and remove anyone disrupting class.',
       cues: [ { at: 0.4, cursor: '#t-shield' }, { at: 1.4, click: true }, { at: 1.5, add: '#t-panel', cls: 'on' }, { at: 2.6, cursor: '#t-toggle' }, { at: 3.4, click: true }, { at: 3.5, add: '#t-toggle', cls: 'on' } ] },
-    { scene: 'meet', text: 'Students signed in with a personal account will show up as asking to join.',
+    { scene: 'meet', text: 'Students signed in with a personal account will show up as “asking to join”.',
       cues: [ { at: 0.2, add: '#t-panel', cls: 'gone' }, { at: 0.6, add: '#t-ask', cls: 'on' } ] },
     { scene: 'meet', text: 'Check the name against your class roster before admitting, and fix any display names you don’t recognize.',
       cues: [ { at: 0, add: '#t-ask', cls: 'on' }, { at: 0.5, cursor: '#t-admit' }, { at: 1.6, click: true }, { at: 1.7, add: '#t-ask', cls: 'gone' }, { at: 1.8, add: '#t-tile2', cls: 'on' } ] },
 
-    { scene: 'meet', text: 'Before class ends, open the People panel, and take attendance from the participants listed.',
+    { scene: 'meet', text: 'Before class ends, open the “People” panel, and take attendance from the participants listed.',
       cues: [ { at: 0.8, cursor: '#t-people' }, { at: 1.8, click: true }, { at: 1.9, add: '#t-ppl', cls: 'on' }, { at: 3.6, add: '#t-plist', cls: 'ring' } ] },
-    { scene: 'meet', text: 'When class is over, click the red button, and choose End the call for everyone.',
+    { scene: 'meet', text: 'When class is over, click the red button, and choose “End the call for everyone”.',
       cues: [ { at: 0, add: '#t-ppl', cls: 'gone' }, { at: 0.5, cursor: '#t-leave' }, { at: 1.6, click: true }, { at: 1.7, add: '#t-end', cls: 'on' }, { at: 2.6, cursor: '#t-endall' }, { at: 3.6, click: true }, { at: 3.7, add: '#t-endall', cls: 'ring' } ] },
 
-    { scene: 'wrap', text: 'Then post any homework in Classwork.',
+    { scene: 'wrap', text: 'Then post any homework in “Classwork”.',
       cues: [ { at: 0.4, cursor: '#w-classwork' }, { at: 1.0, add: '#w-classwork', cls: 'ring' } ] },
 
-    { scene: 'outro', text: 'That’s it! The written steps are on the Online Classes page of the school website. If a class or setting is missing, email issvsupport@learnislam.org.',
-      say: 'That’s it! The written steps are on the Online Classes page of the school website. If a class or setting is missing, email I S S V support, at learn islam dot org.' },
+    { scene: 'outro', text: 'You’re all set. The written steps are on the Online Classes page of the school website. If a class or setting is missing, email issvsupport@learnislam.org.',
+      say: 'You’re all set. The written steps are on the Online Classes page of the school website. If a class or setting is missing, email I S S V support, at learn islam dot org.' },
   ],
 };
 </script>

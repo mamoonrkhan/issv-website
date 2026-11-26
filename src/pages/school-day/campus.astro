@@ -23,6 +23,7 @@ const anyRooms = rooms.some((r) => r.where);
       <ul class="map-legend" aria-label="Map key">
         <li><span class="key key-issv"></span>ISSV classrooms</li>
         <li><span class="key key-event"></span>Events (Gym, MPR)</li>
+        <li><span class="key key-lunch"></span>Lunch at break</li>
         <li><span class="key key-prayer"></span>Dhuhr prayer</li>
         <li><span class="key key-ok"></span>Youth Group, own equipment</li>
         <li><span class="key key-off"></span>Off-limits</li>
@@ -42,7 +43,8 @@ const anyRooms = rooms.some((r) => r.where);
     </div>
     <div class="card card-sm stack area area-event">
       <span class="area-icon"><Icon name="star" size={22} /></span>
-      <h2 class="h-card">Events &amp; Prayer</h2>
+      <h2 class="h-card">Lunch, Events &amp; Prayer</h2>
+      {c.lunch && <p class="text-ink-2 text-16">{c.lunch}</p>}
       <p class="text-ink-2 text-16">{c.events}</p>
       <p class="text-ink-2 text-16">Dhuhr is after class, between the F and G wings.</p>
     </div>

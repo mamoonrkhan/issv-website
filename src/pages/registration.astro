@@ -12,8 +12,8 @@ import { u } from '../lib/url';
 const fmt = (n: number) => '$' + n.toLocaleString('en-US');
 const qr = resolveImage(pay.zelleQr);
 ---
-<Base title="Registration & Tuition" current="registration" description={`Register in person at school. Tuition is ${fmt(pay.tuitionPerChild)} per child; pay by Zelle or check.`}>
-  <Hero eyebrow={`${calendar.schoolYear} School Year`} title="Registration & Tuition" lead={`In person at school · ${fmt(pay.tuitionPerChild)} per child · pay by Zelle or check`}>
+<Base title="Registration & Tuition" current="registration" description={`Register in person at school. Tuition is ${fmt(pay.tuitionPerChild)} per student; pay by Zelle or check.`}>
+  <Hero eyebrow={`${calendar.schoolYear} School Year`} title="Registration & Tuition" lead={`In person at school · ${fmt(pay.tuitionPerChild)} per student · pay by Zelle or check`}>
     <a class="btn btn-gold" href="#pay">Pay Tuition</a>
     <a class="btn btn-ghost" href={u('/new-families/')}>New to the School?</a>
   </Hero>
@@ -33,7 +33,7 @@ const qr = resolveImage(pay.zelleQr);
       <ol class="steps">
         <li class="tile"><span class="step-num">01</span><span class="step-title">Get a Packet</span><span class="small-muted">At the registration desk</span></li>
         <li class="tile"><span class="step-num">02</span><span class="step-title">Complete 3 Forms</span><span class="small-muted">Registration, feedback, release. Note allergies.</span></li>
-        <li class="tile"><span class="step-num">03</span><span class="step-title">Pay Fall Tuition</span><span class="small-muted">For each child: <a href="#pay">Option A or B</a></span></li>
+        <li class="tile"><span class="step-num">03</span><span class="step-title">Pay Fall Tuition</span><span class="small-muted">For each student: <a href="#pay">Option A or B</a></span></li>
         <li class="tile"><span class="step-num">04</span><span class="step-title">Pick a Volunteer Task</span><span class="small-muted">10 hours per family per year{site.volunteerSignupUrl && <> · <a href={site.volunteerSignupUrl}>sign up</a></>}</span></li>
       </ol>
       <p class="small-muted mt-20">Pre-registering keeps your child’s seat. New students join only grades with openings. <a href={u('/new-families/')}>New Family Guide <span class="arrow" aria-hidden="true">→</span></a></p>
@@ -43,7 +43,7 @@ const qr = resolveImage(pay.zelleQr);
   <section id="tuition" class="wrap pt-block grid grid-2">
     <div class="card stack">
       <h2 class="h-section">Tuition</h2>
-      <div class="price"><b>{fmt(pay.tuitionPerChild)}</b><span class="text-muted">per child, per year</span></div>
+      <div class="price"><b>{fmt(pay.tuitionPerChild)}</b><span class="text-muted">per student, per year</span></div>
       <ul class="bullets stack-xs">
         <li>Same rate for siblings</li>
         <li>Includes registration, all textbooks and snacks</li>
@@ -54,11 +54,11 @@ const qr = resolveImage(pay.zelleQr);
     <div class="card estimator" data-estimator data-per-child={pay.tuitionPerChild} data-max={pay.maxChildren} data-due={pay.secondInstallmentDue}>
       <h3 class="h-card">Estimate What You Owe</h3>
       <div class="stepper-row">
-        <span id="kids-label">Children</span>
+        <span id="kids-label">Students</span>
         <div class="stepper" role="group" aria-labelledby="kids-label">
-          <button type="button" aria-label="One fewer child" data-dec disabled>−</button>
+          <button type="button" aria-label="One fewer student" data-dec disabled>−</button>
           <output aria-live="polite" data-kids>1</output>
-          <button type="button" aria-label="One more child" data-inc>+</button>
+          <button type="button" aria-label="One more student" data-inc>+</button>
         </div>
       </div>
       <div class="segmented" role="group" aria-label="Payment plan">

@@ -168,7 +168,7 @@ a:hover .arrow { transform: translateX(4px); }
 .header-right { display: flex; gap: 12px 20px; align-items: center; }
 .main-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; align-items: center; font-size: 15.5px; }
 .main-nav a.nav-link {
-  display: inline-block; color: var(--ink-2); text-decoration: none; padding: 8px 13px; border-radius: 999px; font-weight: 500;
+  display: inline-block; color: var(--ink-2); text-decoration: none; padding: 8px 13px; border-radius: 999px; font-weight: 500; white-space: nowrap;
 }
 .main-nav a.nav-link:hover { background: var(--stone-200); color: var(--green-900); }
 .main-nav a.nav-link[aria-current="page"] { color: var(--green-800); font-weight: 650; background: var(--green-50); }
@@ -184,7 +184,7 @@ a:hover .arrow { transform: translateX(4px); }
 .header-cta { white-space: nowrap; }
 .mobile-only { display: none; }
 
-@media (max-width: 979px) {
+@media (max-width: 1099px) {
   .site-header .bar { padding-top: 12px; padding-bottom: 12px; }
   .brand-name { font-size: 17px; white-space: nowrap; }
   .brand-name .br { display: block; }
@@ -207,10 +207,11 @@ a:hover .arrow { transform: translateX(4px); }
   .main-nav .nav-cta { border-top: none; padding-top: 12px; }
   .main-nav .nav-cta .btn { width: 100%; }
 }
-@media (min-width: 980px) {
+@media (min-width: 1100px) {
   .main-nav .nav-cta { display: none; }
 }
-@media (min-width: 980px) and (max-width: 1299px) {
+@media (min-width: 1100px) and (max-width: 1299px) {
+  .brand-name { white-space: nowrap; }
   .brand-name .br { display: block; }
   .main-nav a.nav-link { padding: 8px 11px; }
 }
@@ -619,6 +620,7 @@ a:hover .arrow { transform: translateX(4px); }
 .key { width: 18px; height: 18px; border-radius: 5px; flex: none; display: inline-flex; align-items: center; justify-content: center; }
 .key-issv { background: var(--green-700); }
 .key-event { background: var(--gold-50); border: 2px solid var(--gold-400); }
+.key-lunch { background: #FFF1E6; border: 2px solid #E3893B; }
 .key-prayer { background: #FFF6E2; border: 2px solid var(--gold-400); border-radius: 50%; }
 .key-ok { background: #E2F2EA; border: 2px dashed #9CCBB4; }
 .key-off { background: repeating-linear-gradient(45deg, #FBEDE8 0 4px, #EBC2B6 4px 7px); border: 1.5px solid #D39A8B; }

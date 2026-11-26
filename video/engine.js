@@ -14,6 +14,7 @@
   const MOVE = 0.7;
   let starts = [];
   let ends = [];
+  let caps = [];
   let total = 0;
   const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
   const $ = (s) => document.querySelector(s);
@@ -124,9 +125,8 @@
     // Captions, drawn into the frame so they're large and always on.
     const cap = $('#caption');
     if (cap) {
-      const on = t >= starts[i] && t <= (ends[i] ?? Infinity) + 0.6;
-      cap.textContent = on ? VIDEO.lines[i].text : '';
-      cap.style.opacity = on ? '1' : '0';
+      const c = caps.find((x) => t >= x.s && t < x.e);
+      cap.textContent = c ? c.text : '';
     }
 
     // Progress bar.
@@ -144,7 +144,11 @@
         requestAnimationFrame(tick);
       }
     },
-    setTimeline(s, end, e) { starts = s; total = end; ends = e || s.map((x) => x + 5); },
+    // caps: [{ s, e, text }] caption chunks with absolute times (render.py syncs them to the voice).
+    setTimeline(s, end, e, c) {
+      starts = s; total = end; ends = e || s.map((x) => x + 5);
+      caps = c || VIDEO.lines.map((l, i) => ({ s: s[i], e: ends[i], text: l.text }));
+    },
     setTime,
   };
 })();

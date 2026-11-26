@@ -6,7 +6,9 @@ Usage (see video/README.md for setup):
 Writes public/videos/<name>.mp4, <name>.vtt (captions) and <name>.jpg (poster).
 """
 import argparse
+import json
 import pathlib
+import re
 import subprocess
 import tempfile
 
@@ -23,6 +25,30 @@ LEAD_IN = 0.8      # silence before the first line
 GAP_SAME = 0.45    # pause between lines on the same screen
 GAP_SCENE = 0.9    # pause when the screen changes
 TAIL = 2.0         # hold the last frame
+SENT_GAP = 0.18    # pause between sentences within a line
+CAP_MAX = 70       # longest caption, in characters; longer sentences split at commas
+
+SENT = re.compile(r'(?<=[.!?”])\s+(?=[A-Z“"])')
+
+
+def sentences(s: str) -> list[str]:
+    return [x.strip() for x in SENT.split(s.strip()) if x.strip()]
+
+
+def chunks(sentence: str) -> list[str]:
+    """Split a long sentence at commas into caption-sized pieces."""
+    if len(sentence) <= CAP_MAX:
+        return [sentence]
+    out, cur = [], ''
+    for part in re.split(r'(?<=[,;:])\s+', sentence):
+        if cur and len(cur) + 1 + len(part) > CAP_MAX:
+            out.append(cur)
+            cur = part
+        else:
+            cur = (cur + ' ' + part).strip()
+    if cur:
+        out.append(cur)
+    return out
 
 
 def vtt_time(s: float) -> str:
@@ -49,10 +75,24 @@ def main() -> None:
         # 1. Narration, one clip per line.
         tts = Kokoro(str(md / 'kokoro-v1.0.onnx'), str(md / 'voices-v1.0.bin'))
         clips, sr = [], 24000
+        parts = []  # per line: [(caption sentence, offset in line, duration)]
         for line in video['lines']:
-            samples, sr = tts.create(line.get('say') or line['text'], voice=video.get('voice', 'af_heart'),
-                                     speed=video.get('speed', 1.0), lang='en-us')
-            clips.append(np.asarray(samples, dtype=np.float32))
+            shown = sentences(line['text'])
+            spoken = sentences(line['say']) if line.get('say') else shown
+            assert len(shown) == len(spoken), f"text and say need the same sentences: {line['text']}"
+            pieces, offs, t_in = [], [], 0.0
+            for said, cap in zip(spoken, shown):
+                samples, sr = tts.create(said, voice=video.get('voice', 'af_heart'),
+                                         speed=video.get('speed', 1.0), lang='en-us')
+                a = np.asarray(samples, dtype=np.float32)
+                if pieces:
+                    pieces.append(np.zeros(int(SENT_GAP * sr), dtype=np.float32))
+                    t_in += SENT_GAP
+                offs.append((cap, t_in, len(a) / sr))
+                pieces.append(a)
+                t_in += len(a) / sr
+            clips.append(np.concatenate(pieces))
+            parts.append(offs)
             print(f"  voiced: {line['text'][:60]}")
 
         # 2. Timeline: each line lasts as long as its audio, or its animation if longer.
@@ -75,15 +115,30 @@ def main() -> None:
             audio[at:at + len(clip)] += clip
         ends[0] = LEAD_IN + len(clips[0]) / sr
 
-        # 3. Captions.
+        # 3. Captions: one sentence (or part of one) at a time, timed to the voice.
+        caps = []
+        for i, offs in enumerate(parts):
+            voice_at = starts[i] if i else LEAD_IN
+            for cap, off, dur in offs:
+                pieces = chunks(cap)
+                total_chars = sum(len(p) for p in pieces)
+                t0 = voice_at + off
+                for p in pieces:
+                    d = dur * len(p) / total_chars
+                    caps.append({'s': round(t0, 3), 'e': round(t0 + d, 3), 'text': p})
+                    t0 += d
+        # Hold each caption until the next one starts, if the gap is short.
+        for a, b in zip(caps, caps[1:]):
+            if b['s'] - a['e'] < 1.0:
+                a['e'] = b['s']
+        caps[-1]['e'] += 0.6
         cues = ['WEBVTT', '']
-        for i, line in enumerate(video['lines']):
-            begin = starts[i] if i else LEAD_IN
-            cues += [f'{vtt_time(begin)} --> {vtt_time(ends[i] + 0.3)}', line['text'], '']
+        for c in caps:
+            cues += [f"{vtt_time(c['s'])} --> {vtt_time(c['e'])}", c['text'], '']
         (OUT / f'{args.name}.vtt').write_text('\n'.join(cues), encoding='utf-8')
 
         # 4. Frames -> MP4 with the narration.
-        page.evaluate(f'Engine.setTimeline({starts}, {total}, {ends})')
+        page.evaluate(f'Engine.setTimeline({starts}, {total}, {ends}, {json.dumps(caps)})')
         with tempfile.TemporaryDirectory() as tmp:
             wav = pathlib.Path(tmp) / 'voice.wav'
             sf.write(wav, audio, sr)

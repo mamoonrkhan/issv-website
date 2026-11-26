@@ -90,7 +90,7 @@ const banner = (await getCollection('announcements'))
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && btn?.getAttribute('aria-expanded') === 'true') { setOpen(false); btn.focus(); }
     });
-    window.matchMedia('(min-width: 980px)').addEventListener('change', (e) => e.matches && setOpen(false));
+    window.matchMedia('(min-width: 1100px)').addEventListener('change', (e) => e.matches && setOpen(false));
 
     // "/" opens search from anywhere (unless you're typing).
     document.addEventListener('keydown', (e) => {

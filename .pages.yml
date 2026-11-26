@@ -336,6 +336,7 @@ content:
           - { name: grade, label: Grade, type: string }
           - { name: where, label: Room, type: string, description: "e.g. N3, or C1–C2" }
       - { name: events, label: Where events are held, type: text }
+      - { name: lunch, label: Where lunch is served, type: text }
       - { name: offLimits, label: Off-limits areas, type: string, list: true }
       - { name: allowed, label: Note about the basketball courts, type: text }
 

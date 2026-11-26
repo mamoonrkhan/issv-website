@@ -184,30 +184,30 @@ window.VIDEO = {
     { scene: 'classroom', text: 'Next, go to classroom.google.com, or open the Classroom app. Your grade has two classes: one for first period, and one for second period.',
       say: 'Next, go to classroom dot google dot com, or open the Classroom app. Your grade has two classes: one for first period, and one for second period.',
       cues: [ { at: 4.6, add: '#c-card', cls: 'ring' }, { at: 6.2, add: '#c-card2', cls: 'ring' } ] },
-    { scene: 'classroom', text: 'If you see a Join button on them, click it.',
+    { scene: 'classroom', text: 'If you see a “Join” button on them, click it.',
       cues: [ { at: 0.3, cursor: '#c-join' }, { at: 1.1, click: true }, { at: 1.2, add: '#c-card', cls: 'joined' }, { at: 1.6, cursor: '#c-join2' }, { at: 2.3, click: true }, { at: 2.4, add: '#c-card2', cls: 'joined' } ] },
 
-    { scene: 'classpage', text: 'On a virtual Sunday, open the class for the current period, and click Join next to Meet, at the top left. Each period has its own link.',
+    { scene: 'classpage', text: 'On a virtual Sunday, open the class for the current period, and click “Join” next to Meet, at the top left. Each period has its own link.',
       cues: [ { at: 2.6, cursor: '#p-join' }, { at: 3.4, add: '#p-meet', cls: 'ring' }, { at: 5.0, click: true } ] },
-    { scene: 'greenroom', text: 'Before you join, set a school-appropriate virtual background, turn your microphone off, and keep your camera on. Then click Join now.',
+    { scene: 'greenroom', text: 'Before you join, set a school-appropriate virtual background, turn your microphone off, and keep your camera on. Then click “Join now”.',
       cues: [ { at: 0.6, cursor: '#g-bg' }, { at: 1.4, add: '#g-bg', cls: 'ring' }, { at: 3.6, cursor: '#g-mic' }, { at: 4.4, click: true }, { at: 4.5, add: '#g-mic', cls: 'off' }, { at: 5.4, cursor: '#g-cam' }, { at: 5.9, add: '#g-cam', cls: 'ring' }, { at: 6.8, cursor: '#g-joinnow' }, { at: 7.6, click: true } ] },
 
     { scene: 'inclass', text: 'In class, keep your camera on, and stay muted until it’s your turn to speak.',
       cues: [ { at: 1.0, add: '#i-cam', cls: 'ring' }, { at: 2.8, add: '#i-mic', cls: 'ring' } ] },
-    { scene: 'inclass', text: 'To ask a question, click Raise hand.',
+    { scene: 'inclass', text: 'To ask a question, click “Raise hand”.',
       cues: [ { at: 0.3, cursor: '#i-hand' }, { at: 1.3, click: true }, { at: 1.4, add: '#i-hand', cls: 'on' }, { at: 1.4, add: '#i-handbadge', cls: 'on' } ] },
     { scene: 'inclass', text: 'There’s no assembly on virtual days. Test your connection between 10:00 and 10:15. First period starts at 10:15, then the regular schedule.',
       say: 'There’s no assembly on virtual days. Test your connection between ten and ten fifteen. First period starts at ten fifteen, then the regular schedule.',
       cues: [ { at: 0, add: '#i-hand', cls: 'on' }, { at: 0, add: '#i-handbadge', cls: 'on' } ] },
 
-    { scene: 'stuck', text: 'If you see Asking to join, stay on that screen. Your teacher will let you in after checking the class roster.',
+    { scene: 'stuck', text: 'If you see “Asking to join”, stay on that screen. Your teacher will let you in after checking the class roster.',
       cues: [ { at: 1.6, add: '#s-who', cls: 'ring' } ] },
     { scene: 'stuck', text: 'Next time, switch to your LearnIslam account first, so you get in right away and your name matches the roster.',
       say: 'Next time, switch to your Learn Islam account first, so you get in right away and your name matches the roster.',
       cues: [ { at: 0.4, cursor: '#s-avatar' }, { at: 1.4, click: true }, { at: 1.5, add: '#s-menu', cls: 'on' }, { at: 2.4, cursor: '#s-school' }, { at: 3.2, add: '#s-school', cls: 'ring' } ] },
 
-    { scene: 'outro', text: 'That’s it! The written steps are on the Online Classes page of the school website. Need help joining? Email issvsupport@learnislam.org.',
-      say: 'That’s it! The written steps are on the Online Classes page of the school website. Need help joining? Email I S S V support, at learn islam dot org.' },
+    { scene: 'outro', text: 'You’re all set. The written steps are on the Online Classes page of the school website. Need help joining? Email issvsupport@learnislam.org.',
+      say: 'You’re all set. The written steps are on the Online Classes page of the school website. Need help joining? Email I S S V support, at learn islam dot org.' },
   ],
 };
 </script>

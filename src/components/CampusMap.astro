@@ -35,7 +35,7 @@ const vests: [number, number][] = [
   <title id="map-title">Simplified map of Greene Middle School for ISSV families</title>
   <desc id="map-desc">
     Middlefield Road runs along the right side and North California Avenue along the bottom. The Middlefield Parking Lot is on the right, next to the N-wing.
-    ISSV classes are in the N, F, C and P wings on the right (east) side of campus. Dhuhr prayer is in the lunch area between the F and G wings.
+    ISSV classes are in the N, F, C and P wings on the right (east) side of campus. Lunch is served at break in front of buildings M1 and M2. Dhuhr prayer is in the area between the F and G wings.
     Events are in the Gym or the MPR on the left (west) side. The construction zone in the middle, the pool and fields are off-limits.
     Youth Group may use the tennis and basketball courts with their own equipment. Volunteers in green vests stand at the lot entrance, the crosswalk, the C-wing doors and the N. California Loop.
   </desc>
@@ -92,10 +92,12 @@ const vests: [number, number][] = [
   <text x="209" y="954" class="m-small m-center">events &amp; ceremonies</text>
 
   <!-- prayer area between F and G -->
-  <rect x="1028" y="395" width="56" height="200" rx="10" class="m-prayer" />
-  <path d="M1056 452l7 15 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2z" class="m-star" />
-  <text x="1056" y="528" class="m-small m-center m-prayer-text">Dhuhr</text>
-  <text x="1056" y="550" class="m-small m-center m-prayer-text">prayer</text>
+  <rect x="985" y="377" width="165" height="40" rx="10" class="m-lunch" />
+  <text x="1067" y="403" class="m-small m-center m-lunch-text">Lunch (break)</text>
+  <rect x="1028" y="425" width="56" height="170" rx="10" class="m-prayer" />
+  <path d="M1056 470l7 15 16 2-12 11 3 16-14-8-14 8 3-16-12-11 16-2z" class="m-star" />
+  <text x="1056" y="540" class="m-small m-center m-prayer-text">Dhuhr</text>
+  <text x="1056" y="562" class="m-small m-center m-prayer-text">prayer</text>
 
   <!-- ISSV classroom wings -->
   <g class="m-issv-group">
@@ -187,6 +189,8 @@ const vests: [number, number][] = [
   .m-off-text { fill: var(--red-ink); font-weight: 700; }
   .m-ok { fill: #E2F2EA; stroke: #9CCBB4; stroke-width: 2; stroke-dasharray: 8 6; }
   .m-yard { fill: #EEF2EF; stroke: #CBD5D0; stroke-width: 1.5; stroke-dasharray: 6 5; }
+  .m-lunch { fill: #FFF1E6; stroke: #E3893B; stroke-width: 2.5; }
+  .m-lunch-text { fill: #8A3F06; font-weight: 700; }
   .m-prayer { fill: #FFF6E2; stroke: var(--gold-400); stroke-width: 2.5; }
   .m-prayer-text { fill: var(--gold-ink); font-weight: 700; }
   .m-star { fill: var(--gold-400); }

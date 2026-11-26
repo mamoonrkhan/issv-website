@@ -112,6 +112,11 @@ const help = site.emailSupport || site.emailGeneral;
       if (e.key === 'ArrowLeft') select(tabs[(i - 1 + tabs.length) % tabs.length], true);
     });
   });
+  // Only one video plays at a time, and switching tabs pauses it.
+  const videos = Array.from(document.querySelectorAll<HTMLVideoElement>('.video-card video'));
+  videos.forEach((v) => v.addEventListener('play', () => videos.forEach((o) => o !== v && o.pause())));
+  tabs.forEach((t) => t.addEventListener('click', () => videos.forEach((v) => v.pause())));
+
   // /school-day/online/#teachers opens the teacher guide.
   const fromHash = tabs.find((t) => t.id === 'tab-' + location.hash.slice(1));
   if (fromHash) select(fromHash);
