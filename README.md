@@ -1,81 +1,92 @@
-# Islamic School of Silicon Valley website (redesign proposal)
+# Islamic School of Silicon Valley: a new website (proposal)
 
-A proposed new website for the Islamic School of Silicon Valley. It's fast, works well on phones, meets accessibility standards, and volunteers can update it without writing code.
+This is a proposed new website for the Islamic School of Silicon Valley (ISSV). It's built to answer families' everyday questions quickly, on any phone, and to let volunteers keep it up to date without any technical skills.
 
-**Live preview:** https://mamoonrkhan.github.io/issv-website/
+**See it live:** https://mamoonrkhan.github.io/issv-website/
 
-> This is a proposal, not the school's official site. Every page says so, and search engines are asked not to index it. To remove it, set `previewNotice` to `false` in `src/data/site.json`.
+> **This is a proposal, not the school's official site.** Every page says so, and search engines are asked not to list it. Once the school approves it, one setting turns the notice off (see [Going live](#going-live-on-learnislamorg)).
 
-## Contents
+## What families get
 
-- [What's on the site](#whats-on-the-site)
-- [Editing content](#editing-content)
-- [Publishing](#publishing)
-- [Developing locally](#developing-locally)
-- [How it's built](#how-its-built)
-- [Before launch](#before-launch)
-- [How it's run](#how-its-run)
-- [Going live on learnislam.org](#going-live-on-learnislamorg)
-- [If the maintainer steps away](#if-the-maintainer-steps-away)
+- **"This Sunday" at a glance.** The home page shows whether there's school this Sunday (in person, online or cancelled), along with announcements and a button to report an absence.
+- **A School Day guide.** Where to park at Greene, who the green-vest volunteers are, how pick-up works, a campus map of our classrooms, and where lunch and Dhuhr prayer are.
+- **Online class help.** Step-by-step guides and two short narrated videos, one for students and parents and one for teachers, on joining classes with Google Classroom and Google Meet.
+- **The calendar on their phone.** One tap adds every school date to Google, Apple or Outlook calendars, and it stays up to date on its own.
+- **Everything else in one place:** curriculum by grade, the parent handbook, registration and tuition (with Zelle and check instructions), and a search box that understands everyday words, so "hijab" finds the dress code.
 
-## What's on the site
+Links from the old learnislam.org site, like `/aboutus/`, still work and go to the matching new page.
 
-| Page | Path | What it does |
-|---|---|---|
-| Home | `/` | "This Sunday" card (status, absence form, calendar buttons, announcements), upcoming dates, parent links, at-a-glance facts |
-| About | `/about/` | Story, mission, donations, contact |
-| New families | `/new-families/` | How joining works, common questions |
-| School Day | `/school-day/` | Hub for a school day: guides, timeline, absence and virtual-day help |
-| Parking & pick-up | `/school-day/getting-here/` | Where to park at Greene, green-vest volunteers, pick-up rules, Greene's parking rules (credited) |
-| Campus map | `/school-day/campus/` | Simplified map adapted from Greene's student map: ISSV wings, event spaces, prayer area, off-limits areas, rooms by grade |
-| Online classes | `/school-day/online/` | Google Classroom and Meet steps for students/parents and teachers, a teacher video guide, and troubleshooting |
-| Calendar | `/calendar/` | Class days by month, events, holidays, one-tap subscribe for Google, Apple and Outlook |
-| Curriculum | `/curriculum/` | Tabs for each grade (KG to Youth Group), daily schedule, milestones |
-| Parent handbook | `/families/` | Jump links, then policies in collapsible sections. Links like `/families/#dress` open the right one |
-| Registration & tuition | `/registration/` | Key dates, tuition estimator, Zelle and check instructions |
-| Search | `/search/` | Results as you type. Press <kbd>/</kbd> on any page to jump here |
-| Calendar feed | `/calendar.ics` | Subscribed calendars update automatically |
-| For volunteers | `/admin/` | How to edit the site, with an **Open the Editor** button (see below) |
+## How volunteers update it
 
-Old learnislam.org links (`/aboutus/`, `/late-policy/`, `/reusebooks/`, `/evaluation-reports/`) redirect to the matching new page.
+No coding, no GitHub account and no password to remember.
 
-## Editing content
+1. A volunteer gets an email invitation to **[Pages CMS](https://pagescms.org)**, a free online editor.
+2. They open the **For Volunteers** page (linked at the bottom of every page, at `/admin/`) and click **Open the Editor**.
+3. They change what they need in simple forms and click **Save**. The website updates by itself in about a minute.
 
-Volunteers edit the site with **[Pages CMS](https://pagescms.org)**, a free editor with simple forms. They're invited by email and don't need a GitHub account, a password or any technical knowledge. The volunteer how-to lives on the site at **`/admin/`** (also linked as "For Volunteers" in the footer).
+Every change is saved in a history, so any mistake can be undone.
 
-Editors just click **Save**, and the site updates by itself in about a minute. Every save is a commit, so every change is recorded and can be undone. The editor's forms are defined in [`.pages.yml`](.pages.yml).
+**What volunteers can change:**
 
-| Section in the editor | What volunteers can change |
+| In the editor | What it controls |
 |---|---|
-| Announcements | Title, message, show-from and hide-after dates, green banner on or off. Expired posts hide by themselves. |
-| This Sunday (Emergency) | Override the home page card for weather or closures |
-| Calendar | Each Sunday's status (in session, virtual, possible virtual, no school) and note, plus events. Updates the Calendar page, the This Sunday card and the calendar feed. |
-| Tuition & Payment | Zelle details and QR code, check payee, tuition and dates |
+| Announcements | Short notices on the home page, with start and end dates. Urgent ones can show as a banner on every page. |
+| This Sunday (Emergency) | Overrides the home page card for weather or a last-minute closure |
+| Calendar | Each Sunday's status (in session, virtual, maybe virtual, no school) and school events. Updates families' phone calendars too. |
+| Tuition & Payment | Tuition, due dates, Zelle and check details |
+| School Day guides | Parking, pick-up, campus, lunch and online class instructions, including room numbers for each grade |
 | Parent Handbook, Curriculum, New Family Questions | The text on those pages |
-| School Day: Parking & Pick-Up, Campus Map, Online Classes | The text of those guides, including room numbers for each grade |
-| Contact, Links & PDFs | Emails, links, PDF uploads, the home page photo and its credit |
+| Contact, Links & PDFs | Email addresses (including the online-class help address), links, PDFs and the home page photo |
 
-### Inviting volunteers
+**Inviting a volunteer** (done by the site maintainer): sign in at [app.pagescms.org](https://app.pagescms.org), open **issv-website**, add the person's email under collaborators, and send them the `/admin/` link. They sign in with **Continue with email**.
 
-1. Go to [app.pagescms.org](https://app.pagescms.org), sign in with GitHub, and open **issv-website**.
-2. Open its collaborator settings and add the volunteer's email address.
-3. Send them the `/admin/` link. They choose **Continue with email** and sign in with what Pages CMS emails them.
+## Before launch: what we need from the school
 
-(Already done for this repo: the Pages CMS GitHub app is installed on `issv-website` only. On a new account, install it from [github.com/apps/pages-cms](https://github.com/apps/pages-cms/installations/new).)
+- [ ] Zelle email or phone, the name exactly as Zelle shows it, and the QR code from the bank app
+- [ ] Check payee name and mailing address
+- [ ] Confirmed tuition installment dates
+- [ ] Room numbers for each grade (for the campus map page)
+- [ ] The school logo, or approval of the new emblem
+- [ ] Photos we're allowed to use (the preview shows only the school building, no students)
+- [ ] Current PDFs, the volunteer sign-up link and the donation link
+- [ ] OK to publish the school calendar as a subscribable feed
+- [ ] Who manages the learnislam.org domain
 
-## Publishing
+## Going live on learnislam.org
 
-Publishing is automatic. [`deploy.yml`](.github/workflows/deploy.yml) builds the site from `main` and publishes it to GitHub Pages in about 40 seconds:
+1. The school's domain manager points learnislam.org at this site (four `A` records and a `CNAME` for `www` to `mamoonrkhan.github.io`, per [GitHub's guide](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)).
+2. In this repository, go to **Settings → Pages → Custom domain**, enter `learnislam.org`, and turn on **Enforce HTTPS** when it appears.
+3. Turn off the proposal notice: set `previewNotice` to `false` in `src/data/site.json`.
+4. Invite the school's editors and send them the `/admin/` link.
 
-- on every change, including every save in the editor (progress shows in the **Actions** tab),
-- every night, so the This Sunday card, upcoming dates and expired announcements stay current,
-- on demand, from **Actions → Deploy site → Run workflow**.
+Keep the old site available for a few weeks in case anything was missed.
 
-Browsers may show the previous version for up to 10 minutes because of GitHub Pages caching. A hard refresh (Cmd+Shift+R) shows the latest. If a run fails (a red ✕ in **Actions**), the site keeps showing the last good version. Open the failed run to see why.
+## Who runs it
 
-## Developing locally
+- **The school owns the domain.** learnislam.org stays registered to the school and simply points here.
+- **Staff and volunteers are editors.** They update content through the editor and never need to touch code.
+- **One maintainer** ([@mamoonrkhan](https://github.com/mamoonrkhan)) looks after the design and code, and invites editors.
 
-Requires [Node.js](https://nodejs.org) 22.23 or newer (24 recommended, see `.nvmrc`).
+**If the maintainer steps away, the site keeps running.** Hosting is free and nothing needs renewing, and editors keep editing as usual. Only inviting editors or changing the design needs someone with access to this repository. The options, simplest first:
+
+1. **Add a backup admin** under **Settings → Collaborators**.
+2. **Transfer the repository** to the school or a new maintainer (**Settings → Transfer ownership**). They then install the Pages CMS app and re-invite editors.
+3. **Host it elsewhere.** The site is plain files, so any web host can serve it (see [For developers](#for-developers)).
+
+## Privacy and accessibility
+
+- **No tracking, no cookies, no ads.** Nothing a family types (like the tuition calculator) leaves their browser.
+- **No photos of students.** The only photo is of the school building: [Greene Middle School sign](https://commons.wikimedia.org/wiki/File:Greene_middle_school_sign.jpg) by Ovinus Real, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- **Accessible.** Readable contrast, keyboard navigation, captions on every video, and descriptions for the campus map.
+- **Credits.** Parking rules come from Greene Middle School's "Getting to School" page, and the campus map is adapted from Greene's student map. Both are credited on the pages that use them.
+
+---
+
+## For developers
+
+### Running it locally
+
+Needs [Node.js](https://nodejs.org) 22.23 or newer (24 recommended).
 
 ```sh
 npm install
@@ -85,91 +96,44 @@ npm run preview   # serve the build
 npm run check     # type-check
 ```
 
-### Project layout
+### Publishing
+
+Automatic. [`deploy.yml`](.github/workflows/deploy.yml) builds the site and publishes it to GitHub Pages in about 40 seconds: on every change (including editor saves), every night (so the This Sunday card and expired announcements stay current), and on demand from **Actions → Deploy site → Run workflow**. If a build fails, the last good version stays up. GitHub Pages may cache the old version for up to 10 minutes.
+
+To host elsewhere (Netlify, Cloudflare Pages and so on), use build command `npm run build`, output folder `dist`, and set `SITE_URL` to the site's address.
+
+### What it's built with
+
+- **[Astro](https://astro.build)** generates plain static HTML, so there's no server or database.
+- **[Pagefind](https://pagefind.app)** builds the search index. Hand-picked synonyms live in `src/pages/search.astro`.
+- **[Pages CMS](https://pagescms.org)** edits the files in `src/data` and `src/content`. Its forms are defined in [`.pages.yml`](.pages.yml).
+- **Fonts:** Inter, plus Amiri for Arabic, served from the site itself.
+- **Videos:** animated scenes with an open-source AI voice (Kokoro). To edit or re-render them, see [`video/README.md`](video/README.md).
+
+### Where things are
 
 ```
 src/
-  data/                     content the editor changes (JSON)
-  content/announcements/    one Markdown file per announcement
-  pages/                    one file per page, plus calendar.ics.ts and admin.astro (volunteer guide)
-  components/               header, footer, hero, photo, email, add-to-calendar…
-  layouts/Base.astro        page shell: banners, header, footer, site-wide scripts
-  lib/content.ts            typed access to src/data (import data from here)
-  lib/schedule.ts           This Sunday and upcoming-dates logic (build and browser)
-  lib/url.ts, images.ts     base-path links, image lookup
-  styles/global.css         design tokens and all styles
-  assets/photos/            images uploaded in the editor (optimized at build)
-public/
-  docs/                     PDFs uploaded in the editor
-video/                      guide videos: animated scenes + AI narration script (see video/README.md)
-.pages.yml                  editor forms (Pages CMS)
-.github/workflows/deploy.yml  build and publish on every change and nightly
+  data/                  everything the editor changes (JSON)
+  content/announcements/ one file per announcement
+  pages/                 one file per page; school-day/ holds the School Day guides
+  components/            header, footer, campus map, hero, …
+  layouts/Base.astro     the frame around every page
+  lib/content.ts         typed access to src/data
+  lib/schedule.ts        "This Sunday" and upcoming-dates logic
+  styles/global.css      all styles and design tokens
+public/videos/           rendered guide videos, captions and posters
+video/                   video sources and the render script
+.pages.yml               the editor's forms
 ```
 
-### Conventions
+### House rules
 
-- **Content lives in `src/data` and `src/content`, never in page markup.** If something should be editable, add it to a data file and to `.pages.yml`. Read it through `src/lib/content.ts`, and mark fields that can be left blank as optional there: the editor drops empty fields when it saves.
-- **Styles live in `src/styles/global.css`.** Use the design tokens and existing classes rather than one-off values:
-  - **Headings:** three sizes. Page title (the hero), `.h-section` (serif, for section and large-card titles) and `.h-card` (sans, for small cards).
-  - **Spacing:** two values. `.pt-block` (`--gap`, 24px) between related blocks and inside grids, and `.pt-major` (`--space-major`, 48px) after the page header or before a section with its own heading.
-  - **Page headers:** every page except Home uses `components/Hero.astro`: a short label, the title, one line of description, then any buttons.
-  - **Cards:** `.card`, `.card-sm` for compact cards, and `.card-highlight` (green border) for the single most important item on a page.
-  - Layout helpers (`stack`, `mb-12`…) are at the end of the file so they override component styles.
-- **Internal links go through `u()`** from `src/lib/url.ts`, so they work when the site is served from a sub-path like `/issv-website/`.
-- **Dates are `YYYY-MM-DD` strings in Pacific time.** Use the helpers in `src/lib/schedule.ts`.
-
-## How it's built
-
-- **[Astro](https://astro.build)** turns the pages into plain static HTML. There's no server or database, and hosting is free.
-- **[Pagefind](https://pagefind.app)** builds the search index during the build. Hand-picked answers in `src/pages/search.astro` add synonyms (for example, "hijab" finds the dress code).
-- **[Pages CMS](https://pagescms.org)** is the volunteer editor. It edits the files in `src/data` and `src/content` and commits them to GitHub. It's set to merge, so it never drops fields it doesn't know about.
-- **Images** uploaded in the editor are resized and converted to AVIF and WebP at build time, and location data is stripped.
-- **No photos of students.** The only photo is of the school building: [Greene Middle School sign](https://commons.wikimedia.org/wiki/File:Greene_middle_school_sign.jpg) by Ovinus Real, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/), credited on the photo. Any replacement should also avoid children unless parents have agreed.
-- **Self-hosted fonts:** Inter, Source Serif 4, and Amiri for the Arabic.
-- **No tracking and no cookies.** The tuition estimator runs only in the browser and sends nothing.
-
-## Before launch
-
-Information needed from the school:
-
-- [ ] Zelle email or phone, and the recipient name exactly as Zelle shows it
-- [ ] Zelle QR code image (from the school's bank app)
-- [ ] Check payee name and mailing address
-- [ ] Greene Middle School street address and parking notes
-- [ ] Confirmed installment due dates
-- [ ] Logo, or approval of the new emblem
-- [ ] Decision on photos (the preview shows only the school building)
-- [ ] Current PDFs and the volunteer sign-up link
-- [ ] Donation link, and who manages it
-- [ ] OK to publish the school calendar as a subscribable feed
-- [ ] Who owns `learnislam.org`, and DNS access
-
-## How it's run
-
-- **One maintainer owns the GitHub repo** ([@mamoonrkhan](https://github.com/mamoonrkhan)). They handle the design and code, and invite editors.
-- **School staff and volunteers are editors.** They're invited by email in Pages CMS and update content through `/admin/` (see [Editing content](#editing-content)). They never need a GitHub account.
-- **The school owns the domain.** learnislam.org stays registered to the school and simply points at this site.
-
-## Going live on learnislam.org
-
-1. The school's domain admin adds the DNS records for GitHub Pages: four `A` records for `learnislam.org` and a `CNAME` for `www` pointing to `mamoonrkhan.github.io`. See [GitHub's guide](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
-2. In this repo, go to **Settings → Pages → Custom domain**, enter `learnislam.org`, save, and tick **Enforce HTTPS** once it's available.
-3. Set `previewNotice` to `false` in `src/data/site.json` to remove the preview notice and let search engines index the site.
-4. Invite the school's editors in Pages CMS and send them the `/admin/` link.
-
-Keep the old site available for a few weeks in case anything was missed. Old links like `/aboutus/` already redirect.
-
-## If the maintainer steps away
-
-The site keeps running without anyone: hosting is free, there's nothing to update or renew on GitHub's side, and editors keep editing as usual. Only these need someone with GitHub access to this repo:
-
-- inviting or removing editors,
-- changing the design or adding pages.
-
-Options, from simplest:
-
-1. **Add a backup admin:** in **Settings → Collaborators**, give a trusted person's GitHub account access. They can then manage editors in Pages CMS too.
-2. **Transfer the repo** to the school or a new maintainer (**Settings → Transfer ownership**). They then install the Pages CMS app on their account and re-invite editors.
-3. **Move away entirely:** the school points learnislam.org somewhere else. The site is plain files, so any web host can serve the `dist/` folder from `npm run build`.
-
-Netlify and Cloudflare Pages also work as hosts: build command `npm run build`, output folder `dist`, and the environment variable `SITE_URL` set to the site's address (for example `https://learnislam.org`).
+- **Content goes in `src/data`, not in page markup.** To make something editable, add it to a data file and to `.pages.yml`, and read it through `src/lib/content.ts`. Mark fields that can be blank as optional, because the editor drops empty fields when saving.
+- **Styles use the tokens and classes in `global.css`:**
+  - Headings come in three sizes: the page title, `.h-section` and `.h-card`.
+  - Spacing has two steps: `.pt-block` (24px) and `.pt-major` (56px).
+  - Cards are `.card`, `.card-sm`, and `.card-highlight` for the single most important item on a page.
+  - Every page except Home starts with `components/Hero.astro`.
+- **Internal links go through `u()`** from `src/lib/url.ts`, so they work under the `/issv-website/` preview path.
+- **Dates are `YYYY-MM-DD` in Pacific time.** Use the helpers in `src/lib/schedule.ts`.
