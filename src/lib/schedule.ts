@@ -56,7 +56,7 @@ export function upcomingSunday(now: Date = new Date()): string {
 
 export const STATUS: Record<Status, { badge: string; tone: string; title: string; detail: string }> = {
   'in-session': { badge: 'In session', tone: 'green', title: 'School Is in Session', detail: 'Arrive by 10:00 AM for assembly. Pick-up at 1:30 PM after Dhuhr.' },
-  'virtual': { badge: 'Virtual', tone: 'gold', title: 'Virtual Class Day', detail: 'Classes on Google Meet. Join from your class in Google Classroom at 10:00–10:15 AM to test your connection; first period at 10:15.' },
+  'virtual': { badge: 'Virtual', tone: 'gold', title: 'Virtual Class Day', detail: 'Classes on Google Meet. No assembly: join from Google Classroom with your LearnIslam account 10:00–10:15 AM to test your connection. First period at 10:15.' },
   'possible-virtual': { badge: 'Possible virtual', tone: 'gold', title: 'Class May Be Online', detail: 'We’ll confirm by email the week before. Plan for school as usual until then.' },
   'no-school': { badge: 'No school', tone: 'red', title: 'No School', detail: 'Classes resume the following Sunday. Enjoy the break.' },
 };

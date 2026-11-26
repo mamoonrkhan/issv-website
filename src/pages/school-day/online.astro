@@ -7,6 +7,7 @@ import { site, online as o } from '../../lib/content';
 import { u } from '../../lib/url';
 
 const classroom = 'https://classroom.google.com/';
+const help = site.emailSupport || site.emailGeneral;
 ---
 <Base title="Online Classes" current="school-day" description="How to join ISSV virtual classes on Google Classroom and Google Meet, for students, parents and teachers.">
   <Hero eyebrow="School Day" title="Online Classes" lead={o.lead ?? ''}>
@@ -19,7 +20,7 @@ const classroom = 'https://classroom.google.com/';
       <span class="rule-icon"><Icon name="users" size={26} /></span>
       <div>
         <h2 class="h-card">The rule that fixes most problems</h2>
-        <p>Join from <b>Google Classroom</b> with your <b>ISSV school account</b>, never a personal Gmail.</p>
+        <p>Join from <b>Google Classroom</b> with your <b>LearnIslam account</b>, never a personal Gmail.</p>
       </div>
     </div>
   </section>
@@ -37,7 +38,7 @@ const classroom = 'https://classroom.google.com/';
           <source src={u('/videos/student-join.mp4')} type="video/mp4" />
           <track kind="captions" src={u('/videos/student-join.vtt')} srclang="en" label="English" default />
         </video>
-        <figcaption><Icon name="video" size={18} /><span><b>Watch: Joining a Virtual Class</b> · 1:19, with captions. The same steps are written out below.</span></figcaption>
+        <figcaption><Icon name="video" size={18} /><span><b>Watch: Joining a Virtual Class</b> · 1:40, with captions. The same steps are written out below.</span></figcaption>
       </figure>
       <div class="online-grid">
         <ol class="big-steps">
@@ -54,12 +55,18 @@ const classroom = 'https://classroom.google.com/';
               <div class="mock-post"><i></i><i></i></div>
               <div class="mock-post"><i></i><i></i></div>
             </div>
-            <figcaption>Look for <b>Meet · Join</b> on your class’s Stream page.</figcaption>
+            <figcaption>Look for <b>Meet · Join</b> at the top left of your class page.</figcaption>
           </figure>
           <div class="card card-sm stack">
             <h3 class="h-card">In class</h3>
             <ul class="checks">{(o.etiquette ?? []).map((e) => <li><Icon name="check" size={18} />{e}</li>)}</ul>
           </div>
+          {o.parents?.length ? (
+            <div class="card card-sm stack">
+              <h3 class="h-card">For parents</h3>
+              <ul class="checks">{o.parents.map((e) => <li><Icon name="users" size={18} />{e}</li>)}</ul>
+            </div>
+          ) : null}
         </aside>
       </div>
     </div>
@@ -70,14 +77,14 @@ const classroom = 'https://classroom.google.com/';
           <source src={u('/videos/teacher-setup.mp4')} type="video/mp4" />
           <track kind="captions" src={u('/videos/teacher-setup.vtt')} srclang="en" label="English" default />
         </video>
-        <figcaption><Icon name="video" size={18} /><span><b>Watch: Running a Virtual Class</b> · 1:40, with captions. The same steps are written out below.</span></figcaption>
+        <figcaption><Icon name="video" size={18} /><span><b>Watch: Running a Virtual Class</b> · 1:54, with captions. The same steps are written out below.</span></figcaption>
       </figure>
       <ol class="big-steps big-steps-2">
         {(o.teachers ?? []).map((s, i) => (
           <li><span class="big-num">{i + 1}</span><div><h3 class="h-card">{s.title}</h3>{s.body && <p class="text-ink-2 text-16">{s.body}</p>}</div></li>
         ))}
       </ol>
-      <p class="callout mt-gap"><Icon name="alert" size={20} /><span>No Meet link setting, or a class missing? Email <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a> and the admin will fix it.</span></p>
+      <p class="callout mt-gap"><Icon name="alert" size={20} /><span>No Meet link setting, or a class missing? Email <a href={`mailto:${help}`}>{help}</a> and the admin will fix it.</span></p>
     </div>
   </section>
 
@@ -90,7 +97,7 @@ const classroom = 'https://classroom.google.com/';
           <p class="body">{t.a}</p>
         </details>
       ))}
-      <p class="help-line">Still stuck? Email <a href={`mailto:${site.emailGeneral}`}>{site.emailGeneral}</a>, and check the <a href={u('/')}>home page</a> for updates.</p>
+      <p class="help-line">Need help joining? Email <a href={`mailto:${help}`}>{help}</a>, and check the <a href={u('/')}>home page</a> for updates.</p>
     </div>
   </section>
 </Base>

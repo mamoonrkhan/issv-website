@@ -24,6 +24,7 @@ export interface Site {
   hours: string;
   emailGeneral: string;
   emailRegistration: string;
+  emailSupport?: string;
   absenceFormUrl: string;
   taxId: string;
   address?: string;
@@ -104,6 +105,7 @@ export interface Online {
   lead?: string;
   students?: Step[];
   etiquette?: string[];
+  parents?: string[];
   teachers?: Step[];
   troubleshooting?: { q: string; a?: string }[];
 }

@@ -359,6 +359,7 @@ content:
           - { name: title, label: Step, type: string }
           - { name: body, label: Details, type: text }
       - { name: etiquette, label: Rules in class, type: string, list: true }
+      - { name: parents, label: Tips for parents, type: string, list: true }
       - name: teachers
         label: Steps for teachers
         type: object
@@ -390,6 +391,7 @@ content:
     fields:
       - { name: emailGeneral, label: General email, type: string }
       - { name: emailRegistration, label: Registration email, type: string }
+      - { name: emailSupport, label: Online class help email, type: string }
       - { name: location, label: Location, type: string }
       - { name: address, label: Street address (optional), type: string }
       - { name: hours, label: Hours, type: string }
