@@ -67,7 +67,7 @@ def main() -> None:
 
     with sync_playwright() as p:
         browser = p.chromium.launch(channel='chrome', headless=True)
-        page = browser.new_page(viewport={'width': 1280, 'height': 720})
+        page = browser.new_page(viewport={'width': 1280, 'height': 720}, device_scale_factor=1.5)  # 1920×1080 frames
         page.goto((HERE / f'{args.name}.html').as_uri() + '?render')
         page.evaluate('document.fonts.ready')
         video = page.evaluate('window.VIDEO')
@@ -145,16 +145,16 @@ def main() -> None:
             ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
             proc = subprocess.Popen([
                 ffmpeg, '-y', '-loglevel', 'error',
-                '-f', 'image2pipe', '-framerate', str(FPS), '-c:v', 'mjpeg', '-i', '-',
+                '-f', 'image2pipe', '-framerate', str(FPS), '-c:v', 'png', '-i', '-',
                 '-i', str(wav),
-                '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '27', '-pix_fmt', 'yuv420p',
+                '-c:v', 'libx264', '-preset', 'slow', '-tune', 'animation', '-crf', '20', '-pix_fmt', 'yuv420p',
                 '-c:a', 'aac', '-b:a', '96k', '-movflags', '+faststart', '-shortest',
                 str(OUT / f'{args.name}.mp4'),
             ], stdin=subprocess.PIPE)
             frames = int(total * FPS)
             for n in range(frames):
                 page.evaluate(f'Engine.setTime({n / FPS})')
-                proc.stdin.write(page.screenshot(type='jpeg', quality=92))
+                proc.stdin.write(page.screenshot(type='png'))
                 if n % (FPS * 10) == 0:
                     print(f'  frame {n}/{frames}')
             proc.stdin.close()
@@ -162,7 +162,7 @@ def main() -> None:
 
         # 5. Poster: the title card.
         page.evaluate('Engine.setTime(1.5)')
-        page.screenshot(path=str(OUT / f'{args.name}.jpg'), type='jpeg', quality=85)
+        page.screenshot(path=str(OUT / f'{args.name}.jpg'), type='jpeg', quality=88)
         browser.close()
     print(f'Done: {total:.1f} s -> public/videos/{args.name}.mp4')
 
