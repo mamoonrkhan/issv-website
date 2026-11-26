@@ -1,73 +1,68 @@
 {
-  "lead": "Virtual Sundays run on Google Classroom and Google Meet. No assembly: test your connection 10:00–10:15, and first period starts at 10:15.",
+  "lead": "Virtual Sundays run on Google Classroom and Google Meet.",
   "students": [
     {
       "title": "Sign in with your LearnIslam account",
-      "body": "Use your school Google account, not a personal or parent Gmail. On a personal account, you’ll wait while your teacher checks the roster."
+      "body": "It’s the Google account ending in @learnislam.org. A personal or parent Gmail means waiting while your teacher checks the roster."
     },
     {
       "title": "Open the class for the right period",
-      "body": "Each grade has two classes in Google Classroom, 1st Period and 2nd Period, each with its own Meet link. Go to classroom.google.com or the Classroom app."
+      "body": "Each grade has a 1st Period and a 2nd Period class in Google Classroom, each with its own Meet link."
     },
     {
       "title": "Click Join next to Meet",
-      "body": "It’s at the top left of the class page. If you see a waiting message, stay on that screen until your teacher lets you in."
+      "body": "It’s at the top left of the class page. If you see a waiting message, stay put until your teacher lets you in."
     },
     {
       "title": "Test by 10:15",
-      "body": "There’s no assembly. Test your connection 10:00–10:15. First period starts at 10:15, then the regular schedule."
+      "body": "No assembly. Test your connection 10:00–10:15. First period starts at 10:15."
     }
   ],
   "etiquette": [
-    "Camera on for the whole class",
-    "Mic muted unless it’s your turn",
-    "A school-appropriate virtual background",
-    "Display name that matches the class roster",
-    "Raise hand for questions",
-    "Don’t share the link"
+    "Camera on",
+    "Mic muted until it’s your turn",
+    "School-appropriate virtual background",
+    "Display name matches the roster",
+    "Disruptive students may be removed"
   ],
   "teachers": [
     {
       "title": "Use your LearnIslam account",
-      "body": "The admin creates each class and adds you and your students."
+      "body": "The admin creates your classes and adds your students."
     },
     {
       "title": "Turn on each class’s Meet link (once)",
-      "body": "Each grade has a 1st Period and a 2nd Period class, each with its own link. In each class: Settings (gear) → General → Meet link, generate it and make it visible to students."
+      "body": "Each grade has a 1st and 2nd Period class, each with its own link. In each: Settings (gear) → scroll to Manage Meet link → generate it, make it visible to students, and Save."
     },
     {
       "title": "Remind students Saturday",
-      "body": "Post in the Stream: “Virtual class tomorrow! Test your connection 10:00–10:15; class starts 10:15. Join from the Meet link here with your LearnIslam account.”"
+      "body": "Post in the Stream: “Virtual class tomorrow! Test your connection 10:00–10:15. Join from the Meet link here with your LearnIslam account.”"
     },
     {
       "title": "Open the Meet at 9:50",
-      "body": "Start from Classroom and turn on Host controls (shield icon). You can mute everyone, manage joining, and remove anyone disrupting class."
+      "body": "Start from Classroom and turn on Host controls (shield icon) to mute, manage joining, and remove disruptive students."
     },
     {
       "title": "Check names before admitting",
-      "body": "Personal accounts show as “asking to join”. Check the name against your roster before admitting, and fix display names you don’t recognize."
+      "body": "Personal accounts show as “asking to join”. Admit only names on your roster."
     },
     {
       "title": "Wrap up",
-      "body": "Post homework in Classwork, take attendance from People, and choose “End the call for everyone”."
+      "body": "Take attendance from the participants list (People icon in Meet), post homework in Classwork, then End the call for everyone."
     }
   ],
   "troubleshooting": [
     {
       "q": "Stuck on “Asking to join”",
-      "a": "Stay on that screen. Your teacher will let you in after checking the roster. Next time, sign in with your LearnIslam account (profile picture, top right) to get in right away."
+      "a": "Stay on that screen. Your teacher will let you in after checking the roster. Next time, use your @learnislam.org account to get in right away."
     },
     {
       "q": "My class isn’t in Classroom",
-      "a": "Check the signed-in account (profile picture, top right). If it’s your LearnIslam account and the class still isn’t there, email for help."
+      "a": "Check that the signed-in account (top right) ends in @learnislam.org. If it does and the class is missing, email for help."
     },
     {
       "q": "Which class do I join?",
       "a": "Each grade has a 1st Period and a 2nd Period class. Join 1st Period at 10:15, then switch to the 2nd Period class after the break."
-    },
-    {
-      "q": "Our shared computer keeps using the parent’s account",
-      "a": "In Chrome, click the profile icon (top right) → Add, and make a profile for the student’s LearnIslam account. Use it for every class."
     },
     {
       "q": "Joining from a phone or tablet",
@@ -79,9 +74,8 @@
     }
   ],
   "parents": [
-    "KG–Grade 2: we recommend sitting with your student",
-    "Give siblings separate spaces",
-    "Keep noise down nearby. The blender can wait until after class!",
-    "Teachers may remove students who disrupt class"
+    "KG–Grade 2: sit with your student",
+    "Separate spaces for siblings",
+    "Keep noise down nearby"
   ]
 }

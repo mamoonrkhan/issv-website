@@ -83,7 +83,7 @@ def main() -> None:
         (OUT / f'{args.name}.vtt').write_text('\n'.join(cues), encoding='utf-8')
 
         # 4. Frames -> MP4 with the narration.
-        page.evaluate(f'Engine.setTimeline({starts}, {total})')
+        page.evaluate(f'Engine.setTimeline({starts}, {total}, {ends})')
         with tempfile.TemporaryDirectory() as tmp:
             wav = pathlib.Path(tmp) / 'voice.wav'
             sf.write(wav, audio, sr)

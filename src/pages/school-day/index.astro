@@ -15,9 +15,8 @@ const guides = [
 ] as const;
 ---
 <Base title="School Day" current="school-day" description="Everything for a school Sunday: parking, pick-up, the campus map and online classes.">
-  <Hero eyebrow="School Day" title="Your School Day" lead={`Sundays, ${site.hours.replace('Sundays ', '')}, at ${site.location}.`}>
-    <a class="btn btn-primary" href={u('/school-day/getting-here/')}><Icon name="car" />Parking &amp; Pick-Up</a>
-    <a class="btn btn-outline" href={directions} target="_blank" rel="noopener"><Icon name="pin" />Directions<span class="sr-only"> (opens in a new tab)</span></a>
+  <Hero eyebrow={site.hours} title="School Day" lead={`At ${site.location}. Here’s how the day works.`}>
+    <a class="btn btn-primary" href={directions} target="_blank" rel="noopener"><Icon name="pin" />Directions<span class="sr-only"> (opens in a new tab)</span></a>
   </Hero>
   <SchoolDayNav current="hub" />
 
@@ -55,14 +54,8 @@ const guides = [
         </div>
         <div class="card card-sm stack">
           <span class="label">Virtual Sunday?</span>
-          <span class="text-16">No assembly. Test your connection 10:00–10:15, then join from Google Classroom with your LearnIslam account.</span>
+          <span class="text-16">No assembly. Join from Google Classroom by 10:15.</span>
           <a class="text-link" href={u('/school-day/online/')}>Online class guide <span class="arrow" aria-hidden="true">→</span></a>
-        </div>
-        <div class="card card-sm stack">
-          <span class="label">Where</span>
-          <b>{site.location}</b>
-          <span class="small-muted">{site.address}</span>
-          <a class="text-link" href={directions} target="_blank" rel="noopener">Get directions <span class="arrow" aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>

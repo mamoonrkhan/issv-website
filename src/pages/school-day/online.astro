@@ -20,7 +20,7 @@ const help = site.emailSupport || site.emailGeneral;
       <span class="rule-icon"><Icon name="users" size={26} /></span>
       <div>
         <h2 class="h-card">The rule that fixes most problems</h2>
-        <p>Join from <b>Google Classroom</b> with your <b>LearnIslam account</b>, never a personal Gmail.</p>
+        <p>Join from <b>Google Classroom</b> with your <b>@learnislam.org</b> account, never a personal Gmail.</p>
       </div>
     </div>
   </section>
@@ -36,9 +36,9 @@ const help = site.emailSupport || site.emailGeneral;
       <figure class="video-card">
         <video controls preload="none" playsinline poster={u('/videos/student-join.jpg')}>
           <source src={u('/videos/student-join.mp4')} type="video/mp4" />
-          <track kind="captions" src={u('/videos/student-join.vtt')} srclang="en" label="English" default />
+          <track kind="captions" src={u('/videos/student-join.vtt')} srclang="en" label="English" />
         </video>
-        <figcaption><Icon name="video" size={18} /><span><b>Watch: Joining a Virtual Class</b> · 1:40, with captions. The same steps are written out below.</span></figcaption>
+        <figcaption><Icon name="video" size={18} /><span><b>Watch: Joining a Virtual Class</b></span></figcaption>
       </figure>
       <div class="online-grid">
         <ol class="big-steps">
@@ -47,16 +47,6 @@ const help = site.emailSupport || site.emailGeneral;
           ))}
         </ol>
         <aside class="stack stack-md">
-          <figure class="mock" aria-label="Illustration: where the Meet link is in Google Classroom">
-            <div class="mock-bar"><span></span><span></span><span></span><b>classroom.google.com</b></div>
-            <div class="mock-banner">Grade 4 · Islamic Studies</div>
-            <div class="mock-body">
-              <div class="mock-meet"><Icon name="video" size={18} /><span>Meet</span><span class="mock-join">Join</span></div>
-              <div class="mock-post"><i></i><i></i></div>
-              <div class="mock-post"><i></i><i></i></div>
-            </div>
-            <figcaption>Look for <b>Meet · Join</b> at the top left of your class page.</figcaption>
-          </figure>
           <div class="card card-sm stack">
             <h3 class="h-card">In class</h3>
             <ul class="checks">{(o.etiquette ?? []).map((e) => <li><Icon name="check" size={18} />{e}</li>)}</ul>
@@ -75,9 +65,9 @@ const help = site.emailSupport || site.emailGeneral;
       <figure class="video-card">
         <video controls preload="none" playsinline poster={u('/videos/teacher-setup.jpg')}>
           <source src={u('/videos/teacher-setup.mp4')} type="video/mp4" />
-          <track kind="captions" src={u('/videos/teacher-setup.vtt')} srclang="en" label="English" default />
+          <track kind="captions" src={u('/videos/teacher-setup.vtt')} srclang="en" label="English" />
         </video>
-        <figcaption><Icon name="video" size={18} /><span><b>Watch: Running a Virtual Class</b> · 1:54, with captions. The same steps are written out below.</span></figcaption>
+        <figcaption><Icon name="video" size={18} /><span><b>Watch: Running a Virtual Class</b></span></figcaption>
       </figure>
       <ol class="big-steps big-steps-2">
         {(o.teachers ?? []).map((s, i) => (

@@ -9,9 +9,11 @@
 //   { at, click: true }             click ripple at the pointer
 //   { at, add: '#sel', cls: 'on' }  add a class (stays until the scene ends)
 //   { at, type: '#sel', text, dur } type text into an element over `dur` seconds
+//   { at, scroll: '#sel', by, dur }  scroll an element's content up by `by` px over `dur` seconds
 (function () {
   const MOVE = 0.7;
   let starts = [];
+  let ends = [];
   let total = 0;
   const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
   const $ = (s) => document.querySelector(s);
@@ -66,6 +68,7 @@
       el.removeAttribute('data-dyn');
     });
     document.querySelectorAll('[data-typed]').forEach((el) => { el.textContent = ''; });
+    document.querySelectorAll('[data-scrolled]').forEach((el) => { el.style.transform = ''; el.removeAttribute('data-scrolled'); });
 
     const cues = segmentCues(segA, segB);
     const cursor = $('#cursor');
@@ -83,6 +86,12 @@
         const el = $(c.type);
         const n = Math.floor(Math.min(1, (t - c.t) / (c.dur || 2)) * c.text.length);
         el.textContent = c.text.slice(0, n);
+      }
+      if (c.scroll) {
+        const el = $(c.scroll);
+        const k = ease(Math.min(1, (t - c.t) / (c.dur || 1)));
+        el.style.transform = `translateY(${-c.by * k}px)`;
+        el.setAttribute('data-scrolled', '');
       }
       if (c.cursor) {
         from = pos || center(c.cursor);
@@ -112,6 +121,14 @@
       ripple.style.display = 'none';
     }
 
+    // Captions, drawn into the frame so they're large and always on.
+    const cap = $('#caption');
+    if (cap) {
+      const on = t >= starts[i] && t <= (ends[i] ?? Infinity) + 0.6;
+      cap.textContent = on ? VIDEO.lines[i].text : '';
+      cap.style.opacity = on ? '1' : '0';
+    }
+
     // Progress bar.
     const bar = $('#progress');
     if (bar) bar.style.width = (100 * Math.min(1, t / total)) + '%';
@@ -121,13 +138,13 @@
     init() {
       // Preview in a browser without render.py: pretend each line lasts 5 s and play in real time.
       if (!location.search.includes('render')) {
-        this.setTimeline(VIDEO.lines.map((_, i) => i * 5), VIDEO.lines.length * 5);
+        this.setTimeline(VIDEO.lines.map((_, i) => i * 5), VIDEO.lines.length * 5, VIDEO.lines.map((_, i) => i * 5 + 4));
         const t0 = performance.now();
         const tick = () => { setTime(((performance.now() - t0) / 1000) % total); requestAnimationFrame(tick); };
         requestAnimationFrame(tick);
       }
     },
-    setTimeline(s, end) { starts = s; total = end; },
+    setTimeline(s, end, e) { starts = s; total = end; ends = e || s.map((x) => x + 5); },
     setTime,
   };
 })();

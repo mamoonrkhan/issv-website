@@ -17,8 +17,8 @@
   <div class="center">
     <span class="chip">ISSV Teacher Guide</span>
     <h1>Running a<br />Virtual Class</h1>
-    <p>Google Classroom + Google Meet, in about two minutes</p>
-    <div class="logos"><span>1 · Sign in</span><span>2 · Meet link</span><span>3 · Remind</span><span>4 · Teach</span><span>5 · Wrap up</span></div>
+    <p>Google Classroom + Google Meet</p>
+    <div class="logos"><span>1 · Sign in</span><span>2 · Meet link</span><span>3 · Remind</span><span>4 · Teach</span><span>5 · Attendance &amp; wrap up</span></div>
   </div>
 </section>
 
@@ -33,7 +33,7 @@
         <div class="card-class" id="a-class2"><div class="top" style="background:linear-gradient(135deg,#1F5FA8,#3B82C4)">Grade 4 · 2nd Period<br /><small style="font-weight:500;font-size:15px">ISSV</small></div><div class="bot"></div></div>
       </div>
       <div class="menu" id="a-menu">
-        <div class="acct" id="a-school"><span class="avatar">A</span><div><b>Amina Rahman</b><span>LearnIslam account</span></div><span class="tag tag-school">Use this</span></div>
+        <div class="acct" id="a-school"><span class="avatar">A</span><div><b>Amina Rahman</b><span>amina.rahman@learnislam.org</span></div><span class="tag tag-school">Use this</span></div>
         <div class="acct"><span class="avatar" style="background:#9AA0A6">A</span><div><b>amina.r@gmail.com</b><span>Personal account</span></div><span class="tag tag-personal">Not for class</span></div>
       </div>
     </div>
@@ -52,14 +52,27 @@
         <div class="side-card hidden" id="m-side"><b>Meet</b><span class="meet-btn">Join</span></div>
         <div><div class="post">Announce something to your class<span class="ph"></span></div><div class="post"><span class="ph"></span><span class="ph"></span></div></div>
       </div>
-      <div class="panel" id="m-panel">
-        <h3>Class settings</h3>
-        <h4>General</h4>
-        <div class="row"><span>Meet link</span><span class="btn-g" id="m-gen">Generate link</span></div>
-        <div class="row"><span class="link-out" id="m-link">meet.google.com/abc-defg-hij</span></div>
-        <div class="row"><span>Visible to students</span><span class="toggle" id="m-toggle"></span></div>
-        <div style="display:flex;justify-content:flex-end;margin-top:22px"><span class="btn-g" id="m-save">Save</span></div>
+      <div class="settings" id="m-settings">
+        <div class="set-top"><span class="set-x">✕</span>Class settings<span class="btn-g" id="m-save">Save</span></div>
+        <div class="set-view"><div class="set-scroll" id="m-scroll">
+          <h4>Class details</h4>
+          <div class="field">Class name<b>Grade 4 · 1st Period</b></div>
+          <div class="field">Section<b>ISSV</b></div>
+          <div class="field">Subject<b>Quranic Studies</b></div>
+          <div class="field">Room<b></b></div>
+          <h4>General</h4>
+          <div class="field">Invite codes<b>Manage invite codes</b></div>
+          <div class="manage" id="m-manage"><span class="meet-logo"><i></i><i></i></span>Manage Meet link</div>
+          <div class="field">Stream<b>Students can post and comment</b></div>
+        </div></div>
+        <div class="dlg" id="m-dlg">
+          <b style="font-size:20px">Meet link</b>
+          <div class="row"><span class="link-out" id="m-link">meet.google.com/abc-defg-hij</span><span class="btn-g" id="m-gen">Generate link</span></div>
+          <div class="row"><span>Visible to students</span><span class="toggle" id="m-toggle"></span></div>
+          <div style="display:flex;justify-content:flex-end;margin-top:14px"><span class="btn-g" id="m-dsave">Save</span></div>
+        </div>
       </div>
+</div>
     </div>
   </div>
 </section>
@@ -97,12 +110,22 @@
         <span class="b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8EAED" stroke-width="2"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10.5l5-3v9l-5-3z"/></svg></span>
         <span class="b"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8EAED" stroke-width="2"><path d="M7 11V6a1.5 1.5 0 0 1 3 0v5M10 10V4.5a1.5 1.5 0 0 1 3 0V10M13 10V5.5a1.5 1.5 0 0 1 3 0V12M16 8.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-12.5 4.3L4 15a1.5 1.5 0 0 1 2.3-2L7 14"/></svg></span>
         <span class="b red" id="t-leave"><svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 9c-3.5 0-6.6 1.3-8.6 3.2-.4.4-.4 1 0 1.4l1.8 1.8c.4.4 1 .4 1.4 0l1.6-1.4c.3-.3.4-.6.4-1v-1.6c1-.3 2.2-.5 3.4-.5s2.4.2 3.4.5V13c0 .4.1.7.4 1l1.6 1.4c.4.4 1 .4 1.4 0l1.8-1.8c.4-.4.4-1 0-1.4C18.6 10.3 15.5 9 12 9z"/></svg></span>
-        <span class="b shield" id="t-shield"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8EAED" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.5a2 2 0 0 1 4 0V11"/></svg></span>
+        <span class="b" id="t-people" style="margin-left:40px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8EAED" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></svg></span>
+        <span class="b shield" id="t-shield" style="margin-left:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E8EAED" stroke-width="2"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"/><rect x="9" y="11" width="6" height="5" rx="1"/><path d="M10 11V9.5a2 2 0 0 1 4 0V11"/></svg></span>
       </div>
       <div class="panel" id="t-panel">
         <h3>Host controls</h3>
         <div class="row"><span><b>Host management</b><br /><small style="color:var(--muted)">Mute everyone, manage who joins</small></span><span class="toggle" id="t-toggle"></span></div>
         <div class="row" style="opacity:.6"><span>Turn off everyone's microphone</span></div>
+      </div>
+      <div class="people" id="t-ppl">
+        <h3>People</h3>
+        <div id="t-plist" style="padding:4px">
+          <div class="p"><span class="avatar">A</span>Amina Rahman (you, host)</div>
+          <div class="p"><span class="avatar" style="background:#E37400">Y</span>Yusuf A.</div>
+          <div class="p"><span class="avatar" style="background:#1E8E3E">M</span>Maryam K.</div>
+          <div class="p"><span class="avatar" style="background:#1F5FA8">O</span>Omar S.</div>
+        </div>
       </div>
       <div class="popup" id="t-ask">
         <h3>Someone wants to join this call</h3>
@@ -143,6 +166,7 @@
 <span class="note">Simplified illustration. Real screens may look slightly different.</span>
 <svg id="cursor" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.5L10 19z" fill="#fff" stroke="#13201B" stroke-width="1.6" stroke-linejoin="round"/></svg>
 <span id="ripple"></span>
+<div id="caption"></div>
 <div id="progress"></div>
 
 <style>
@@ -173,13 +197,13 @@ window.VIDEO = {
     { scene: 'meetlink', text: 'Each grade has a first period class and a second period class, and each one needs its own Meet link. You only do this once.',
       cues: [] },
     { scene: 'meetlink', text: 'In each class, click the gear icon to open Settings.',
-      cues: [ { at: 0.8, cursor: '#m-gear' }, { at: 1.8, click: true }, { at: 2.0, add: '#m-panel', cls: 'on' } ] },
-    { scene: 'meetlink', text: 'Under General, find Meet link, and generate a link.',
-      cues: [ { at: 0, add: '#m-panel', cls: 'on' }, { at: 0.8, cursor: '#m-gen' }, { at: 2.2, click: true }, { at: 2.4, add: '#m-link', cls: 'on' } ] },
-    { scene: 'meetlink', text: 'Turn on Visible to students, then click Save.',
-      cues: [ { at: 0, add: '#m-panel', cls: 'on' }, { at: 0, add: '#m-link', cls: 'on' }, { at: 0.4, cursor: '#m-toggle' }, { at: 1.3, click: true }, { at: 1.4, add: '#m-toggle', cls: 'on' }, { at: 2.0, cursor: '#m-save' }, { at: 2.8, click: true } ] },
+      cues: [ { at: 0.8, cursor: '#m-gear' }, { at: 1.8, click: true }, { at: 2.0, add: '#m-settings', cls: 'on' } ] },
+    { scene: 'meetlink', text: 'Settings opens as a new page. Scroll down to Manage Meet link, next to the Google Meet logo, and click it.',
+      cues: [ { at: 0.8, cursor: '#m-scroll' }, { at: 1.2, scroll: '#m-scroll', by: 250, dur: 1.8 }, { at: 3.6, cursor: '#m-manage' }, { at: 4.3, add: '#m-manage', cls: 'ring' }, { at: 5.6, click: true }, { at: 5.7, add: '#m-dlg', cls: 'on' } ] },
+    { scene: 'meetlink', text: 'Click Generate link, turn on Visible to students, and click Save.',
+      cues: [ { at: 0.3, cursor: '#m-gen' }, { at: 1.2, click: true }, { at: 1.3, add: '#m-link', cls: 'on' }, { at: 1.8, cursor: '#m-toggle' }, { at: 2.6, click: true }, { at: 2.7, add: '#m-toggle', cls: 'on' }, { at: 3.3, cursor: '#m-dsave' }, { at: 4.0, click: true }, { at: 4.1, add: '#m-dlg', cls: 'gone' } ] },
     { scene: 'meetlink', text: 'Now each class has one Meet link for every virtual Sunday. Please don’t post links anywhere else.',
-      cues: [ { at: 0, add: '#m-panel', cls: 'gone' }, { at: 0.3, add: '#m-side', cls: 'on' }, { at: 0.5, cursor: '#m-side' }, { at: 1.2, add: '#m-side', cls: 'ring' } ] },
+      cues: [ { at: 0, add: '#m-settings', cls: 'gone' }, { at: 0.3, add: '#m-side', cls: 'on' }, { at: 0.5, cursor: '#m-side' }, { at: 1.2, add: '#m-side', cls: 'ring' } ] },
 
     { scene: 'remind', text: 'On Saturday, post a quick reminder in the Stream.',
       cues: [ { at: 0.6, cursor: '#r-box' }, { at: 1.6, click: true }, { at: 1.7, add: '#r-box', cls: 'typing' } ] },
@@ -195,18 +219,43 @@ window.VIDEO = {
     { scene: 'meet', text: 'Check the name against your class roster before admitting, and fix any display names you don’t recognize.',
       cues: [ { at: 0, add: '#t-ask', cls: 'on' }, { at: 0.5, cursor: '#t-admit' }, { at: 1.6, click: true }, { at: 1.7, add: '#t-ask', cls: 'gone' }, { at: 1.8, add: '#t-tile2', cls: 'on' } ] },
 
+    { scene: 'meet', text: 'Before class ends, open the People panel, and take attendance from the participants listed.',
+      cues: [ { at: 0.8, cursor: '#t-people' }, { at: 1.8, click: true }, { at: 1.9, add: '#t-ppl', cls: 'on' }, { at: 3.6, add: '#t-plist', cls: 'ring' } ] },
     { scene: 'meet', text: 'When class is over, click the red button, and choose End the call for everyone.',
-      cues: [ { at: 0.5, cursor: '#t-leave' }, { at: 1.6, click: true }, { at: 1.7, add: '#t-end', cls: 'on' }, { at: 2.6, cursor: '#t-endall' }, { at: 3.6, click: true }, { at: 3.7, add: '#t-endall', cls: 'ring' } ] },
+      cues: [ { at: 0, add: '#t-ppl', cls: 'gone' }, { at: 0.5, cursor: '#t-leave' }, { at: 1.6, click: true }, { at: 1.7, add: '#t-end', cls: 'on' }, { at: 2.6, cursor: '#t-endall' }, { at: 3.6, click: true }, { at: 3.7, add: '#t-endall', cls: 'ring' } ] },
 
-    { scene: 'wrap', text: 'Then post any homework in Classwork, and take attendance from the People list.',
-      cues: [ { at: 1.0, cursor: '#w-classwork' }, { at: 1.6, add: '#w-classwork', cls: 'ring' }, { at: 3.2, cursor: '#w-people' }, { at: 3.8, add: '#w-people', cls: 'ring' } ] },
+    { scene: 'wrap', text: 'Then post any homework in Classwork.',
+      cues: [ { at: 0.4, cursor: '#w-classwork' }, { at: 1.0, add: '#w-classwork', cls: 'ring' } ] },
 
     { scene: 'outro', text: 'That’s it! The written steps are on the Online Classes page of the school website. If a class or setting is missing, email issvsupport@learnislam.org.',
       say: 'That’s it! The written steps are on the Online Classes page of the school website. If a class or setting is missing, email I S S V support, at learn islam dot org.' },
   ],
 };
 </script>
-<style>.popup.gone, .panel.gone { display: none; }</style>
+<style>
+  .popup.gone, .panel.gone, .settings.gone, .dlg.gone { display: none; }
+  .settings { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 5; }
+  .settings.on { opacity: 1; }
+  .set-top { height: 60px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; padding: 0 24px; font-size: 21px; font-weight: 600; background: #fff; position: relative; z-index: 2; }
+  .set-top .btn-g { margin-left: auto; }
+  .set-x { color: var(--muted); font-size: 18px; }
+  .set-view { position: absolute; top: 60px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+  .set-scroll { width: 700px; margin: 0 auto; padding: 10px 0 200px; }
+  .set-scroll h4 { margin: 22px 0 10px; font-size: 22px; color: var(--ink); text-transform: none; letter-spacing: 0; }
+  .field { border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin-bottom: 10px; font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 2px; min-height: 54px; }
+  .field b { font-size: 16px; color: var(--ink); font-weight: 500; }
+  .manage { display: flex; align-items: center; gap: 14px; padding: 14px; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 10px; font-size: 17px; font-weight: 600; color: var(--g-blue); }
+  .meet-logo { width: 34px; height: 26px; position: relative; }
+  .meet-logo i:first-child { position: absolute; left: 0; top: 0; width: 22px; height: 26px; border-radius: 4px; background: linear-gradient(135deg, #00832D 0 33%, #0066DA 33% 66%, #E94235 66%); }
+  .meet-logo i:last-child { position: absolute; right: 0; top: 4px; border-left: 12px solid #FFBA00; border-top: 9px solid transparent; border-bottom: 9px solid transparent; }
+  .dlg { position: absolute; left: 50%; top: 110px; width: 520px; margin-left: -260px; background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 16px 50px rgba(0,0,0,.3); opacity: 0; z-index: 6; }
+  .dlg.on { opacity: 1; }
+  .meet .people { position: absolute; top: 0; right: 0; bottom: 84px; width: 380px; background: #fff; color: var(--ink); padding: 22px; border-radius: 0 0 0 14px; opacity: 0; }
+  .meet .people.on { opacity: 1; }
+  .meet .people h3 { margin: 0 0 12px; font-size: 20px; }
+  .meet .people .p { display: flex; align-items: center; gap: 12px; padding: 9px 4px; font-size: 16px; }
+  .meet .people .p .avatar { width: 32px; height: 32px; font-size: 14px; }
+</style>
 <script src="engine.js"></script>
 <script>Engine.init();</script>
 </body>

@@ -562,7 +562,7 @@ a:hover .arrow { transform: translateX(4px); }
 .site-footer .bottom { padding-top: 18px; padding-bottom: 26px; border-top: 1px solid #1F5546; font-size: 14px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
 
 /* ---------- School Day section ---------- */
-.subnav { position: relative; margin-top: -26px; z-index: 2; }
+.subnav { position: relative; margin-top: 28px; }
 .subnav ul {
   list-style: none; margin: 0; padding: 6px; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none;
   background: var(--white); border: 1px solid var(--line); border-radius: 999px; box-shadow: var(--shadow-card); width: max-content; max-width: 100%;
@@ -707,7 +707,7 @@ a:hover .arrow { transform: translateX(4px); }
   .online-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .subnav { margin-top: -24px; }
+  .subnav { margin-top: 20px; }
   .subnav ul { border-radius: 16px; }
   .big-steps li { padding: 18px; gap: 14px; }
   .rule-banner { padding: 18px; align-items: flex-start; }
